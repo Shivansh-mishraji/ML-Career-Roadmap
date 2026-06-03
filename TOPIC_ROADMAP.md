@@ -54,6 +54,7 @@ Use the **Self-Assessment** in the main README to figure out exactly which Level
 
 ### Action Items & Verification:
 - [ ] Follow the free "Machine Learning" course by Andrew Ng (Coursera).
+- [ ] For a **granular, step-by-step checklist** of what to study in this level (including the exact 19-chapter syllabus and top GitHub references), read the **[Detailed Classical ML Syllabus](./learning-resources/CLASSICAL_ML_SYLLABUS.md)**.
 - [ ] Read the official Scikit-Learn documentation tutorials.
 - **Proof of Mastery:** Build a complete End-to-End model predicting House Prices or Customer Churn. It must use Scikit-Learn `Pipeline` and `ColumnTransformer` to handle missing data and categorical encoding.
 

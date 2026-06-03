@@ -1,7 +1,7 @@
 <div align="center">
 
 # 🚀 ML/AI Career Roadmap
-### *From Beginner to ₹15-25L Job in 1-3 Months*
+### *From Beginner to ₹15-25L Job, At Your Own Pace*
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white)
@@ -9,134 +9,76 @@
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
 ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
-**Your Complete Guide to Landing a High-Paying ML/AI Engineering Job**
+**Your Complete, Topic-Based Guide to Landing a High-Paying ML/AI Engineering Job**
 
-[Getting Started](#-getting-started-your-first-week) •
-[Specializations](#-which-specialization-path-are-you-taking) •
-[Resources](#-detailed-resources) •
+[Self Assessment](#-self-assessment-where-should-you-start) •
+[Topic Roadmap](./TOPIC_ROADMAP.md) •
+[Projects](#-core-resources--projects) •
 [FAQ](#-questions)
 </div>
 
 ---
 
-## 📋 **Quick Navigation**
+## 🛑 Stop Learning by Timelines
 
-### **🎯 Just Starting? Start Here:**
-<details>
-<summary><b>Click to expand your initial checklist</b></summary>
+Most roadmaps tell you to "learn ML in 30 days." **This is flawed.** Every student has a different learning speed, a different daily schedule, and different prior knowledge. 
 
-- [ ] Read this README (you are here) — 10 mins
-- [ ] **Choose your timeline:**
-  - ⏳ 1 Month left? Read the [1-Month Internship Roadmap](./internship-prep/1_MONTH_INTERNSHIP_ROADMAP.md)
-  - ⏳ 2 Months left? Read the [2-Month Internship Roadmap](./internship-prep/2_MONTH_INTERNSHIP_ROADMAP.md)
-  - ⏳ 3 Months left? Read the [3-Month Internship Roadmap](./internship-prep/3_MONTH_INTERNSHIP_ROADMAP.md)
-  - ⏳ 4 Months left? Read the [4-Month Internship Roadmap](./internship-prep/4_MONTH_INTERNSHIP_ROADMAP.md)
-- [ ] Review [Mentor Tips & Networking](./internship-prep/MENTOR_TIPS_AND_NETWORKING.md) — 10 mins
-- [ ] Start [Day 1: NumPy](./learning-resources/DAY_BY_DAY_SCHEDULE.md#day-1-numpy-fundamentals) — Now!
-</details>
-
-### **📚 Detailed Resources:**
-| Resource | Purpose | Time | When to Use |
-|----------|---------|------|------------|
-| 🌟 **[Internship Roadmap](./internship-prep/4_MONTH_INTERNSHIP_ROADMAP.md)** | **4-Month plan to get hired** | 20 mins read | **Crucial Planning** |
-| 🚀 **[Real-Time Projects](./internship-prep/REAL_TIME_PROJECTS.md)** | **End-to-end ML/AI portfolios** | Reference | Project Building |
-| ⚙️ **[ML Engineering Lifecycle](./learning-resources/ML_ENGINEERING_LIFECYCLE.md)**| **Step-by-step MLOps process** | 15 mins read | System Design |
-| 🤝 **[Networking & Mentor Tips](./internship-prep/MENTOR_TIPS_AND_NETWORKING.md)**| **Cold email & resume templates**| 15 mins read | Applying |
-| 🔗 **[Top Reference Links](./learning-resources/TOP_REFERENCE_LINKS.md)** | **Best GitHub repos & websites for prep** | Reference | Daily Study |
-| [Day-by-Day Schedule](./learning-resources/DAY_BY_DAY_SCHEDULE.md) | Detailed learning with resource links | 15 mins read | Days 1-30 |
-| [Interview Guide](./interview-prep/ML_CONCEPTS_INTERVIEW_GUIDE.md) | 10 ML concepts + Q&A | 2 hours study | Week 4+ |
-| [Kaggle Guide](./learning-resources/KAGGLE_COMPETITION_GUIDE.md) | How to win competitions | 30 mins read | Week 3 |
-| [LeetCode Problems](./dsa-guide/LEETCODE_ML_PROBLEMS.md) | 50 essential problems | Study reference | Weeks 2-10 |
-| [DSA for ML](./dsa-guide/DSA_PREPARATION_FOR_ML.md) | Which DSA matters for ML | 20 mins read | Before coding |
-| [Project Template](./project-templates/PROJECT_TEMPLATE.md) | How to structure projects | Reference | Each project |
+This repository is strictly **Topic-Based**. You only move to the next level when you have mastered the current one. Use the self-assessment below to find exactly where you need to start, cutting out the fluff and saving you hundreds of hours.
 
 ---
 
-## 🎓 **About This Roadmap**
+## 🧭 **Self-Assessment: Where should you start?**
 
-**Created for:** Freshers aiming for ₹15L+ ML/AI roles  
-**Assumes:** Basic Python knowledge (you know loops, functions, etc.)  
-**Time Investment:** 1-3 months at 4.5-6 hours/day  
-**Success Rate:** 85%+ get interviews with this plan, 60%+ get offers  
+Answer the questions below honestly. Stop at the first level where your answer is "No."
 
-<details>
-<summary><b>What This Roadmap Covers (Expand)</b></summary>
+### 🟢 **Level 0: The Foundations**
+*   *Can you write a Python class, use dictionaries, and do you understand what a matrix dot-product is?*
+*   **No:** Start your journey here.
+*   **Yes:** Move to Level 1.
 
-- ✅ Python data science stack (NumPy, Pandas, Matplotlib)
-- ✅ Machine learning fundamentals (5+ algorithms)
-- ✅ Deep learning basics (CNNs, RNNs, Transformers intro)
-- ✅ 4-10 portfolio projects (GitHub-ready)
-- ✅ Kaggle competition strategy
-- ✅ DSA interview prep (50 problems)
-- ✅ ML system design
-- ✅ Interview preparation (concepts + Q&A)
-- ✅ Job search strategy
-</details>
+### 🟡 **Level 1: Data Manipulation**
+*   *Can you load a CSV into Pandas, handle missing values, and plot a correlation heatmap using Seaborn?*
+*   **No:** Jump straight to Level 1.
+*   **Yes:** Move to Level 2.
 
-<details>
-<summary><b>What This Doesn't Cover (Expand)</b></summary>
+### 🟠 **Level 2: Classical Machine Learning**
+*   *Can you build a Scikit-Learn `Pipeline` with `ColumnTransformer` to train a Random Forest and evaluate its ROC-AUC score?*
+*   **No:** Jump straight to Level 2.
+*   **Yes:** Move to Level 3.
 
-- ❌ Advanced research (requires PhD)
-- ❌ Reinforcement learning (unless you choose Track A)
-- ❌ Full-stack ML systems (Week 4 intro only)
-- ❌ Cloud deployment (beyond basics)
-</details>
+### 🔴 **Level 3: Deep Learning & AI**
+*   *Can you define a PyTorch neural network class, write a training loop, or fine-tune a pre-trained Transformer model?*
+*   **No:** Jump straight to Level 3.
+*   **Yes:** Move to Level 4.
 
----
+### ⚫ **Level 4: MLOps & Production**
+*   *Can you track your experiments with MLflow, deploy your model via FastAPI, and package it into a Docker container?*
+*   **No:** Jump straight to Level 4.
+*   **Yes:** You are ready for Senior-level interviews! Jump to our Interview Prep.
 
-## 📅 **Timeline Overview**
-
-```mermaid
-gantt
-    title ML/AI Career Roadmap Timeline
-    dateFormat  YYYY-MM-DD
-    axisFormat  Month %M
-    
-    section Month 1<br>Fundamentals
-    Python & ML Basics     :active, m1_1, 2024-01-01, 14d
-    Initial Projects       :active, m1_2, after m1_1, 14d
-    
-    section Month 2<br>Specialization
-    Choose Track & Learn   :m2_1, after m1_2, 14d
-    Advanced Projects      :m2_2, after m2_1, 14d
-    
-    section Month 3<br>Job Ready
-    Interview Prep         :m3_1, after m2_2, 14d
-    Apply & Negotiate      :m3_2, after m3_1, 14d
-```
+👉 **Found your Level? Head over to the [Topic-Based Master Roadmap](./TOPIC_ROADMAP.md) to get your action items and resources.**
 
 ---
 
-## 🏃 **Getting Started: Your First Week**
+## 📚 **Core Resources & Projects**
 
-### **Day 1-2: Setup & Fundamentals**
-```bash
-# Create project structure
-mkdir ml-journey
-cd ml-journey
-python -m venv env
-source env/bin/activate  # Windows: env\Scripts\activate
+Once you know what to learn, use these practical resources to build your portfolio and prepare for interviews:
 
-# Install basics
-pip install numpy pandas matplotlib scikit-learn jupyter
-
-# Start learning
-jupyter notebook  # Follow Day 1 schedule
-```
-**Goal:** Complete NumPy practice notebook and push to `ml-journey` repository (6 hours).
-
-### **Day 3-5: Data Exploration**
-**Goal:** Titanic EDA project (12 hours).
-* Deliverables: 10+ visualizations, statistical analysis, comprehensive README.
-
-### **Day 6-7: Polish & Review**
-Clean notebooks, finalize READMEs, reflect on learning, and prepare for Week 2.
+| Resource | Purpose | Where to find it |
+|----------|---------|------------|
+| 🌟 **[Topic Master Roadmap](./TOPIC_ROADMAP.md)** | **Your exact learning path per Level** | Root directory |
+| 🏗️ **[ML Engineer Reference Project](./ml-engineer-reference-project/README.md)** | See how production ML code is written | Level 2 & 4 |
+| ⚙️ **[MLOps Reference Architecture](./mlops-reference-project/README.md)** | Learn Docker, MLflow, CI/CD, and Drift | Level 4 |
+| 🔄 **[ML Engineering Lifecycle](./learning-resources/ML_ENGINEERING_LIFECYCLE.md)**| Step-by-step MLOps process explained | Level 4 |
+| 🚀 **[Real-Time Projects](./internship-prep/REAL_TIME_PROJECTS.md)** | Project ideas for your portfolio | Levels 1-3 |
+| 🎤 **[Interview Guide](./interview-prep/ML_CONCEPTS_INTERVIEW_GUIDE.md)** | 10 ML concepts + Q&A for interviews | Job Prep |
+| 💻 **[LeetCode Problems](./dsa-guide/LEETCODE_ML_PROBLEMS.md)** | 50 essential DSA problems for ML | Job Prep |
 
 ---
 
-## 🎯 **Which Specialization Path Are You Taking?**
+## 🎯 **Specialization Paths**
 
-Choose your destiny:
+Machine Learning is broad. Once you reach **Level 3**, you should pick a specialization:
 
 <div align="center">
 
@@ -151,105 +93,24 @@ Choose your destiny:
 
 ---
 
-## 📂 **Repository Structure**
-
-Explore the directory to find precisely what you need:
-
-<details>
-<summary><b>Click to View Full Folder Structure</b></summary>
-
-```text
-ML-Career-Roadmap/
-│
-├── internship-prep/                   # 💼 Get Hired Faster (1-4 Month guides)
-├── interactive-projects/              # 💻 Hands-on Code Templates (FastAPI, RAG)
-├── learning-resources/                # 📖 Daily schedules, Kaggle guides, top links
-├── project-templates/                 # 🏗️ Blueprint for structuring ML projects
-├── interview-prep/                    # 🎤 ML Concepts Interview Guide
-├── dsa-guide/                         # 💻 50 LeetCode problems for ML roles
-└── README.md                          # 👈 You are here
-```
-</details>
-
----
-
-## 📊 **Success Metrics & Checklists**
-
-<details>
-<summary><b>Month 1: Fundamentals Complete</b></summary>
-
-- [ ] 4 projects completed (EDA, ML, Competition, Capstone)
-- [ ] All code on GitHub with good READMEs
-- [ ] 20 LeetCode problems solved
-- [ ] Can explain any project in 3 minutes
-- [ ] Got Kaggle top 30-40%
-> **Expected:** Get 1-3 interview calls
-</details>
-
-<details>
-<summary><b>Month 2: Specialization Expert</b></summary>
-
-- [ ] 6 advanced projects in chosen specialization
-- [ ] 1 production-ready system built
-- [ ] 30 additional LeetCode problems solved
-- [ ] Written technical blog post
-- [ ] Kaggle top 20%
-> **Expected:** Get 3-5 interview calls
-</details>
-
-<details>
-<summary><b>Month 3: Ready to Hire</b></summary>
-
-- [ ] 10 total projects (diverse, impressive)
-- [ ] Passed 2+ mock interviews
-- [ ] Negotiated 2-3 offers
-- [ ] 50+ LeetCode problems solved
-- [ ] All interview concepts mastered
-> **Expected:** Land job, ₹15-25L package
-</details>
-
----
-
-## 🛠️ **Tools & Bonus Resources**
-
-<details>
-<summary><b>Tools You'll Need</b></summary>
-
-*   **Programming:** Python 3.8+, Jupyter Notebook, VS Code, Git
-*   **Data Science Libraries:** `numpy`, `pandas`, `matplotlib`, `seaborn`, `scikit-learn`
-*   **Deep Learning Libraries:** `tensorflow`, `keras`, `torch`, `torchvision`
-*   **Deployment:** `flask`, `fastapi`, Docker
-</details>
-
-<details>
-<summary><b>Best YouTube Channels & Books</b></summary>
-
-*   **Channels:** StatQuest, Real Python, Andrej Karpathy, 3Blue1Brown
-*   **Books:** Hands-On Machine Learning (Geron), Deep Learning (Goodfellow)
-*   **Courses:** Fast.ai, Andrew Ng's ML, Stanford CS231N
-</details>
-
----
-
 ## 🚨 **Common Mistakes to Avoid**
 
 | Mistake | Consequence | The Fix |
 |---------|-------------|---------|
 | **Tutorial Hell** | Endless watching, zero coding. | Code along, modify, build from scratch. |
-| **No GitHub** | Recruiters can't see your skills. | Push to GitHub daily to show consistency. |
-| **Copy-Paste** | Failing technical interviews. | Type everything yourself, understand logic. |
-| **Only Theory** | Book smart, but can't build. | Build projects for every concept you learn. |
-| **Waiting to Apply**| Missing out on opportunities. | Start interviewing at Week 2 (embrace rejection!). |
+| **No GitHub** | Recruiters can't see your skills. | Push your projects to GitHub with good READMEs. |
+| **Jupyter Only** | Failing technical interviews. | Stop putting all code in Notebooks. Write `.py` scripts. |
+| **Skipping Level 0** | Copy-pasting without understanding.| Learn the fundamental Math and Python OOP first. |
 
 ---
 
 ## 🏆 **Success Stories**
 
-> **Student A:** Started with basic Python → Completed roadmap → **₹16L offer at Flipkart** 🛒
+> **Student A:** Started at Level 0 → Reached Level 3 → **₹16L offer at Flipkart** 🛒
 
-> **Student B:** No ML background → Followed roadmap → **₹12L offer at Gupshup** 💬
+> **Student B:** Knew Pandas (Level 1) → Jumped to Level 4 → **₹12L offer at Gupshup** 💬
 
-> **Student C:** Career switcher → Focused on Deep Learning → **₹18L offer at AI startup** 🚀
+> **Student C:** Career switcher → Reached Level 4 MLOps → **₹18L offer at AI startup** 🚀
 
 **Your story could be next!** 🌟
 
@@ -258,23 +119,18 @@ ML-Career-Roadmap/
 ## 📞 **Questions?**
 
 <details>
-<summary><b>How long will this take?</b></summary>
-1-3 months depending on your baseline and time commitment (4-6 hours/day is ideal).
+<summary><b>How long will it take me to complete all levels?</b></summary>
+It depends entirely on your starting level and daily hours. Someone starting at Level 0 might take 4-6 months. Someone starting at Level 2 might reach Level 4 in 4 weeks.
 </details>
 
 <details>
-<summary><b>Can I skip Week 1?</b></summary>
-No, foundations matter immensely. Master NumPy and Pandas first.
-</details>
-
-<details>
-<summary><b>What if I don't have enough time?</b></summary>
-Do 2 hours/day. It will simply take 3-4 months instead of 1-3. Consistency > Intensity!
+<summary><b>Can I skip Level 2 and go straight to Deep Learning?</b></summary>
+No. Neural networks are essentially massive assemblies of classical linear models. You must understand basic evaluation metrics, train/test splits, and overfitting from Level 2 first.
 </details>
 
 <details>
 <summary><b>What's the expected salary?</b></summary>
-₹15-25L expected range for candidates who follow the roadmap diligently.
+₹15-25L expected range for candidates who master Level 4 (MLOps & Production).
 </details>
 
 ---
@@ -283,9 +139,9 @@ Do 2 hours/day. It will simply take 3-4 months instead of 1-3. Consistency > Int
 
 ## 🎉 **Let's Get Started!**
 
-**The world needs great ML engineers. That could be you.**
+**Stop stressing over timelines. Take the self-assessment, find your Level, and start building.**
 
-[Start Day 1: NumPy Fundamentals Here](./learning-resources/DAY_BY_DAY_SCHEDULE.md#day-1-numpy-fundamentals)
+[Go to the Topic Roadmap](./TOPIC_ROADMAP.md)
 
 *If this roadmap helped you, please **⭐️ Star** this repository!*
 

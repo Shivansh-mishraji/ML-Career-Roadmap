@@ -9,10 +9,10 @@
 ### **🎯 Just Starting? Start Here:**
 - [ ] Read this README (you are here) — 10 mins
 - [ ] **Choose your timeline:**
-  - ⏳ 1 Month left? Read the [1-Month Crash Course](./time-based-roadmaps/1_MONTH_CRASH_COURSE.md)
-  - ⏳ 2 Months left? Read the [2-Month Intensive](./time-based-roadmaps/2_MONTH_INTENSIVE.md)
-  - ⏳ 3 Months left? Read the [3-Month Standard](./time-based-roadmaps/3_MONTH_STANDARD.md)
-  - ⏳ 4 Months left? Read the [4-Month Mastery](./time-based-roadmaps/4_MONTH_MASTERY.md)
+  - ⏳ 1 Month left? Read the [1-Month Internship Roadmap](./internship-prep/1_MONTH_INTERNSHIP_ROADMAP.md)
+  - ⏳ 2 Months left? Read the [2-Month Internship Roadmap](./internship-prep/2_MONTH_INTERNSHIP_ROADMAP.md)
+  - ⏳ 3 Months left? Read the [3-Month Internship Roadmap](./internship-prep/3_MONTH_INTERNSHIP_ROADMAP.md)
+  - ⏳ 4 Months left? Read the [4-Month Internship Roadmap](./internship-prep/4_MONTH_INTERNSHIP_ROADMAP.md)
 - [ ] Review [Mentor Tips & Networking](./internship-prep/MENTOR_TIPS_AND_NETWORKING.md) — 10 mins
 - [ ] Start [Day 1: NumPy](./learning-resources/DAY_BY_DAY_SCHEDULE.md#day-1-numpy-fundamentals) — Now!
 
@@ -24,7 +24,7 @@
 | 🤝 **[Networking & Mentor Tips](./internship-prep/MENTOR_TIPS_AND_NETWORKING.md)**| **Cold email & resume templates**| 15 mins read | Applying |
 | 🔗 **[Top Reference Links](./learning-resources/TOP_REFERENCE_LINKS.md)** | **Best GitHub repos & websites for prep** | Reference | Daily Study |
 | [Day-by-Day Schedule](./learning-resources/DAY_BY_DAY_SCHEDULE.md) | Detailed learning with resource links | 15 mins read | Days 1-30 |
-| [Time-Based Roadmaps](./time-based-roadmaps/) | Highly tailored paths based on your schedule | 10 mins read | Planning |
+| [Internship Roadmaps](./internship-prep/) | 1-4 Month tailored paths based on your schedule | 10 mins read | Planning |
 | [Interview Guide](./interview-prep/ML_CONCEPTS_INTERVIEW_GUIDE.md) | 10 ML concepts + Q&A | 2 hours study | Week 4+ |
 | [Kaggle Guide](./learning-resources/KAGGLE_COMPETITION_GUIDE.md) | How to win competitions | 30 mins read | Week 3 |
 | [LeetCode Problems](./dsa-guide/LEETCODE_ML_PROBLEMS.md) | 50 essential problems | Study reference | Weeks 2-10 |
@@ -160,19 +160,16 @@ Career progression: ML Eng → Sr. ML Eng → Staff Eng
 ML-Career-Roadmap/
 │
 ├── internship-prep/                   # 💼 NEW: Get Hired Faster
-│   ├── 4_MONTH_INTERNSHIP_ROADMAP.md # 4-month structured plan
+│   ├── 1_MONTH_INTERNSHIP_ROADMAP.md # 1-month survival guide
+│   ├── 2_MONTH_INTERNSHIP_ROADMAP.md # 2-month portfolio builder
+│   ├── 3_MONTH_INTERNSHIP_ROADMAP.md # 3-month strong contender
+│   ├── 4_MONTH_INTERNSHIP_ROADMAP.md # 4-month mastery & MLOps
 │   ├── REAL_TIME_PROJECTS.md         # End-to-end project ideas
 │   └── MENTOR_TIPS_AND_NETWORKING.md # Resumes & Cold Email templates
 │
 ├── interactive-projects/              # 💻 NEW: Hands-on Code Templates
 │   ├── MLOPS_DEPLOYMENT_TEMPLATE.md  # FastAPI + Docker guide
 │   └── RAG_LLM_TEMPLATE.md           # GenAI Streamlit guide
-│
-├── time-based-roadmaps/               # 📅 Choose your path based on your timeline
-│   ├── 1_MONTH_CRASH_COURSE.md      # Quick prep for upcoming interviews
-│   ├── 2_MONTH_INTENSIVE.md         # Fast-paced portfolio building
-│   ├── 3_MONTH_STANDARD.md          # Comprehensive standard path
-│   └── 4_MONTH_MASTERY.md           # Deep dive for high-package roles
 │
 ├── learning-resources/                # 📖 What to learn
 │   ├── DAY_BY_DAY_SCHEDULE.md       # Detailed day-by-day with links
@@ -382,7 +379,7 @@ pip install flask fastapi
 ## 📞 **How to Use This Repository**
 
 ### **Option 1: By Timeline (Recommended)**
-1. Pick the [Time-Based Roadmap](./time-based-roadmaps/) that fits your schedule (1-4 months).
+1. Pick the [Internship Roadmap](./internship-prep/) that fits your schedule (1-4 months).
 2. Follow [Day-by-Day Schedule](./learning-resources/DAY_BY_DAY_SCHEDULE.md)
 3. Use [Project Template](./project-templates/PROJECT_TEMPLATE.md) for each project
 4. Study [Interview Guide](./interview-prep/ML_CONCEPTS_INTERVIEW_GUIDE.md) before your interview
@@ -394,7 +391,7 @@ pip install flask fastapi
 4. Solve [LeetCode Problems](./dsa-guide/LEETCODE_ML_PROBLEMS.md) from [DSA Guide](./dsa-guide/DSA_PREPARATION_FOR_ML.md)
 
 ### **Option 3: By Topic**
-- Learning what topics exist in the [Time-Based Roadmaps](./time-based-roadmaps/)
+- Learning what topics exist in the [Internship Roadmaps](./internship-prep/)
 - Diving deep into [Day-by-Day Schedule](./learning-resources/DAY_BY_DAY_SCHEDULE.md) for that topic
 - Building project from [Project Template](./project-templates/PROJECT_TEMPLATE.md)
 
@@ -538,7 +535,7 @@ Built with insights from:
 
 | Goal | Read | Time |
 |------|------|------|
-| Understand roadmap | [Time-Based Roadmaps](./time-based-roadmaps/) | 15 min |
+| Understand roadmap | [Internship Roadmaps](./internship-prep/) | 15 min |
 | Know what to learn | [Day-by-Day Schedule](./learning-resources/DAY_BY_DAY_SCHEDULE.md) | 20 min |
 | Build projects | [Project Template](./project-templates/PROJECT_TEMPLATE.md) | 10 min |
 | Prepare interviews | [Interview Guide](./interview-prep/ML_CONCEPTS_INTERVIEW_GUIDE.md) | 2 hours |

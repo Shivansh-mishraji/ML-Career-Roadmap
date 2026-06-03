@@ -22,6 +22,7 @@
 | 🌟 **[Internship Roadmap](./internship-prep/4_MONTH_INTERNSHIP_ROADMAP.md)** | **4-Month plan to get hired** | 20 mins read | **Crucial Planning** |
 | 🚀 **[Real-Time Projects](./internship-prep/REAL_TIME_PROJECTS.md)** | **End-to-end ML/AI portfolios** | Reference | Project Building |
 | 🤝 **[Networking & Mentor Tips](./internship-prep/MENTOR_TIPS_AND_NETWORKING.md)**| **Cold email & resume templates**| 15 mins read | Applying |
+| 🔗 **[Top Reference Links](./learning-resources/TOP_REFERENCE_LINKS.md)** | **Best GitHub repos & websites for prep** | Reference | Daily Study |
 | [Day-by-Day Schedule](./learning-resources/DAY_BY_DAY_SCHEDULE.md) | Detailed learning with resource links | 15 mins read | Days 1-30 |
 | [Time-Based Roadmaps](./time-based-roadmaps/) | Highly tailored paths based on your schedule | 10 mins read | Planning |
 | [Interview Guide](./interview-prep/ML_CONCEPTS_INTERVIEW_GUIDE.md) | 10 ML concepts + Q&A | 2 hours study | Week 4+ |
@@ -176,7 +177,7 @@ ML-Career-Roadmap/
 ├── learning-resources/                # 📖 What to learn
 │   ├── DAY_BY_DAY_SCHEDULE.md       # Detailed day-by-day with links
 │   ├── KAGGLE_COMPETITION_GUIDE.md  # How to compete
-│   └── [TODO: Add more as you learn]
+│   └── TOP_REFERENCE_LINKS.md       # Best repos & websites for prep
 │
 ├── project-templates/                 # 🏗️ How to structure
 │   ├── PROJECT_TEMPLATE.md           # Directory structure

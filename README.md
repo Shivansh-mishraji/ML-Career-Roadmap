@@ -72,19 +72,28 @@ To get the most out of this roadmap and avoid wasting time, follow this strict w
 
 ---
 
-## 📚 **Core Resources & Projects**
+## 📚 **Resource Utilization Guide**
 
-Once you know what to learn, use these practical resources to build your portfolio and prepare for interviews:
+Don't just collect links and stare at folders. Here is exactly **how and when** to use the materials in this repository:
 
-| Resource | Purpose | Where to find it |
-|----------|---------|------------|
-| 🌟 **[Topic Master Roadmap](./TOPIC_ROADMAP.md)** | **Your exact learning path per Level** | Root directory |
-| 🏗️ **[ML Engineer Reference Project](./ml-engineer-reference-project/README.md)** | See how production ML code is written | Level 2 & 4 |
-| ⚙️ **[MLOps Reference Architecture](./mlops-reference-project/README.md)** | Learn Docker, MLflow, CI/CD, and Drift | Level 4 |
-| 🔄 **[ML Engineering Lifecycle](./learning-resources/ML_ENGINEERING_LIFECYCLE.md)**| Step-by-step MLOps process explained | Level 4 |
-| 🚀 **[Real-Time Projects](./internship-prep/REAL_TIME_PROJECTS.md)** | Project ideas for your portfolio | Levels 1-3 |
-| 🎤 **[Interview Guide](./interview-prep/ML_CONCEPTS_INTERVIEW_GUIDE.md)** | 10 ML concepts + Q&A for interviews | Job Prep |
-| 💻 **[LeetCode Problems](./dsa-guide/LEETCODE_ML_PROBLEMS.md)** | 50 essential DSA problems for ML | Job Prep |
+### 1. The Core Learning Path
+*   🌟 **[Topic Master Roadmap](./TOPIC_ROADMAP.md)**
+    *   **When to use:** Daily. This is your primary compass.
+    *   **How to use:** Read the current topic, watch the recommended YouTube/Coursera videos, and check off the boxes. Do not move forward until you pass the "Proof of Mastery".
+
+### 2. Project Blueprints (Crucial for Resumes)
+*   🏗️ **[ML Engineer Reference Project](./ml-engineer-reference-project/README.md)** *(Use in Level 2 & 4)*
+    *   **How to use:** Stop writing giant, messy Jupyter Notebooks. Use this folder as a blueprint to learn how to write modular `.py` scripts, structured `src/` folders, and Scikit-Learn Pipelines.
+*   ⚙️ **[MLOps Reference Architecture](./mlops-reference-project/README.md)** *(Use in Level 4)*
+    *   **How to use:** Once you know how to train a model, study this folder to learn Docker, MLflow tracking, and CI/CD. Use it as a direct template for your own final year or portfolio projects.
+*   🚀 **[Real-Time Projects](./internship-prep/REAL_TIME_PROJECTS.md)**
+    *   **How to use:** Pick an idea from this list when you need to build your portfolio.
+
+### 3. Interview & Job Preparation
+*   🔄 **[ML Engineering Lifecycle](./learning-resources/ML_ENGINEERING_LIFECYCLE.md)**
+    *   **When to use:** Read this before any System Design interview. It teaches you how to talk like a Senior Engineer about the end-to-end ML process.
+*   🎤 **[Interview Guide](./interview-prep/ML_CONCEPTS_INTERVIEW_GUIDE.md)** & 💻 **[LeetCode Problems](./dsa-guide/LEETCODE_ML_PROBLEMS.md)**
+    *   **When to use:** Do not wait until the end. Start doing 1-2 interview/DSA questions daily as soon as you reach Level 3.
 
 ---
 

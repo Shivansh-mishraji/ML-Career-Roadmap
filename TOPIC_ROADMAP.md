@@ -14,14 +14,30 @@ Use the **Self-Assessment** in the main README to figure out exactly which Level
 ## 🟢 Level 0: Python & Math Foundations
 *The absolute prerequisites. Do not skip this if you are a beginner.*
 
-### What you need to know:
-*   **Python Basics:** Variables, Data Types, Loops, Functions, Classes (OOP), and List Comprehensions.
-*   **Calculus Basics:** Derivatives, Gradients (understanding *why* things optimize).
-*   **Probability:** Mean, Median, Variance, Standard Deviation, Normal Distribution.
-*   **Linear Algebra Review (Andrew Ng - Week 1)**
-    *   Matrices and Vectors
-    *   Addition, Scalar Multiplication, and Matrix-Vector Multiplication
-    *   Properties of Matrix Multiplication, Inverse, and Transpose
+### Core Topics:
+<details open>
+<summary><b>1. Python Programming Basics</b></summary>
+
+*   **Data Types & Structures:** Strings, Lists, Tuples, Sets, Dictionaries.
+*   **Control Flow:** If/else, For loops, While loops, List Comprehensions.
+*   **Functions & Modules:** Lambda functions, `*args`, `**kwargs`, writing clean functions.
+*   **Object-Oriented Programming (OOP):** Classes, Objects, Inheritance, Methods (Dunder methods).
+</details>
+
+<details open>
+<summary><b>2. Linear Algebra Review (Andrew Ng - Week 1)</b></summary>
+
+*   Matrices and Vectors
+*   Addition, Scalar Multiplication, and Matrix-Vector Multiplication
+*   Properties of Matrix Multiplication, Inverse, and Transpose
+</details>
+
+<details open>
+<summary><b>3. Calculus & Probability Basics</b></summary>
+
+*   **Calculus:** Derivatives, Chain Rule, Gradients (understanding *why* things optimize).
+*   **Probability:** Mean, Median, Variance, Standard Deviation, Normal Distribution, Bayes' Theorem.
+</details>
 
 ### Action Items & Verification:
 - [ ] Watch a 4-hour Python crash course (e.g., Programming with Mosh or FreeCodeCamp).
@@ -33,11 +49,43 @@ Use the **Self-Assessment** in the main README to figure out exactly which Level
 ## 🟡 Level 1: Data Manipulation & EDA
 *Data Scientists spend 80% of their time here.*
 
-### What you need to know:
-*   **NumPy:** Arrays, Broadcasting, Vectorized operations.
-*   **Pandas:** DataFrames, Filtering, GroupBy, Merging, Handling Missing Data.
-*   **Visualization:** Matplotlib & Seaborn (Bar charts, Scatter plots, Histograms, Correlation Heatmaps).
-*   **SQL Basics:** SELECT, JOIN, GROUP BY, WHERE.
+### Core Topics:
+<details open>
+<summary><b>1. NumPy (Numerical Python)</b></summary>
+
+*   Array Creation (1D, 2D, 3D Tensors).
+*   Indexing, Slicing, and Reshaping.
+*   Broadcasting and Vectorized Operations (no `for` loops!).
+*   Linear Algebra operations (`np.dot`, `np.linalg`).
+</details>
+
+<details open>
+<summary><b>2. Pandas (Data Manipulation)</b></summary>
+
+*   **Series & DataFrames:** Creation, reading CSVs/Excel/SQL.
+*   **Indexing:** `loc` vs `iloc`, Boolean indexing.
+*   **Data Cleaning:** Handling Missing Values (`fillna`, `dropna`), Duplicates.
+*   **Transformations:** `apply`, `map`, `replace`.
+*   **Aggregations:** `groupby`, `pivot_table`, MultiIndex.
+*   **Combining Data:** Merging, Joining, and Concatenating DataFrames.
+</details>
+
+<details open>
+<summary><b>3. Data Visualization</b></summary>
+
+*   **Matplotlib:** Object-oriented API (Figures & Axes), Line plots, Scatter plots, Subplots.
+*   **Seaborn:** Statistical plots (Box plots, Violin plots, Pair plots, Correlation Heatmaps).
+*   **Interactive (Optional):** Plotly or Altair basics.
+</details>
+
+<details open>
+<summary><b>4. SQL for Data Science</b></summary>
+
+*   **Basics:** SELECT, WHERE, ORDER BY, LIMIT.
+*   **Aggregations:** GROUP BY, HAVING, COUNT, SUM, AVG.
+*   **Joins:** INNER JOIN, LEFT JOIN, FULL OUTER JOIN.
+*   **Advanced:** Common Table Expressions (CTEs), Window Functions (`RANK()`, `OVER()`).
+</details>
 
 ### Action Items & Verification:
 - [ ] Complete Kaggle's free "Pandas" and "Data Visualization" micro-courses.
@@ -96,15 +144,44 @@ Use the **Self-Assessment** in the main README to figure out exactly which Level
 ## 🔴 Level 3: Deep Learning & AI
 *For Computer Vision, Natural Language Processing, and Complex Patterns.*
 
-### What you need to know:
-*   **Frameworks:** PyTorch (Industry Standard) or TensorFlow/Keras.
-*   **Neural Networks: Representation & Learning (Andrew Ng - Weeks 4-5)**
-    *   Non-linear Hypotheses & Neurons
-    *   Forward Propagation & Cost Function
-    *   Backpropagation Algorithm & Gradient Checking
-    *   Random Initialization
-*   **Computer Vision (CV):** Convolutional Neural Networks (CNNs), ResNet, Transfer Learning.
-*   **Natural Language Processing (NLP):** Tokenization, Word Embeddings, RNNs/LSTMs, and **Transformers** (Attention mechanism, BERT, GPT basics).
+### Core Topics:
+<details open>
+<summary><b>1. Neural Networks: Representation & Learning (Andrew Ng - Weeks 4-5)</b></summary>
+
+*   Non-linear Hypotheses & Neurons
+*   Forward Propagation & Cost Function
+*   Backpropagation Algorithm & Gradient Checking
+*   Random Initialization
+</details>
+
+<details open>
+<summary><b>2. Deep Learning Frameworks (PyTorch)</b></summary>
+
+*   Tensors and Autograd (Automatic Differentiation).
+*   Building Custom `Dataset` and `DataLoader` classes.
+*   Writing Custom Training Loops (Zeroing gradients, backward pass, optimizer step).
+*   Saving and Loading model checkpoints (`.pth`).
+</details>
+
+<details open>
+<summary><b>3. Computer Vision (CV)</b></summary>
+
+*   Convolutional Neural Networks (CNNs), Padding, Strides, Max Pooling.
+*   Famous Architectures: ResNet, VGG, Inception.
+*   Transfer Learning and Fine-tuning.
+*   Advanced (Optional): Object Detection (YOLO) and Image Segmentation (U-Net).
+</details>
+
+<details open>
+<summary><b>4. Natural Language Processing (NLP) & LLMs</b></summary>
+
+*   **Text Processing:** Tokenization, Stemming, Lemmatization.
+*   **Word Embeddings:** Word2Vec, GloVe.
+*   **Sequence Models:** RNNs, LSTMs, GRUs.
+*   **Transformers (The Modern Era):** Self-Attention Mechanism, Multi-Head Attention.
+*   **HuggingFace:** Using the `transformers` library, fine-tuning BERT/RoBERTa.
+*   **Generative AI:** GPT Architecture basics, Prompt Engineering, RAG (Retrieval-Augmented Generation) with LangChain/LlamaIndex.
+</details>
 
 ### Action Items & Verification:
 - [ ] Take the Fast.ai course "Practical Deep Learning for Coders".
@@ -116,16 +193,45 @@ Use the **Self-Assessment** in the main README to figure out exactly which Level
 ## ⚫ Level 4: MLOps & Production Engineering
 *The skills that get you hired as a Senior ML Engineer for ₹15L - ₹25L.*
 
-### What you need to know:
-*   **Large Scale Machine Learning (Andrew Ng - Week 10)**
-    *   Stochastic Gradient Descent & Mini-Batch
-    *   Online Learning & Data Parallelism (MapReduce)
-*   **Version Control:** Git, GitHub, and DVC (Data Version Control).
-*   **Experiment Tracking:** MLflow or Weights & Biases (W&B).
-*   **Serving Models:** Building REST APIs using FastAPI or Flask.
-*   **Containerization:** Docker (writing a `Dockerfile`, running containers).
-*   **CI/CD:** GitHub Actions (automating tests when pushing code).
-*   **Monitoring:** Detecting Data Drift in production using Evidently AI.
+### Core Topics:
+<details open>
+<summary><b>1. Optimization & Large Scale ML (Andrew Ng - Week 10)</b></summary>
+
+*   Stochastic Gradient Descent (SGD) & Mini-Batch.
+*   Online Learning.
+*   Data Parallelism (MapReduce/Spark basics).
+</details>
+
+<details open>
+<summary><b>2. Experiment Tracking & Versioning</b></summary>
+
+*   **Git & GitHub:** Branching, Pull Requests, Merge Conflicts.
+*   **DVC (Data Version Control):** Versioning large `.csv` and `.jpg` datasets alongside Git.
+*   **MLflow / Weights & Biases:** Logging hyperparameters, tracking metrics (loss/accuracy curves), and Model Registry.
+</details>
+
+<details open>
+<summary><b>3. Model Serving & API Development</b></summary>
+
+*   **FastAPI:** Building highly performant REST APIs.
+*   **Pydantic:** Validating incoming JSON requests to prevent API crashes.
+*   Loading serialized models (`.pkl`, `.onnx`, `.pt`) safely in memory.
+</details>
+
+<details open>
+<summary><b>4. Containerization & Orchestration</b></summary>
+
+*   **Docker:** Writing optimized `Dockerfile`s for Python/ML (multi-stage builds, minimizing image size).
+*   **Docker Compose:** Spinning up multi-container applications (e.g., API + MLflow server + Database).
+</details>
+
+<details open>
+<summary><b>5. CI/CD & Production Monitoring</b></summary>
+
+*   **GitHub Actions:** Writing YAML workflows to automatically run `pytest` and linting on every push.
+*   **Monitoring (Evidently AI):** Detecting Data Drift (input features changing over time) and Concept Drift (model degrading).
+*   **Alerting:** Setting up automated retraining pipelines.
+</details>
 
 ### Action Items & Verification:
 - [ ] Study our very own **[MLOps Reference Project](../mlops-reference-project/README.md)**.

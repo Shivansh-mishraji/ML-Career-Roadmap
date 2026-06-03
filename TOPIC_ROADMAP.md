@@ -16,9 +16,12 @@ Use the **Self-Assessment** in the main README to figure out exactly which Level
 
 ### What you need to know:
 *   **Python Basics:** Variables, Data Types, Loops, Functions, Classes (OOP), and List Comprehensions.
-*   **Linear Algebra:** Vectors, Matrices, Dot Products, Matrix Multiplication.
-*   **Calculus Basics:** Derivatives, Gradients (understanding *why* things optimize, no need to solve complex equations by hand).
+*   **Calculus Basics:** Derivatives, Gradients (understanding *why* things optimize).
 *   **Probability:** Mean, Median, Variance, Standard Deviation, Normal Distribution.
+*   **Linear Algebra Review (Andrew Ng - Week 1)**
+    *   Matrices and Vectors
+    *   Addition, Scalar Multiplication, and Matrix-Vector Multiplication
+    *   Properties of Matrix Multiplication, Inverse, and Transpose
 
 ### Action Items & Verification:
 - [ ] Watch a 4-hour Python crash course (e.g., Programming with Mosh or FreeCodeCamp).
@@ -34,29 +37,59 @@ Use the **Self-Assessment** in the main README to figure out exactly which Level
 *   **NumPy:** Arrays, Broadcasting, Vectorized operations.
 *   **Pandas:** DataFrames, Filtering, GroupBy, Merging, Handling Missing Data.
 *   **Visualization:** Matplotlib & Seaborn (Bar charts, Scatter plots, Histograms, Correlation Heatmaps).
-*   **SQL Basics:** SELECT, JOIN, GROUP BY, WHERE (to extract data from databases).
+*   **SQL Basics:** SELECT, JOIN, GROUP BY, WHERE.
 
 ### Action Items & Verification:
 - [ ] Complete Kaggle's free "Pandas" and "Data Visualization" micro-courses.
-- **Proof of Mastery:** Download the "Titanic" dataset from Kaggle. Perform Exploratory Data Analysis (EDA) in a Jupyter Notebook. Create 5 distinct charts that explain which demographics were most likely to survive.
+- **Proof of Mastery:** Download the "Titanic" dataset from Kaggle. Perform Exploratory Data Analysis (EDA) in a Jupyter Notebook. Create 5 distinct charts that explain survival demographics.
 
 ---
 
 ## 🟠 Level 2: Classical Machine Learning
 *The core algorithms. Do not jump to Deep Learning before mastering these.*
 
-### What you need to know:
-*   **Supervised Learning (Regression):** Linear Regression, Ridge, Lasso.
-*   **Supervised Learning (Classification):** Logistic Regression, Decision Trees, Random Forests, XGBoost.
-*   **Unsupervised Learning:** K-Means Clustering, PCA (Dimensionality Reduction).
-*   **Evaluation Metrics:** Accuracy, Precision, Recall, F1-Score, ROC-AUC, RMSE, MAE.
-*   **Model Validation:** Train/Test splits, K-Fold Cross Validation, preventing Overfitting.
+### Core Topics (Andrew Ng Syllabus Integration):
+<details open>
+<summary><b>1. Introduction & Linear Regression (Weeks 1-2)</b></summary>
+
+*   What is Machine Learning? (Supervised vs Unsupervised)
+*   Model Representation & Cost Function
+*   Gradient Descent (Intuition and Linear Regression implementation)
+*   Multivariate Features & Polynomial Regression
+*   Feature Scaling & Learning Rate Adjustment
+*   Normal Equation
+</details>
+
+<details open>
+<summary><b>2. Classification & Regularization (Week 3)</b></summary>
+
+*   **Logistic Regression:** Decision Boundaries, Cost Function, Multi-class (One-vs-All)
+*   **Regularization:** The problem of Overfitting, Regularized Linear/Logistic Regression
+</details>
+
+<details open>
+<summary><b>3. System Design & Best Practices (Week 6)</b></summary>
+
+*   Evaluating a Hypothesis (Train/Validation/Test Sets)
+*   Diagnosing Bias vs. Variance
+*   Learning Curves
+*   Error Analysis & Metrics for Skewed Classes (Precision vs Recall)
+</details>
+
+<details open>
+<summary><b>4. Advanced Classifiers & Unsupervised Learning (Weeks 7-9)</b></summary>
+
+*   **Support Vector Machines (SVM):** Large Margin Intuition, Kernels
+*   **Clustering:** K-Means Algorithm, Random Initialization, Choosing Cluster Count
+*   **Dimensionality Reduction (PCA):** Data Compression & Visualization
+*   **Anomaly Detection:** Gaussian Distribution, Algorithm Evaluation
+*   **Recommender Systems:** Content-Based, Collaborative Filtering, Matrix Factorization
+</details>
 
 ### Action Items & Verification:
 - [ ] Follow the free "Machine Learning" course by Andrew Ng (Coursera).
-- [ ] For a **granular, step-by-step checklist** of what to study in this level (including the exact 19-chapter syllabus and top GitHub references), read the **[Detailed Classical ML Syllabus](./learning-resources/CLASSICAL_ML_SYLLABUS.md)**.
 - [ ] Read the official Scikit-Learn documentation tutorials.
-- **Proof of Mastery:** Build a complete End-to-End model predicting House Prices or Customer Churn. It must use Scikit-Learn `Pipeline` and `ColumnTransformer` to handle missing data and categorical encoding.
+- **Proof of Mastery:** Build an End-to-End model predicting House Prices or Customer Churn. Use Scikit-Learn `Pipeline` and `ColumnTransformer` to handle missing data and categorical encoding.
 
 ---
 
@@ -65,14 +98,18 @@ Use the **Self-Assessment** in the main README to figure out exactly which Level
 
 ### What you need to know:
 *   **Frameworks:** PyTorch (Industry Standard) or TensorFlow/Keras.
-*   **Neural Network Basics:** Perceptrons, Activation Functions (ReLU, Sigmoid), Backpropagation, Gradient Descent, Loss Functions.
+*   **Neural Networks: Representation & Learning (Andrew Ng - Weeks 4-5)**
+    *   Non-linear Hypotheses & Neurons
+    *   Forward Propagation & Cost Function
+    *   Backpropagation Algorithm & Gradient Checking
+    *   Random Initialization
 *   **Computer Vision (CV):** Convolutional Neural Networks (CNNs), ResNet, Transfer Learning.
 *   **Natural Language Processing (NLP):** Tokenization, Word Embeddings, RNNs/LSTMs, and **Transformers** (Attention mechanism, BERT, GPT basics).
 
 ### Action Items & Verification:
 - [ ] Take the Fast.ai course "Practical Deep Learning for Coders".
 - [ ] Watch Andrej Karpathy's "Neural Networks: Zero to Hero" series on YouTube.
-- **Proof of Mastery:** Fine-tune a pre-trained Image Classification model (like ResNet50) to classify images of dogs vs. cats, OR fine-tune a HuggingFace Transformer model to perform sentiment analysis on movie reviews.
+- **Proof of Mastery:** Fine-tune a pre-trained Image Classification model (like ResNet50) to classify images, OR fine-tune a HuggingFace Transformer model for sentiment analysis.
 
 ---
 
@@ -80,6 +117,9 @@ Use the **Self-Assessment** in the main README to figure out exactly which Level
 *The skills that get you hired as a Senior ML Engineer for ₹15L - ₹25L.*
 
 ### What you need to know:
+*   **Large Scale Machine Learning (Andrew Ng - Week 10)**
+    *   Stochastic Gradient Descent & Mini-Batch
+    *   Online Learning & Data Parallelism (MapReduce)
 *   **Version Control:** Git, GitHub, and DVC (Data Version Control).
 *   **Experiment Tracking:** MLflow or Weights & Biases (W&B).
 *   **Serving Models:** Building REST APIs using FastAPI or Flask.
@@ -91,6 +131,19 @@ Use the **Self-Assessment** in the main README to figure out exactly which Level
 - [ ] Study our very own **[MLOps Reference Project](../mlops-reference-project/README.md)**.
 - [ ] Study our **[ML Engineering Reference Project](../ml-engineer-reference-project/README.md)**.
 - **Proof of Mastery:** Take the model you built in Level 2 or 3. Track its training with MLflow. Wrap it in a FastAPI endpoint. Write a Dockerfile for it. Push it to GitHub and set up an Action that runs `pytest` on your code.
+
+---
+
+## 🔗 Top Recommended Open Source References
+Use these world-class GitHub repositories alongside the roadmap to accelerate your learning:
+*   🌟 [fengdu78/Coursera-ML-AndrewNg-Notes](https://github.com/fengdu78/Coursera-ML-AndrewNg-Notes) - Comprehensive translated notes.
+*   🌟 [kaleko/CourseraML](https://github.com/kaleko/CourseraML) - Python implementations of assignments.
+*   🌟 [Yorko/mlcourse.ai](https://github.com/Yorko/mlcourse.ai) - Incredible open ML course.
+*   🌟 [dair-ai/ML-YouTube-Courses](https://github.com/dair-ai/ML-YouTube-Courses) - Curated directory of ML video courses.
+*   🌟 [ashishtele/Quick-Notes-for-ML-DS](https://github.com/ashishtele/Quick-Notes-for-ML-DS) - High-quality quick reference notes.
+*   🌟 [prathimacode-hub/ML-ProjectKart](https://github.com/prathimacode-hub/ML-ProjectKart) - Massive collection of ML projects.
+
+> **Note on Study Groups:** If studying with the Chinese-speaking community, join ML QQ group: `955171419` *(Do not join multiple groups to leave space for others!)*.
 
 ---
 

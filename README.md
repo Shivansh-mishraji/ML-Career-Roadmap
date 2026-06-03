@@ -60,6 +60,18 @@ Answer the questions below honestly. Stop at the first level where your answer i
 
 ---
 
+## 💡 **How to Use This Repository Efficiently**
+
+To get the most out of this roadmap and avoid wasting time, follow this strict workflow:
+
+1.  **Stop Tutorial Hell:** Do not just watch the linked courses. For every 1 hour of video you watch, spend 2 hours coding.
+2.  **Use the Reference Architectures:** When building your "Proof of Mastery" projects, don't guess how to structure your folders. Open the **[ML Engineer Reference Project](./ml-engineer-reference-project/)** and copy its folder structure (`src/`, `notebooks/`, `data/`). Model your code after it.
+3.  **Read the ML Lifecycle Guide:** Before you start Level 2, read the **[ML Engineering Lifecycle](./learning-resources/ML_ENGINEERING_LIFECYCLE.md)**. It will give you a bird's-eye view of why you are learning certain tools.
+4.  **Parallel Interview Prep:** Do not wait until you finish Level 4 to start interview prep. Once you hit Level 3, start spending 30 minutes a day on the **[LeetCode for ML](./dsa-guide/LEETCODE_ML_PROBLEMS.md)** list.
+5.  **Build a Public Portfolio:** Push every project you build to your own GitHub. A working link is worth more than a certificate.
+
+---
+
 ## 📚 **Core Resources & Projects**
 
 Once you know what to learn, use these practical resources to build your portfolio and prepare for interviews:

@@ -530,3 +530,5 @@ For ML context:
 ---
 
 **You've got this! Practice consistently, and the rest will follow.** 🚀
+
+<!-- Formatting improvements -->

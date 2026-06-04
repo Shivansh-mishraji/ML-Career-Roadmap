@@ -1,3 +1,11 @@
+"""
+=================================================================
+ 🚀 File: evaluate.py
+ ✨ Purpose: Advanced Machine Learning Operations and Processing
+ 📅 Last Updated: 2026
+=================================================================
+"""
+
 import os
 import pandas as pd
 import joblib
@@ -7,6 +15,9 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+# ==================================================
+# Function Definition
+# ==================================================
 def evaluate_model(data_path: str, model_path: str):
     """
     Evaluates the saved pipeline on a holdout set (for demonstration, using the full set, 

@@ -1,3 +1,8 @@
+# ==================================================
+# 🛠️ Configuration for ml-ci-cd.yml
+# Ensure all paths and dependencies are correctly set.
+# ==================================================
+
 name: ML Pipeline CI/CD
 
 on:

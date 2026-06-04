@@ -382,3 +382,5 @@ This shows versatility to employers.
 - Documented approach → Communication skills
 
 This is extremely attractive to hiring managers!
+
+<!-- Formatting improvements -->

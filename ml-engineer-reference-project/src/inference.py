@@ -89,3 +89,5 @@ if __name__ == "__main__":
     # To run this script locally: `python -m src.inference`
     # Or using uvicorn: `uvicorn src.inference:app --reload`
     uvicorn.run("src.inference:app", host="0.0.0.0", port=8000, reload=True)
+
+# Formatting and minor improvements

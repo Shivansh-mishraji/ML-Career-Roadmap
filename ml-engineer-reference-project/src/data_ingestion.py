@@ -1,3 +1,11 @@
+"""
+=================================================================
+ 🚀 File: data_ingestion.py
+ ✨ Purpose: Advanced Machine Learning Operations and Processing
+ 📅 Last Updated: 2026
+=================================================================
+"""
+
 import os
 import pandas as pd
 import numpy as np
@@ -7,6 +15,9 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+# ==================================================
+# Function Definition
+# ==================================================
 def generate_mock_churn_data(n_samples: int = 5000) -> pd.DataFrame:
     """
     Generates a synthetic Telecom Customer Churn dataset for reference purposes.
@@ -56,6 +67,9 @@ def generate_mock_churn_data(n_samples: int = 5000) -> pd.DataFrame:
     
     return df
 
+# ==================================================
+# Function Definition
+# ==================================================
 def ingest_data(output_dir: str = "data/raw"):
     """
     Ingests data and saves it to the specified raw directory.

@@ -1,3 +1,11 @@
+"""
+=================================================================
+ 🚀 File: serve_model.py
+ ✨ Purpose: Advanced Machine Learning Operations and Processing
+ 📅 Last Updated: 2026
+=================================================================
+"""
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import mlflow.pyfunc
@@ -18,6 +26,9 @@ class PredictionRequest(BaseModel):
     features: list[float]
 
 @app.on_event("startup")
+# ==================================================
+# Function Definition
+# ==================================================
 def load_model():
     """
     Loads the latest production model directly from MLflow Model Registry.
@@ -41,6 +52,9 @@ def load_model():
         # In a real scenario, this might crash the pod, but for reference, we just log a warning
 
 @app.post("/predict")
+# ==================================================
+# Function Definition
+# ==================================================
 def predict(request: PredictionRequest):
     if model is None:
         raise HTTPException(status_code=503, detail="Model not loaded. Check MLflow server.")
@@ -58,6 +72,9 @@ def predict(request: PredictionRequest):
         raise HTTPException(status_code=400, detail="Error during prediction. Check feature count.")
 
 @app.get("/health")
+# ==================================================
+# Function Definition
+# ==================================================
 def health():
     return {"status": "healthy"}
 

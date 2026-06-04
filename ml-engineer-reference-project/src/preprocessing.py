@@ -1,3 +1,11 @@
+"""
+=================================================================
+ 🚀 File: preprocessing.py
+ ✨ Purpose: Advanced Machine Learning Operations and Processing
+ 📅 Last Updated: 2026
+=================================================================
+"""
+
 import pandas as pd
 import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -15,13 +23,22 @@ class FeatureEngineer(BaseEstimator, TransformerMixin):
     Custom transformers in Scikit-Learn pipelines are extremely powerful because 
     they guarantee that transformations are applied consistently during training and inference.
     """
-    def __init__(self):
+    # ==================================================
+# Function Definition
+# ==================================================
+def __init__(self):
         pass
 
-    def fit(self, X, y=None):
+    # ==================================================
+# Function Definition
+# ==================================================
+def fit(self, X, y=None):
         return self
 
-    def transform(self, X):
+    # ==================================================
+# Function Definition
+# ==================================================
+def transform(self, X):
         X_copy = X.copy()
         
         # Example feature engineering: Create a feature that flags new customers
@@ -35,6 +52,9 @@ class FeatureEngineer(BaseEstimator, TransformerMixin):
             
         return X_copy
 
+# ==================================================
+# Function Definition
+# ==================================================
 def get_data_preprocessor(numeric_features, categorical_features) -> ColumnTransformer:
     """
     Returns a Scikit-Learn ColumnTransformer pipeline.
@@ -66,6 +86,9 @@ def get_data_preprocessor(numeric_features, categorical_features) -> ColumnTrans
 
     return preprocessor
 
+# ==================================================
+# Function Definition
+# ==================================================
 def get_full_pipeline(numeric_features, categorical_features, model):
     """
     Combines feature engineering, preprocessing, and the model into a single pipeline.

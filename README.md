@@ -188,4 +188,4 @@ No. Neural networks are essentially massive assemblies of classical linear model
 
 
 ---
-*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!*
+*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!* 

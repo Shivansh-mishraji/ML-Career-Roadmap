@@ -97,4 +97,4 @@ These projects are designed by industry mentors to demonstrate end-to-end ML eng
 
 
 ---
-*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!*
+*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!* 

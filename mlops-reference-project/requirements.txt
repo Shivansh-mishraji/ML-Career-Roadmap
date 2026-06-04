@@ -1,3 +1,8 @@
+# ==================================================
+# 🛠️ Configuration for requirements.txt
+# Ensure all paths and dependencies are correctly set.
+# ==================================================
+
 mlflow>=2.7.0
 scikit-learn>=1.3.0
 pandas>=2.0.0

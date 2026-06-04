@@ -78,3 +78,5 @@ Most interns explain the code: *"First I imported Pandas, then I dropped NA valu
 
 > [!TIP]
 > Treat the job hunt like a Machine Learning problem. Your resume is the input, the interview is the model, and the offer is the output. If you aren't getting interviews, fix your input (Resume/Projects/Cold Emails). If you are failing interviews, tune your model (Interview Practice).
+
+<!-- Formatting improvements -->

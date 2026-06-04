@@ -1,4 +1,16 @@
-# LeetCode Problems for ML/AI Engineer Roles
+🚀 # LeetCode Problems for ML/AI Engineer Roles
+
+> [!TIP]
+> **DSA Preparation Roadmap for ML**
+
+```mermaid
+graph TD
+    A[Arrays & Strings] --> B[Hash Maps]
+    B --> C[Trees & Graphs]
+    C --> D[Dynamic Programming]
+    D --> E[System Design]
+```
+
 
 **Goal:** 50+ problems across all difficulty levels  
 **Timeline:** Solve 5-10 per week  
@@ -6,9 +18,9 @@
 
 ---
 
-## **Problem Categories**
+✨ ## **Problem Categories**
 
-### **Category 1: Arrays & Strings (10 problems)** — Most Common
+🔍 ### **Category 1: Arrays & Strings (10 problems)** — Most Common
 
 **Easy (3 problems):**
 1. **Two Sum** (Medium to Easy ratio)
@@ -65,7 +77,7 @@
 
 ---
 
-### **Category 2: Linked Lists (5 problems)** — Lower Priority for ML
+🔍 ### **Category 2: Linked Lists (5 problems)** — Lower Priority for ML
 
 **Easy (2 problems):**
 1. **Reverse Linked List** (LeetCode #206)
@@ -78,7 +90,7 @@
 
 ---
 
-### **Category 3: Trees (10 problems)** — Very Important for ML
+🔍 ### **Category 3: Trees (10 problems)** — Very Important for ML
 
 **Easy (2 problems):**
 1. **Binary Tree Traversal** (LeetCode #94, #102, #145)
@@ -126,7 +138,7 @@
 
 ---
 
-### **Category 4: Graphs (10 problems)** — Important for ML
+🔍 ### **Category 4: Graphs (10 problems)** — Important for ML
 
 **Easy (2 problems):**
 1. **Number of Islands** (LeetCode #200)
@@ -173,7 +185,7 @@
 
 ---
 
-### **Category 5: Dynamic Programming (10 problems)** — Essential for ML
+🔍 ### **Category 5: Dynamic Programming (10 problems)** — Essential for ML
 
 **Easy (2 problems):**
 1. **Climbing Stairs** (LeetCode #70)
@@ -220,7 +232,7 @@
 
 ---
 
-### **Category 6: Math & Bit Manipulation (5 problems)** — Lower Priority
+🔍 ### **Category 6: Math & Bit Manipulation (5 problems)** — Lower Priority
 
 **Easy (2 problems):**
 1. **Number of 1 Bits** (LeetCode #191)
@@ -233,7 +245,7 @@
 
 ---
 
-### **Category 7: Design & System Design (5 problems)** — Very Important for ML Eng
+🔍 ### **Category 7: Design & System Design (5 problems)** — Very Important for ML Eng
 
 **Medium (5 problems):**
 1. **LRU Cache** (LeetCode #146)
@@ -258,9 +270,9 @@
 
 ---
 
-## **Study Plan: 50 Problems in 10 Weeks**
+✨ ## **Study Plan: 50 Problems in 10 Weeks**
 
-### **Week 1-2: Arrays & Strings (10 problems)**
+🔍 ### **Week 1-2: Arrays & Strings (10 problems)**
 - [ ] Two Sum
 - [ ] Best Time to Buy Stock
 - [ ] Contains Duplicate
@@ -277,7 +289,7 @@
 
 ---
 
-### **Week 3: Trees Fundamentals (5 problems)**
+🔍 ### **Week 3: Trees Fundamentals (5 problems)**
 - [ ] Binary Tree Traversal (all 3 orders)
 - [ ] Invert Binary Tree
 - [ ] Lowest Common Ancestor
@@ -288,7 +300,7 @@
 
 ---
 
-### **Week 4: Trees Advanced (5 problems)**
+🔍 ### **Week 4: Trees Advanced (5 problems)**
 - [ ] Maximum Path Sum
 - [ ] Validate BST
 - [ ] Serialize and Deserialize
@@ -299,7 +311,7 @@
 
 ---
 
-### **Week 5: Graphs Basics (5 problems)**
+🔍 ### **Week 5: Graphs Basics (5 problems)**
 - [ ] Number of Islands
 - [ ] Course Schedule
 - [ ] Valid Parentheses
@@ -310,7 +322,7 @@
 
 ---
 
-### **Week 6: Graphs Advanced (5 problems)**
+🔍 ### **Week 6: Graphs Advanced (5 problems)**
 - [ ] Graph Valid Tree
 - [ ] Longest Increasing Path
 - [ ] Clone Graph
@@ -321,7 +333,7 @@
 
 ---
 
-### **Week 7: Dynamic Programming Easy (5 problems)**
+🔍 ### **Week 7: Dynamic Programming Easy (5 problems)**
 - [ ] Climbing Stairs
 - [ ] House Robber
 - [ ] Coin Change
@@ -332,7 +344,7 @@
 
 ---
 
-### **Week 8: Dynamic Programming Medium (5 problems)**
+🔍 ### **Week 8: Dynamic Programming Medium (5 problems)**
 - [ ] Partition Equal Subset Sum
 - [ ] Maximum Product Subarray
 - [ ] Edit Distance
@@ -343,7 +355,7 @@
 
 ---
 
-### **Week 9: Design & Misc (5 problems)**
+🔍 ### **Week 9: Design & Misc (5 problems)**
 - [ ] LRU Cache (if not done)
 - [ ] Min Stack
 - [ ] Implement Trie
@@ -354,7 +366,7 @@
 
 ---
 
-### **Week 10: Review & Practice (Mixed)**
+🔍 ### **Week 10: Review & Practice (Mixed)**
 - Solve 5 random problems from weaker areas
 - Review solutions and explanations
 - Time yourself (40-45 mins per problem)
@@ -363,32 +375,32 @@
 
 ---
 
-## **How to Approach Each Problem**
+✨ ## **How to Approach Each Problem**
 
-### **Step 1: Understand (10 mins)**
+🔍 ### **Step 1: Understand (10 mins)**
 - Read problem carefully
 - Identify input/output
 - Look for constraints
 - Consider edge cases
 
-### **Step 2: Approach (15 mins)**
+🔍 ### **Step 2: Approach (15 mins)**
 - Think of multiple solutions
 - Analyze time/space complexity
 - Choose best approach
 - Don't look at solutions yet!
 
-### **Step 3: Code (20 mins)**
+🔍 ### **Step 3: Code (20 mins)**
 - Write clean, readable code
 - Add comments
 - Handle edge cases
 - Test mentally
 
-### **Step 4: Optimize (10 mins)**
+🔍 ### **Step 4: Optimize (10 mins)**
 - Can you reduce complexity?
 - More elegant solution?
 - Different approach?
 
-### **Step 5: Learn (10 mins)**
+🔍 ### **Step 5: Learn (10 mins)**
 - Look at top solutions
 - Understand key tricks
 - Note patterns
@@ -398,23 +410,23 @@
 
 ---
 
-## **Key Patterns to Master**
+✨ ## **Key Patterns to Master**
 
-### **Data Structure Patterns**
+🔍 ### **Data Structure Patterns**
 - [ ] Hash map for O(1) lookup
 - [ ] Two pointers for O(n) pair finding
 - [ ] Sliding window for subarray problems
 - [ ] Stack/Queue for ordering problems
 - [ ] Heap/Priority Queue for top-k problems
 
-### **Algorithm Patterns**
+🔍 ### **Algorithm Patterns**
 - [ ] DFS for tree/graph traversal
 - [ ] BFS for shortest path, level-order
 - [ ] Binary Search for sorted arrays
 - [ ] DP for optimization problems
 - [ ] Backtracking for combination/permutation
 
-### **Complexity Patterns**
+🔍 ### **Complexity Patterns**
 - [ ] O(n²) - Nested loops
 - [ ] O(n log n) - Sorting, binary search
 - [ ] O(n) - Hash map, single pass
@@ -423,7 +435,7 @@
 
 ---
 
-## **ML Engineer Specific Focus**
+✨ ## **ML Engineer Specific Focus**
 
 **If ML Engineer (not Data Scientist):**
 - Focus more on: Arrays, Design, Graphs (80%)
@@ -441,7 +453,7 @@
 
 ---
 
-## **Testing Your Solutions**
+✨ ## **Testing Your Solutions**
 
 For each problem, test:
 1. Normal cases (happy path)
@@ -469,7 +481,7 @@ print("All tests passed!")
 
 ---
 
-## **Time Investment**
+✨ ## **Time Investment**
 
 - **50 Problems × 60 mins** = 50 hours
 - **Per week:** 5 hours
@@ -481,7 +493,7 @@ print("All tests passed!")
 
 ---
 
-## **Resources**
+✨ ## **Resources**
 
 - **LeetCode:** https://leetcode.com/
 - **GeeksforGeeks:** https://www.geeksforgeeks.org/
@@ -490,7 +502,7 @@ print("All tests passed!")
 
 ---
 
-## **After 50 Problems**
+✨ ## **After 50 Problems**
 
 **You Should Be Able To:**
 - [ ] Solve medium problems in 30-40 mins
@@ -509,3 +521,7 @@ print("All tests passed!")
 **Start Now, Solve Consistently, Land the Job! 🎯**
 
 <!-- Formatting improvements -->
+
+
+---
+*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!*

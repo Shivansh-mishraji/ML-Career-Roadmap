@@ -113,3 +113,5 @@ If you are building a portfolio project, try to hit as many of these checkmarks 
 - [ ] Do I have basic CI/CD tests running on GitHub Actions?
 
 > **Mastering this lifecycle is the difference between a Junior Data Scientist and a Senior ML Engineer earning ₹20L+.**
+
+<!-- Formatting improvements -->

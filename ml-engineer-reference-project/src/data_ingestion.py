@@ -76,3 +76,5 @@ def ingest_data(output_dir: str = "data/raw"):
 if __name__ == "__main__":
     # If we run this script directly, it will ingest the data
     ingest_data(output_dir=os.path.join(os.path.dirname(__file__), "../data/raw"))
+
+# Formatting and minor improvements

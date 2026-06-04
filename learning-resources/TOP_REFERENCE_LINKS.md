@@ -39,3 +39,5 @@ To truly stand out, you need to look at how the best engineers learn and code. W
 
 > [!TIP]
 > **How to use this list:** Do not try to read everything! Pick **one** interview question repository and **one** system design resource. Consistency on a single high-quality resource beats skimming ten different websites.
+
+<!-- Formatting improvements -->

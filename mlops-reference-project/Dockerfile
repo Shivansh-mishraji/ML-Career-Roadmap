@@ -1,3 +1,8 @@
+# ==================================================
+# 🛠️ Configuration for Dockerfile
+# Ensure all paths and dependencies are correctly set.
+# ==================================================
+
 # Use an official Python runtime as a parent image
 FROM python:3.10-slim
 

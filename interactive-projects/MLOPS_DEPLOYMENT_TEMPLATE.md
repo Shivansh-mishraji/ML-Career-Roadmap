@@ -153,3 +153,5 @@ You now have a production-ready containerized ML API running on your machine. Yo
 
 **Say this in an interview:**
 > "I realized that training a model is only half the battle, so I focused on the deployment pipeline. I wrapped my Scikit-Learn model in a FastAPI REST interface, utilizing Pydantic for strict input validation to prevent data drift errors at inference time. Finally, I containerized the service using Docker, ensuring that the environment is reproducible and ready for orchestration via Kubernetes or deployment to a service like AWS ECS."
+
+<!-- Formatting improvements -->

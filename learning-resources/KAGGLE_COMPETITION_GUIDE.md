@@ -398,4 +398,4 @@ This is extremely attractive to hiring managers!
 
 
 ---
-*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!*
+*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!* 

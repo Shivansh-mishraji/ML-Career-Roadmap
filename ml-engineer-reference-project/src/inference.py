@@ -1,3 +1,11 @@
+"""
+=================================================================
+ 🚀 File: inference.py
+ ✨ Purpose: Advanced Machine Learning Operations and Processing
+ 📅 Last Updated: 2026
+=================================================================
+"""
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import joblib
@@ -42,6 +50,9 @@ class CustomerData(BaseModel):
     TotalCharges: float
 
 @app.on_event("startup")
+# ==================================================
+# Function Definition
+# ==================================================
 def load_model():
     """Loads the model when the API server starts up."""
     global pipeline
@@ -54,6 +65,9 @@ def load_model():
         # In a real scenario, you might want the app to fail to start if it can't load the model
 
 @app.post("/predict")
+# ==================================================
+# Function Definition
+# ==================================================
 def predict_churn(customer: CustomerData):
     """
     Endpoint to predict customer churn probability.
@@ -81,6 +95,9 @@ def predict_churn(customer: CustomerData):
         raise HTTPException(status_code=500, detail="Internal server error during prediction.")
 
 @app.get("/health")
+# ==================================================
+# Function Definition
+# ==================================================
 def health_check():
     """Simple health check endpoint."""
     return {"status": "healthy", "model_loaded": pipeline is not None}

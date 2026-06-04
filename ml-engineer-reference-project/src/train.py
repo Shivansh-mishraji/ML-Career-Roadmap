@@ -80,3 +80,4 @@ if __name__ == "__main__":
         
     model_file = os.path.join(os.path.dirname(__file__), "../models/churn_pipeline.pkl")
     train_model(data_file, model_file)
+ 

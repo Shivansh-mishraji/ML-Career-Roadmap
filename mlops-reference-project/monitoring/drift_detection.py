@@ -1,3 +1,11 @@
+"""
+=================================================================
+ 🚀 File: drift_detection.py
+ ✨ Purpose: Advanced Machine Learning Operations and Processing
+ 📅 Last Updated: 2026
+=================================================================
+"""
+
 import pandas as pd
 import numpy as np
 from sklearn.datasets import load_breast_cancer
@@ -8,6 +16,9 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# ==================================================
+# Function Definition
+# ==================================================
 def generate_drift_report():
     """
     Simulates checking for Data Drift in production using Evidently AI.

@@ -478,3 +478,5 @@ Everything is laid out:
 *Status: Ready to Use*
 
 **Let's build your ML career! 💪**
+
+<!-- Formatting improvements -->

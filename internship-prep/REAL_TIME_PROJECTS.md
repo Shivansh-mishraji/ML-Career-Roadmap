@@ -81,3 +81,5 @@ These projects are designed by industry mentors to demonstrate end-to-end ML eng
 
 > [!CAUTION]
 > **Don't just copy tutorials.** Take these concepts and apply them to a niche dataset you care about (e.g., instead of Telecom Churn, do Player Churn in a video game). Unique data makes your portfolio memorable!
+
+<!-- Formatting improvements -->

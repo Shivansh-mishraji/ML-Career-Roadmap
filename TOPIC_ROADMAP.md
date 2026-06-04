@@ -259,3 +259,5 @@ Once you complete **Level 4**, you are fully prepared for ML Engineering intervi
 *   Review the [ML Concepts Interview Guide](../interview-prep/ML_CONCEPTS_INTERVIEW_GUIDE.md).
 *   Practice coding questions in the [DSA for ML Guide](../dsa-guide/DSA_PREPARATION_FOR_ML.md).
 *   Apply for jobs!
+
+<!-- Formatting improvements -->

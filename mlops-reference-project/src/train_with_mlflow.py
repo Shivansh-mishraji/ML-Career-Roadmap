@@ -74,3 +74,4 @@ if __name__ == "__main__":
         train()
     except Exception as e:
         logger.error(f"Failed to connect to MLflow or train: {e}. Is MLflow running?")
+ 

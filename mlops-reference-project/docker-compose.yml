@@ -1,3 +1,8 @@
+# ==================================================
+# 🛠️ Configuration for docker-compose.yml
+# Ensure all paths and dependencies are correctly set.
+# ==================================================
+
 version: '3.8'
 
 services:

@@ -145,3 +145,5 @@ When an interviewer asks about this project, do **not** just say "I used LangCha
 > "I built an end-to-end Retrieval-Augmented Generation system. I handled document ingestion and implemented a `RecursiveCharacterTextSplitter` to optimize the context window for the LLM. I used ChromaDB for vector storage because of its low-latency local retrieval. The biggest challenge was finding the right chunk overlap size to maintain semantic meaning across paragraphs without overflowing the LLM's context limit."
 
 This shows you understand the *engineering trade-offs*, not just the API calls.
+
+<!-- Formatting improvements -->

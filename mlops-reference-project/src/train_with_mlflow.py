@@ -1,3 +1,11 @@
+"""
+=================================================================
+ 🚀 File: train_with_mlflow.py
+ ✨ Purpose: Advanced Machine Learning Operations and Processing
+ 📅 Last Updated: 2026
+=================================================================
+"""
+
 import mlflow
 import mlflow.sklearn
 from sklearn.datasets import load_breast_cancer
@@ -9,6 +17,9 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# ==================================================
+# Function Definition
+# ==================================================
 def train():
     """
     Trains a model and tracks hyperparameters, metrics, and artifacts using MLflow.

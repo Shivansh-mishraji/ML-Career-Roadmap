@@ -1,3 +1,11 @@
+"""
+=================================================================
+ 🚀 File: train.py
+ ✨ Purpose: Advanced Machine Learning Operations and Processing
+ 📅 Last Updated: 2026
+=================================================================
+"""
+
 import os
 import pandas as pd
 import joblib
@@ -10,6 +18,9 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+# ==================================================
+# Function Definition
+# ==================================================
 def train_model(data_path: str, model_save_path: str):
     """
     Trains the ML pipeline and saves the artifact.

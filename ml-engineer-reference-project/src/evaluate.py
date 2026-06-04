@@ -45,3 +45,5 @@ if __name__ == "__main__":
         logger.error("Model file not found. Please run train.py first.")
     else:
         evaluate_model(data_file, model_file)
+
+# Formatting and minor improvements

@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle2, Circle } from 'lucide-react';
+import { CheckSquare, Square, Zap } from 'lucide-react';
 import { assessmentQuestions } from '../data/roadmapData';
+import ProgressGraph from './ProgressGraph';
 
 const SelfAssessment = () => {
   const [checkedItems, setCheckedItems] = useState({});
+  const [activityCount, setActivityCount] = useState(0);
 
   useEffect(() => {
     const saved = localStorage.getItem('ml-roadmap-assessment');
     if (saved) {
       setCheckedItems(JSON.parse(saved));
     }
+    const activity = parseInt(localStorage.getItem('ml-activity') || '0');
+    // Calculate total active count: checked items + flashcard activity
+    const checkedCount = saved ? Object.keys(JSON.parse(saved)).filter(k => JSON.parse(saved)[k]).length : 0;
+    setActivityCount(activity + checkedCount);
   }, []);
 
   const toggleItem = (level, idx) => {
@@ -17,6 +23,11 @@ const SelfAssessment = () => {
     const newItems = { ...checkedItems, [key]: !checkedItems[key] };
     setCheckedItems(newItems);
     localStorage.setItem('ml-roadmap-assessment', JSON.stringify(newItems));
+    
+    // Update activity
+    const activity = parseInt(localStorage.getItem('ml-activity') || '0');
+    const checkedCount = Object.keys(newItems).filter(k => newItems[k]).length;
+    setActivityCount(activity + checkedCount);
   };
 
   const getRecommendedLevel = () => {
@@ -31,7 +42,7 @@ const SelfAssessment = () => {
       }
       if (!allChecked) return i;
     }
-    return 'Done!';
+    return 'READY_FOR_DEPLOYMENT';
   };
 
   const recLevel = getRecommendedLevel();
@@ -39,34 +50,39 @@ const SelfAssessment = () => {
   return (
     <div className="animate-fade-in">
       <div style={{ marginBottom: '3rem' }}>
-        <h1 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Where should you start?</h1>
+        <h1 className="gradient-text mono" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>// Self_Assessment</h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '800px' }}>
-          Most roadmaps tell you to "learn ML in 30 days." This is flawed. Check the boxes below honestly.
-          Stop at the first Level where you cannot confidently check ALL the boxes. That is your exact starting point.
+          Evaluate your current state. Stop at the first block where assertions fail.
         </p>
       </div>
 
-      <div className="glass-card" style={{ marginBottom: '3rem', borderLeft: '4px solid var(--accent-primary)' }}>
-        <h3 style={{ margin: 0, color: 'var(--text-primary)' }}>Recommended Starting Level:</h3>
-        <p className="gradient-text" style={{ fontSize: '2rem', fontWeight: '700', margin: '0.5rem 0 0 0' }}>
-          {recLevel === 'Done!' ? 'You are ready for Senior Roles!' : `Level ${recLevel}`}
-        </p>
+      <ProgressGraph activeCount={activityCount} />
+
+      <div className="glass-card" style={{ marginBottom: '3rem', borderLeft: '4px solid var(--accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div>
+          <h3 className="mono" style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.9rem' }}>RECOMMENDED_ENTRY_POINT</h3>
+          <p className="gradient-accent mono" style={{ fontSize: '2rem', fontWeight: '700', margin: '0.2rem 0 0 0' }}>
+            {recLevel === 'READY_FOR_DEPLOYMENT' ? 'SYS.DEPLOY_SENIOR()' : `LEVEL_${recLevel}`}
+          </p>
+        </div>
+        <Zap size={32} color="var(--accent-primary)" style={{ opacity: 0.5 }} />
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         {assessmentQuestions.map((levelBlock) => (
           <div key={levelBlock.level} className="glass-panel" style={{ padding: '2rem' }}>
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <h3 className="mono" style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <span style={{ 
-                background: 'var(--accent-glow)', 
-                color: 'var(--accent-primary)', 
+                background: 'var(--bg-tertiary)', 
+                color: 'var(--text-primary)', 
+                border: '1px solid var(--border-color)',
                 width: '32px', height: '32px', 
                 display: 'flex', alignItems: 'center', justifyContent: 'center', 
-                borderRadius: '50%' 
+                borderRadius: 'var(--radius-sm)' 
               }}>
                 {levelBlock.level}
               </span>
-              Level {levelBlock.level}
+              Level_{levelBlock.level} Assertions
             </h3>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -80,15 +96,15 @@ const SelfAssessment = () => {
                     style={{ 
                       display: 'flex', alignItems: 'flex-start', gap: '1rem',
                       padding: '1rem',
-                      background: isChecked ? 'rgba(46, 204, 113, 0.1)' : 'rgba(255, 255, 255, 0.03)',
-                      border: `1px solid ${isChecked ? 'rgba(46, 204, 113, 0.3)' : 'var(--glass-border)'}`,
+                      background: isChecked ? 'var(--success-bg)' : 'var(--bg-tertiary)',
+                      border: `1px solid ${isChecked ? 'var(--success)' : 'var(--border-color)'}`,
                       borderRadius: 'var(--radius-sm)',
                       cursor: 'pointer',
                       transition: 'all var(--transition-fast)'
                     }}
                   >
                     <div style={{ color: isChecked ? 'var(--success)' : 'var(--text-muted)', marginTop: '2px' }}>
-                      {isChecked ? <CheckCircle2 size={20} /> : <Circle size={20} />}
+                      {isChecked ? <CheckSquare size={20} /> : <Square size={20} />}
                     </div>
                     <span style={{ color: isChecked ? 'var(--text-primary)' : 'var(--text-secondary)' }}>
                       {q}

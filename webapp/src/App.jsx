@@ -6,6 +6,7 @@ import ProjectGallery from './components/ProjectGallery';
 import Flashcards from './components/Flashcards';
 import AIAssistant from './components/AIAssistant';
 import ResourceHub from './components/ResourceHub';
+import JobTracker from './components/JobTracker';
 import { AnimatePresence, motion } from 'framer-motion';
 import './index.css';
 
@@ -23,6 +24,7 @@ function App() {
       case 'ai': return <AIAssistant key="ai" />;
       case 'resources': return <ResourceHub key="resources" />;
       case 'projects': return <ProjectGallery key="projects" />;
+      case 'jobs': return <JobTracker key="jobs" />;
       default: return <SelfAssessment key="assessment" />;
     }
   };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Terminal, Target, GitCommit, Folder, BrainCircuit, BotMessageSquare, LibraryBig } from 'lucide-react';
+import { Terminal, Target, GitCommit, Folder, BrainCircuit, BotMessageSquare, LibraryBig, Briefcase } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
@@ -7,6 +7,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
     { id: 'assessment', label: 'Dashboard', icon: Target },
     { id: 'roadmap', label: 'Skill Pipeline', icon: GitCommit },
     { id: 'flashcards', label: 'Interview Engine', icon: BrainCircuit },
+    { id: 'jobs', label: 'Career Pipeline', icon: Briefcase },
     { id: 'ai', label: 'AI RAG Guide', icon: BotMessageSquare },
     { id: 'resources', label: 'Resource Hub', icon: LibraryBig },
     { id: 'projects', label: 'Architecture', icon: Folder },

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { CheckSquare, Square, Zap } from 'lucide-react';
+import { CheckSquare, Square, Zap, ChevronRight, Award, Crosshair } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from 'recharts';
-import { assessmentQuestions } from '../data/roadmapData';
+import { assessmentQuestions, roadmapData } from '../data/roadmapData';
 import ProgressGraph from './ProgressGraph';
 
 const SelfAssessment = () => {
@@ -47,8 +47,7 @@ const SelfAssessment = () => {
 
   const recLevel = getRecommendedLevel();
 
-  // Calculate Radar Chart Data
-  // We map the levels to broader ML skill domains
+  // Radar Chart Data Calculation
   const calculateDomainScore = (levelIndex) => {
     if (!assessmentQuestions[levelIndex]) return 0;
     const qCount = assessmentQuestions[levelIndex].questions.length;
@@ -60,11 +59,16 @@ const SelfAssessment = () => {
   };
 
   const radarData = [
-    { subject: 'Foundations & Math', A: calculateDomainScore(0), fullMark: 100 },
-    { subject: 'Classical ML', A: calculateDomainScore(1), fullMark: 100 },
-    { subject: 'Deep Learning', A: calculateDomainScore(2), fullMark: 100 },
-    { subject: 'MLOps & Systems', A: calculateDomainScore(4), fullMark: 100 }, // Level 4 is MLOps
-    { subject: 'NLP / Vision', A: calculateDomainScore(3), fullMark: 100 }, // Level 3 is architectures
+    { subject: 'Python', A: calculateDomainScore(0), fullMark: 100 },
+    { subject: 'Math/Stats', A: calculateDomainScore(1), fullMark: 100 },
+    { subject: 'Data/SQL', A: calculateDomainScore(2), fullMark: 100 },
+    { subject: 'EDA', A: calculateDomainScore(3), fullMark: 100 },
+    { subject: 'Classical ML', A: calculateDomainScore(4), fullMark: 100 },
+    { subject: 'DL Basics', A: calculateDomainScore(5), fullMark: 100 },
+    { subject: 'CV & NLP', A: calculateDomainScore(6), fullMark: 100 },
+    { subject: 'LLMs', A: calculateDomainScore(7), fullMark: 100 },
+    { subject: 'Agentic/RAG', A: calculateDomainScore(8), fullMark: 100 },
+    { subject: 'MLOps', A: calculateDomainScore(9), fullMark: 100 },
   ];
 
   const CustomTooltip = ({ active, payload }) => {
@@ -88,18 +92,39 @@ const SelfAssessment = () => {
     visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 24 } }
   };
 
+  // Dynamic Content Generation
+  const getNextObjectives = () => {
+    if (recLevel === 'READY_FOR_DEPLOYMENT') return [];
+    return assessmentQuestions[recLevel].questions.filter((_, idx) => !checkedItems[`${recLevel}-${idx}`]);
+  };
+
+  const getMasteredSkills = () => {
+    const mastered = [];
+    assessmentQuestions.forEach((block) => {
+      block.questions.forEach((q, idx) => {
+        if (checkedItems[`${block.level}-${idx}`]) {
+          mastered.push({ level: block.level, q });
+        }
+      });
+    });
+    return mastered.reverse().slice(0, 5); // Last 5 mastered
+  };
+
   return (
     <motion.div initial="hidden" animate="visible" variants={containerVariants}>
       <motion.div variants={itemVariants} style={{ marginBottom: '3rem' }}>
-        <h1 className="gradient-text mono" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>// Self_Assessment</h1>
+        <h1 className="gradient-text mono" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>// Command_Center</h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '800px' }}>
-          Evaluate your current state. Stop at the first block where assertions fail.
+          Your personalized ML operations dashboard. Track progress, find bottlenecks, and get your next learning directives.
         </p>
       </motion.div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
+        {/* Radar Chart */}
         <motion.div variants={itemVariants} className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column' }}>
-          <h3 className="mono" style={{ fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>Skill Matrix Radar</h3>
+          <h3 className="mono" style={{ fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Crosshair size={18} color="var(--accent-primary)" /> Skill Matrix Radar
+          </h3>
           <div style={{ height: '250px', width: '100%' }}>
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
@@ -113,15 +138,57 @@ const SelfAssessment = () => {
           </div>
         </motion.div>
         
+        {/* Dynamic Recommender */}
         <motion.div variants={itemVariants} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          <div className="glass-card" style={{ borderLeft: '4px solid var(--accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flex: 1 }}>
+          <div className="glass-card" style={{ borderLeft: '4px solid var(--accent-primary)', display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'space-between', flex: 1 }}>
             <div>
               <h3 className="mono" style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.9rem' }}>RECOMMENDED_ENTRY_POINT</h3>
               <p className="gradient-accent mono" style={{ fontSize: '2rem', fontWeight: '700', margin: '0.2rem 0 0 0' }}>
                 {recLevel === 'READY_FOR_DEPLOYMENT' ? 'SYS.DEPLOY()' : `LEVEL_${recLevel}`}
               </p>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '0.5rem' }}>
+                {recLevel !== 'READY_FOR_DEPLOYMENT' && roadmapData[recLevel]?.title}
+              </p>
             </div>
             <Zap size={32} color="var(--accent-primary)" style={{ opacity: 0.5 }} />
+          </div>
+          
+          <div className="glass-panel" style={{ padding: '1.5rem', flex: 2, display: 'flex', flexDirection: 'column' }}>
+            <h3 className="mono" style={{ fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <ChevronRight size={18} color="var(--warning)" /> Next Objectives
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', overflowY: 'auto', flex: 1 }}>
+              {getNextObjectives().length > 0 ? (
+                getNextObjectives().map((obj, i) => (
+                  <div key={i} style={{ background: 'var(--bg-tertiary)', padding: '0.75rem', borderRadius: '4px', borderLeft: '2px solid var(--warning)', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    {obj}
+                  </div>
+                ))
+              ) : (
+                <div style={{ color: 'var(--success)', fontSize: '0.9rem' }}>All current level objectives met. Proceed to next module.</div>
+              )}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Mastered Log & Activity */}
+        <motion.div variants={itemVariants} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <div className="glass-panel" style={{ padding: '1.5rem', flex: 1 }}>
+             <h3 className="mono" style={{ fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Award size={18} color="var(--success)" /> Recently Mastered
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              {getMasteredSkills().length > 0 ? (
+                getMasteredSkills().map((item, i) => (
+                  <div key={i} style={{ display: 'flex', gap: '0.5rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                    <span style={{ color: 'var(--success)' }}>✔</span>
+                    <span><span style={{ color: 'var(--text-secondary)' }}>[L{item.level}]</span> {item.q}</span>
+                  </div>
+                ))
+              ) : (
+                <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>No skills mastered yet. Start ticking off assertions below!</div>
+              )}
+            </div>
           </div>
           <div style={{ flex: 1 }}>
             <ProgressGraph activeCount={activityCount} />
@@ -130,13 +197,16 @@ const SelfAssessment = () => {
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <h2 className="mono" style={{ fontSize: '1.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem' }}>
+          Assertion Checklists
+        </h2>
         {assessmentQuestions.map((levelBlock) => (
-          <motion.div variants={itemVariants} key={levelBlock.level} className="glass-panel" style={{ padding: '2rem' }}>
+          <motion.div variants={itemVariants} key={levelBlock.level} className="glass-panel" style={{ padding: '2rem', border: recLevel === levelBlock.level ? '1px solid var(--accent-primary)' : '1px solid var(--border-color)' }}>
             <h3 className="mono" style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <span style={{ 
-                background: 'var(--bg-tertiary)', 
-                color: 'var(--text-primary)', 
-                border: '1px solid var(--border-color)',
+                background: recLevel === levelBlock.level ? 'var(--accent-glow)' : 'var(--bg-tertiary)', 
+                color: recLevel === levelBlock.level ? 'var(--accent-primary)' : 'var(--text-primary)', 
+                border: `1px solid ${recLevel === levelBlock.level ? 'var(--accent-primary)' : 'var(--border-color)'}`,
                 width: '32px', height: '32px', 
                 display: 'flex', alignItems: 'center', justifyContent: 'center', 
                 borderRadius: 'var(--radius-sm)' 

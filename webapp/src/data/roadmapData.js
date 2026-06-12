@@ -1,223 +1,213 @@
 export const roadmapData = [
   {
     level: 0,
-    title: 'Level 0: Python & Math Foundations',
-    subtitle: 'The absolute prerequisites. Do not skip this if you are a beginner.',
-    color: '#2ecc71', // Green
+    title: 'Level 0: Python Foundations',
+    subtitle: 'The syntax and data structures of the AI world.',
+    color: '#1abc9c', // Teal
     topics: [
       {
-        title: 'Python Programming Basics',
-        details: [
-          'Data Types & Structures: Strings, Lists, Tuples, Sets, Dictionaries.',
-          'Control Flow: If/else, For loops, While loops, List Comprehensions.',
-          'Functions & Modules: Lambda functions, *args, **kwargs, writing clean functions.',
-          'Object-Oriented Programming (OOP): Classes, Objects, Inheritance, Methods.'
-        ]
+        title: 'Core Syntax & Types',
+        details: ['Variables, Strings, Lists, Tuples, Sets, Dictionaries', 'Control Flow (If, For, While)']
       },
       {
-        title: 'Linear Algebra Review',
-        details: [
-          'Matrices and Vectors',
-          'Addition, Scalar Multiplication, and Matrix-Vector Multiplication',
-          'Properties of Matrix Multiplication, Inverse, and Transpose'
-        ]
+        title: 'Advanced Python',
+        details: ['List/Dict Comprehensions, Lambda, map/filter', '*args, **kwargs, Decorators, Generators']
       },
       {
-        title: 'Calculus & Probability Basics',
-        details: [
-          'Calculus: Derivatives, Chain Rule, Gradients.',
-          'Probability: Mean, Median, Variance, Standard Deviation, Normal Distribution, Bayes Theorem.'
-        ]
+        title: 'Object-Oriented Programming',
+        details: ['Classes, Objects, Inheritance, Magic Methods (__init__, __str__)']
       }
     ],
-    actionItems: [
-      'Watch a 4-hour Python crash course.',
-      'Watch 3Blue1Browns Essence of Linear Algebra series on YouTube.',
-      'Proof of Mastery: Write a Python script that reads a text file, counts word frequencies, and prints the top 10 using a dictionary.'
-    ]
+    actionItems: ['Write a CLI app using OOP principles.', 'Master list comprehensions and generators for memory efficiency.']
   },
   {
     level: 1,
-    title: 'Level 1: Data Manipulation & EDA',
-    subtitle: 'Data Scientists spend 80% of their time here.',
-    color: '#f1c40f', // Yellow
+    title: 'Level 1: Math & Statistics',
+    subtitle: 'The theoretical backbone of algorithms.',
+    color: '#2ecc71', // Green
     topics: [
       {
-        title: 'NumPy (Numerical Python)',
-        details: [
-          'Array Creation (1D, 2D, 3D Tensors).',
-          'Indexing, Slicing, and Reshaping.',
-          'Broadcasting and Vectorized Operations.',
-          'Linear Algebra operations.'
-        ]
+        title: 'Linear Algebra',
+        details: ['Vectors, Matrices, Tensors, Dot Products', 'Eigenvalues, Eigenvectors, Dimensionality Reduction']
       },
       {
-        title: 'Pandas (Data Manipulation)',
-        details: [
-          'Series & DataFrames: Creation, reading CSVs/SQL.',
-          'Data Cleaning: Handling Missing Values, Duplicates.',
-          'Aggregations: groupby, pivot_table.',
-          'Combining Data: Merging, Joining.'
-        ]
+        title: 'Calculus',
+        details: ['Derivatives, Partial Derivatives, Chain Rule', 'Gradients and Optimization landscapes']
       },
       {
-        title: 'Data Visualization',
-        details: [
-          'Matplotlib: Object-oriented API, Line plots, Scatter plots.',
-          'Seaborn: Box plots, Violin plots, Correlation Heatmaps.'
-        ]
-      },
-      {
-        title: 'SQL for Data Science',
-        details: [
-          'Basics: SELECT, WHERE, ORDER BY.',
-          'Aggregations & Joins.',
-          'Advanced: CTEs, Window Functions.'
-        ]
+        title: 'Probability & Stats',
+        details: ['Distributions (Normal, Poisson), Bayes Theorem', 'Mean, Variance, Standard Deviation, Hypothesis Testing']
       }
     ],
-    actionItems: [
-      'Complete Kaggle free Pandas and Data Visualization micro-courses.',
-      'Proof of Mastery: Download the Titanic dataset, perform EDA, and create 5 distinct charts explaining survival.'
-    ]
+    actionItems: ['Implement a Matrix multiplication function from scratch.', 'Solve basic probability questions using Bayes Theorem.']
   },
   {
     level: 2,
-    title: 'Level 2: Classical Machine Learning',
-    subtitle: 'The core algorithms. Do not jump to Deep Learning before mastering these.',
-    color: '#e67e22', // Orange
+    title: 'Level 2: Data Manipulation & SQL',
+    subtitle: 'Extracting and cleaning the fuel for your models.',
+    color: '#f1c40f', // Yellow
     topics: [
       {
-        title: 'Linear Regression',
-        details: [
-          'Model Representation & Cost Function',
-          'Gradient Descent',
-          'Feature Scaling'
-        ]
+        title: 'SQL Fundamentals',
+        details: ['SELECT, WHERE, JOINs, GROUP BY', 'Window Functions, CTEs (Common Table Expressions)']
       },
       {
-        title: 'Classification & Regularization',
-        details: [
-          'Logistic Regression',
-          'Overfitting & Regularization'
-        ]
+        title: 'Vectorized Processing',
+        details: ['NumPy arrays, Broadcasting, Indexing', 'Matrix operations in NumPy']
       },
       {
-        title: 'System Design & Best Practices',
-        details: [
-          'Train/Validation/Test Sets',
-          'Bias vs Variance',
-          'Precision vs Recall'
-        ]
-      },
-      {
-        title: 'Advanced Classifiers',
-        details: [
-          'Support Vector Machines (SVM)',
-          'Clustering: K-Means',
-          'Dimensionality Reduction (PCA)',
-          'Recommender Systems'
-        ]
+        title: 'DataFrames',
+        details: ['Pandas: merge, join, fillna, groupby', 'Polars: lazy evaluation and multithreading basics']
       }
     ],
-    actionItems: [
-      'Follow the free Machine Learning course by Andrew Ng (Coursera).',
-      'Proof of Mastery: Build an End-to-End model predicting House Prices or Customer Churn using Scikit-Learn Pipeline.'
-    ]
+    actionItems: ['Solve complex SQL queries on LeetCode/StrataScratch.', 'Clean a messy dataset using Pandas/Polars.']
   },
   {
     level: 3,
-    title: 'Level 3: Deep Learning & AI',
-    subtitle: 'For Computer Vision, Natural Language Processing, and Complex Patterns.',
-    color: '#e74c3c', // Red
+    title: 'Level 3: Exploratory Data Analysis (EDA)',
+    subtitle: 'Finding patterns before training any model.',
+    color: '#e67e22', // Orange
     topics: [
       {
-        title: 'Neural Networks',
-        details: [
-          'Forward Propagation & Cost Function',
-          'Backpropagation Algorithm'
-        ]
+        title: 'Data Visualization',
+        details: ['Matplotlib & Seaborn: Heatmaps, Boxplots', 'Plotly: Interactive charts and dashboards']
       },
       {
-        title: 'Deep Learning Frameworks (PyTorch)',
-        details: [
-          'Tensors and Autograd',
-          'Custom Dataset and DataLoader',
-          'Custom Training Loops'
-        ]
+        title: 'Feature Engineering',
+        details: ['Handling Outliers, Imputation techniques', 'One-Hot Encoding, Label Encoding, Scaling (MinMax, StandardScaler)']
       },
       {
-        title: 'Computer Vision (CV)',
-        details: [
-          'CNNs, Padding, Max Pooling',
-          'ResNet, VGG, Inception',
-          'Transfer Learning'
-        ]
-      },
-      {
-        title: 'Natural Language Processing (NLP) & LLMs',
-        details: [
-          'Word Embeddings (Word2Vec)',
-          'Sequence Models (RNNs, LSTMs)',
-          'Transformers (Self-Attention)',
-          'Generative AI & Prompt Engineering'
-        ]
+        title: 'Statistical Profiling',
+        details: ['Correlation matrices, identifying collinearity', 'Pandas Profiling / ydata-profiling']
       }
     ],
-    actionItems: [
-      'Take the Fast.ai course "Practical Deep Learning for Coders".',
-      'Watch Andrej Karpathy "Neural Networks: Zero to Hero".',
-      'Proof of Mastery: Fine-tune a pre-trained Image Classification model or a HuggingFace Transformer model.'
-    ]
+    actionItems: ['Perform EDA on the Titanic dataset.', 'Create an interactive Plotly dashboard.']
   },
   {
     level: 4,
-    title: 'Level 4: MLOps & Production Engineering',
-    subtitle: 'The skills that get you hired as a Senior ML Engineer.',
-    color: '#8e44ad', // Purple
+    title: 'Level 4: Classical Machine Learning',
+    subtitle: 'Scikit-Learn, Regression, and Tree-based models.',
+    color: '#e74c3c', // Red
     topics: [
       {
-        title: 'Optimization & Large Scale ML',
-        details: [
-          'Stochastic Gradient Descent (SGD)',
-          'Data Parallelism'
-        ]
+        title: 'Supervised Learning',
+        details: ['Linear Regression, Logistic Regression', 'Support Vector Machines (SVM), K-Nearest Neighbors (KNN)']
       },
       {
-        title: 'Experiment Tracking & Versioning',
-        details: [
-          'Git & GitHub',
-          'DVC (Data Version Control)',
-          'MLflow / Weights & Biases'
-        ]
+        title: 'Tree Ensembles',
+        details: ['Decision Trees, Random Forests', 'Gradient Boosting: XGBoost, LightGBM, CatBoost']
       },
       {
-        title: 'Model Serving & API Development',
-        details: [
-          'FastAPI',
-          'Pydantic Validation',
-          'Loading serialized models safely'
-        ]
-      },
-      {
-        title: 'Containerization & Orchestration',
-        details: [
-          'Docker & Docker Compose',
-          'Multi-stage builds'
-        ]
-      },
-      {
-        title: 'CI/CD & Production Monitoring',
-        details: [
-          'GitHub Actions',
-          'Monitoring (Evidently AI) for Data Drift'
-        ]
+        title: 'Model Evaluation',
+        details: ['Cross-Validation, Bias-Variance Tradeoff', 'Metrics: Precision, Recall, F1, ROC-AUC, Log Loss']
       }
     ],
-    actionItems: [
-      'Study MLOps Reference Project.',
-      'Proof of Mastery: Track a model with MLflow, wrap it in FastAPI, containerize with Docker, and set up a GitHub Action.'
-    ]
+    actionItems: ['Build a Scikit-Learn Pipeline.', 'Tune an XGBoost model using Optuna.']
+  },
+  {
+    level: 5,
+    title: 'Level 5: Deep Learning Foundations',
+    subtitle: 'Neural Networks and the PyTorch framework.',
+    color: '#9b59b6', // Purple
+    topics: [
+      {
+        title: 'Neural Network Basics',
+        details: ['Multi-Layer Perceptrons (MLPs), Activation Functions (ReLU, GELU)', 'Backpropagation, Optimizers (Adam, SGD)']
+      },
+      {
+        title: 'PyTorch Ecosystem',
+        details: ['Tensors, Autograd, nn.Module', 'Custom Datasets and DataLoaders']
+      },
+      {
+        title: 'Regularization',
+        details: ['Dropout, Batch Normalization, Weight Decay']
+      }
+    ],
+    actionItems: ['Write a custom PyTorch training loop from scratch.', 'Train a simple MLP on MNIST.']
+  },
+  {
+    level: 6,
+    title: 'Level 6: Advanced DL (CV & NLP)',
+    subtitle: 'Processing unstructured data like images and text.',
+    color: '#8e44ad', // Dark Purple
+    topics: [
+      {
+        title: 'Computer Vision',
+        details: ['Convolutional Neural Networks (CNNs), Pooling, Strides', 'ResNet, EfficientNet, Transfer Learning']
+      },
+      {
+        title: 'Classic NLP',
+        details: ['Tokenization, TF-IDF, Word2Vec, FastText', 'RNNs, LSTMs, GRUs']
+      },
+      {
+        title: 'Transformer Intuition',
+        details: ['Self-Attention mechanism, Positional Encoding']
+      }
+    ],
+    actionItems: ['Fine-tune a ResNet model for image classification.', 'Implement a basic Self-Attention block in PyTorch.']
+  },
+  {
+    level: 7,
+    title: 'Level 7: Generative AI & LLMs',
+    subtitle: 'The modern era of AI. Transformers and HuggingFace.',
+    color: '#2980b9', // Blue
+    topics: [
+      {
+        title: 'Large Language Models',
+        details: ['Decoder-only architectures (GPT, LLaMA, Mistral)', 'HuggingFace Transformers library']
+      },
+      {
+        title: 'Prompt Engineering',
+        details: ['Few-shot prompting, Chain-of-Thought (CoT)', 'System prompts vs User prompts']
+      },
+      {
+        title: 'Fine-Tuning',
+        details: ['Parameter-Efficient Fine-Tuning (PEFT): LoRA, QLoRA', 'Instruction Tuning, RLHF basics']
+      }
+    ],
+    actionItems: ['Download an open-source LLM via HuggingFace and generate text.', 'Fine-tune a small model using QLoRA.']
+  },
+  {
+    level: 8,
+    title: 'Level 8: RAG & Agentic Systems',
+    subtitle: 'Connecting LLMs to external data and tools.',
+    color: '#3498db', // Light Blue
+    topics: [
+      {
+        title: 'Retrieval-Augmented Generation',
+        details: ['Vector Embeddings (OpenAI, BGE)', 'Vector Databases (Pinecone, Qdrant, ChromaDB)', 'Chunking strategies, Semantic Search']
+      },
+      {
+        title: 'Orchestration Frameworks',
+        details: ['LangChain, LlamaIndex']
+      },
+      {
+        title: 'Agentic AI',
+        details: ['ReAct framework, Function Calling / Tool Use', 'Multi-Agent systems (AutoGen, CrewAI)']
+      }
+    ],
+    actionItems: ['Build a RAG pipeline that answers questions over a PDF document.', 'Create an agent that can execute Python code.']
+  },
+  {
+    level: 9,
+    title: 'Level 9: MLOps & Production',
+    subtitle: 'Deploying, scaling, and monitoring AI in the real world.',
+    color: '#34495e', // Dark Blue/Grey
+    topics: [
+      {
+        title: 'Containerization',
+        details: ['Docker, Docker Compose, Multi-stage builds']
+      },
+      {
+        title: 'Experiment Tracking & CI/CD',
+        details: ['MLflow, Weights & Biases', 'GitHub Actions for ML']
+      },
+      {
+        title: 'Model Serving',
+        details: ['FastAPI, Ray Serve', 'vLLM (PagedAttention), Text Generation Inference (TGI)']
+      }
+    ],
+    actionItems: ['Containerize a FastAPI model endpoint using Docker.', 'Serve an LLM efficiently using vLLM.']
   }
 ];
 
@@ -225,41 +215,81 @@ export const assessmentQuestions = [
   {
     level: 0,
     questions: [
-      'I can write a Python class and understand the __init__ method.',
-      'I can iterate over a dictionary using a for loop.',
-      'I know how to mathematically calculate a matrix dot-product.'
+      'I can implement a custom Python decorator and generator.',
+      'I can use list comprehensions instead of standard loops for filtering data.',
+      'I understand OOP inheritance and the __init__ magic method.'
     ]
   },
   {
     level: 1,
     questions: [
-      'I can load a CSV file using Pandas and fill missing values using .fillna().',
-      'I can perform a SQL-like GROUP BY operation in Pandas.',
-      'I can plot a Correlation Heatmap using Seaborn.'
+      'I can trace partial derivatives manually for a simple function.',
+      'I understand Bayes Theorem and its applications.',
+      'I know the difference between an Eigenvalue and an Eigenvector.'
     ]
   },
   {
     level: 2,
     questions: [
-      'I understand the exact difference between Precision, Recall, and ROC-AUC.',
-      'I can write a Scikit-Learn Pipeline to scale data before training.',
-      'I know how to use K-Fold Cross Validation to prevent overfitting.'
+      'I can write a SQL query using CTEs and Window Functions.',
+      'I can optimize a slow Pandas operation using vectorization.',
+      'I understand broadcasting in NumPy.'
     ]
   },
   {
     level: 3,
     questions: [
-      'I can write a custom Dataset and DataLoader class in PyTorch/TensorFlow.',
-      'I understand how Backpropagation updates weights using the Chain Rule.',
-      'I know what the "Self-Attention" mechanism is in a Transformer.'
+      'I can identify collinearity using a Seaborn correlation heatmap.',
+      'I know when to use StandardScaler vs MinMaxScaler.',
+      'I can handle categorical variables using One-Hot Encoding safely.'
     ]
   },
   {
     level: 4,
     questions: [
-      'I can track my hyperparameter experiments using MLflow.',
-      'I can write a Dockerfile to containerize a Python ML application.',
-      'I can expose a trained model as a REST API using FastAPI.'
+      'I know when to use Log Loss vs ROC-AUC for imbalanced classification.',
+      'I can build a Scikit-Learn Pipeline that includes custom transformers.',
+      'I can tune an XGBoost model using GridSearch or Optuna.'
+    ]
+  },
+  {
+    level: 5,
+    questions: [
+      'I can write a custom PyTorch nn.Module from scratch.',
+      'I understand how Backpropagation updates weights using the Chain Rule.',
+      'I know the purpose of Batch Normalization.'
+    ]
+  },
+  {
+    level: 6,
+    questions: [
+      'I understand how Convolutional strides and padding affect output shapes.',
+      'I can explain the difference between Word2Vec and TF-IDF.',
+      'I know what the "Self-Attention" mechanism is conceptually.'
+    ]
+  },
+  {
+    level: 7,
+    questions: [
+      'I can load an open-source model using the HuggingFace Transformers library.',
+      'I understand what PEFT and LoRA do.',
+      'I can write a Chain-of-Thought (CoT) prompt.'
+    ]
+  },
+  {
+    level: 8,
+    questions: [
+      'I can build a Retrieval-Augmented Generation (RAG) pipeline.',
+      'I understand the difference between ReAct prompting and Function Calling.',
+      'I can use a Vector Database to perform semantic search.'
+    ]
+  },
+  {
+    level: 9,
+    questions: [
+      'I can containerize an ML service securely using a multi-stage Dockerfile.',
+      'I know how to serve an LLM efficiently using vLLM.',
+      'I can track my hyperparameter experiments using MLflow.'
     ]
   }
 ];

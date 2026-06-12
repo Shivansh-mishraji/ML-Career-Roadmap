@@ -30,9 +30,13 @@ function App() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', position: 'relative' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
+      {/* Dynamic Background Elements */}
+      <div style={{ position: 'absolute', top: '10%', left: '5%', width: '300px', height: '300px', background: 'radial-gradient(circle, var(--accent-glow) 0%, transparent 70%)', borderRadius: '50%', filter: 'blur(40px)', zIndex: 0, animation: 'float 15s infinite alternate' }} />
+      <div style={{ position: 'absolute', bottom: '10%', right: '5%', width: '400px', height: '400px', background: 'radial-gradient(circle, var(--accent-glow-purple) 0%, transparent 70%)', borderRadius: '50%', filter: 'blur(50px)', zIndex: 0, animation: 'float-reverse 20s infinite alternate' }} />
+      
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-      <main style={{ flex: 1, padding: '3rem 4rem', marginLeft: '260px', maxWidth: '1200px', zIndex: 10 }}>
+      <main style={{ flex: 1, padding: '3rem 4rem', marginLeft: '260px', maxWidth: '1200px', zIndex: 10, position: 'relative' }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}

@@ -1,160 +1,197 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Server, Users, Code, ChevronRight } from 'lucide-react';
-import { jobPrepData } from '../data/jobPrepData';
+import { Building2, ChevronLeft, ChevronRight, Terminal, BrainCircuit, Users, Server, Briefcase, GraduationCap, Award } from 'lucide-react';
+import { companyLoops } from '../data/jobPrepData';
 
 const JobPrep = () => {
-  const [activeMode, setActiveMode] = useState('system_design');
-  const [activeItem, setActiveItem] = useState(null);
+  const [activeCompany, setActiveCompany] = useState(null);
+  const [activeRound, setActiveRound] = useState(null);
+  const [activeQuestion, setActiveQuestion] = useState(null);
+  const [expLevel, setExpLevel] = useState('mid'); // fresher, mid, senior
 
-  const renderContent = () => {
-    if (activeMode === 'system_design') {
-      return (
-        <div style={{ display: 'grid', gap: '2rem' }}>
-          {jobPrepData.system_design.map(item => (
-            <motion.div key={item.id} className="glass-card" onClick={() => setActiveItem(activeItem === item.id ? null : item.id)} style={{ cursor: 'pointer' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h3 className="mono" style={{ color: 'var(--text-primary)', fontSize: '1.2rem' }}>{item.title}</h3>
-                <span className="mono" style={{ color: item.difficulty === 'Extreme' ? 'var(--danger)' : 'var(--warning)', background: 'var(--bg-tertiary)', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem' }}>
-                  {item.difficulty}
-                </span>
+  const renderDashboard = () => (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+      {companyLoops.map(company => (
+        <motion.div 
+          key={company.id} 
+          className="glass-card hover-glow"
+          whileHover={{ scale: 1.02, borderColor: company.color }}
+          onClick={() => setActiveCompany(company)}
+          style={{ cursor: 'pointer', borderTop: `4px solid ${company.color}` }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+            <Building2 size={28} color={company.color} />
+            <h2 className="mono" style={{ fontSize: '1.5rem', color: 'var(--text-primary)', margin: 0 }}>{company.company}</h2>
+          </div>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem', fontWeight: 600 }}>Role: {company.role}</p>
+          <p style={{ color: 'var(--text-secondary)', fontStyle: 'italic', background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px' }}>"{company.motto}"</p>
+        </motion.div>
+      ))}
+    </div>
+  );
+
+  const getIconForType = (type) => {
+    if (type.includes('Coding')) return <Terminal size={18} />;
+    if (type.includes('System')) return <Server size={18} />;
+    if (type.includes('Theory')) return <BrainCircuit size={18} />;
+    return <Users size={18} />;
+  };
+
+  const getExpIcon = (level) => {
+    if (level === 'fresher') return <GraduationCap size={16} />;
+    if (level === 'mid') return <Briefcase size={16} />;
+    return <Award size={16} />;
+  }
+
+  const renderCompanyLoop = () => {
+    // Determine the questions to show based on the activeRound and selected experience level
+    let currentQuestions = [];
+    if (activeRound && activeRound.questions && activeRound.questions[expLevel]) {
+      currentQuestions = activeRound.questions[expLevel];
+    }
+
+    return (
+      <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+        <button 
+          onClick={() => { setActiveCompany(null); setActiveRound(null); setActiveQuestion(null); }}
+          className="btn-outline"
+          style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+        >
+          <ChevronLeft size={16} /> Back to Companies
+        </button>
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '2rem' }}>
+          <div style={{ marginBottom: '3rem', borderLeft: `4px solid ${activeCompany.color}`, paddingLeft: '1.5rem' }}>
+            <h1 className="mono" style={{ fontSize: '2.5rem', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>{activeCompany.company} Interview Loop</h1>
+            <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>Target: {activeCompany.role}</p>
+          </div>
+
+          {/* Experience Toggle */}
+          <div style={{ display: 'flex', gap: '0.5rem', background: 'var(--bg-secondary)', padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+            <button onClick={() => {setExpLevel('fresher'); setActiveQuestion(null);}} className={expLevel === 'fresher' ? 'btn-primary' : 'btn-ghost'} style={{ padding: '0.5rem 1rem', fontSize: '0.9rem', display: 'flex', gap: '0.5rem' }}>
+              <GraduationCap size={16} /> Fresher (0-2 YOE)
+            </button>
+            <button onClick={() => {setExpLevel('mid'); setActiveQuestion(null);}} className={expLevel === 'mid' ? 'btn-primary' : 'btn-ghost'} style={{ padding: '0.5rem 1rem', fontSize: '0.9rem', display: 'flex', gap: '0.5rem' }}>
+              <Briefcase size={16} /> Mid (3-5 YOE)
+            </button>
+            <button onClick={() => {setExpLevel('senior'); setActiveQuestion(null);}} className={expLevel === 'senior' ? 'btn-primary' : 'btn-ghost'} style={{ padding: '0.5rem 1rem', fontSize: '0.9rem', display: 'flex', gap: '0.5rem' }}>
+              <Award size={16} /> Senior (5+ YOE)
+            </button>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+          {/* Rounds Sidebar */}
+          <div style={{ flex: '1', minWidth: '300px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {activeCompany.rounds.map(round => (
+              <motion.div 
+                key={round.id}
+                className={`glass-card ${activeRound?.id === round.id ? 'active' : ''}`}
+                onClick={() => { setActiveRound(round); setActiveQuestion(null); }}
+                style={{ 
+                  cursor: 'pointer', 
+                  borderLeft: activeRound?.id === round.id ? `4px solid ${activeCompany.color}` : '1px solid var(--border-color)',
+                  background: activeRound?.id === round.id ? 'var(--bg-tertiary)' : 'var(--bg-secondary)'
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                  <span className="mono" style={{ color: activeCompany.color, fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    {getIconForType(round.type)} {round.type}
+                  </span>
+                </div>
+                <h3 className="mono" style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }}>{round.title}</h3>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Round Details */}
+          <div style={{ flex: '2', minWidth: '400px' }}>
+            {activeRound ? (
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="glass-panel" style={{ padding: '2rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                  <h2 className="gradient-text mono" style={{ margin: 0 }}>{activeRound.title}</h2>
+                  <span className="mono" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--bg-tertiary)', padding: '0.4rem 0.8rem', borderRadius: '4px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                    {getExpIcon(expLevel)} {expLevel.toUpperCase()} Level
+                  </span>
+                </div>
+                
+                <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border-color)' }}>
+                  <strong>Focus:</strong> {activeRound.focus}
+                </p>
+
+                <h3 className="mono" style={{ color: 'var(--text-primary)', marginBottom: '1.5rem' }}>Mock Questions:</h3>
+                
+                {currentQuestions.length > 0 ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                    {currentQuestions.map((q, idx) => (
+                      <div key={idx} className="glass-card" onClick={() => setActiveQuestion(activeQuestion === idx ? null : idx)} style={{ cursor: 'pointer' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                          <p style={{ color: 'var(--text-primary)', fontSize: '1.05rem', margin: 0, paddingRight: '2rem' }}>{idx + 1}. {q.q}</p>
+                          <ChevronRight size={18} style={{ color: 'var(--text-muted)', transform: activeQuestion === idx ? 'rotate(90deg)' : 'none', transition: 'transform 0.3s' }} />
+                        </div>
+                        
+                        <AnimatePresence>
+                          {activeQuestion === idx && (
+                            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} style={{ overflow: 'hidden' }}>
+                              <div style={{ marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px dashed var(--border-color)' }}>
+                                <h4 style={{ color: 'var(--warning)', marginBottom: '0.5rem', fontSize: '0.9rem', textTransform: 'uppercase' }}>Expected Answer Framework:</h4>
+                                <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}>{q.hint}</p>
+                                
+                                {q.code && (
+                                  <div style={{ marginTop: '1.5rem', background: '#0d1117', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', position: 'relative' }}>
+                                    <span style={{ position: 'absolute', top: '0', right: '0', background: 'var(--border-color)', color: 'var(--text-muted)', padding: '0.2rem 0.5rem', fontSize: '0.7rem', borderBottomLeftRadius: '8px' }}>SOLUTION</span>
+                                    <pre style={{ margin: 0, overflowX: 'auto' }}>
+                                      <code style={{ color: '#c9d1d9', fontFamily: 'Fira Code', fontSize: '0.9rem' }}>
+                                        {q.code}
+                                      </code>
+                                    </pre>
+                                  </div>
+                                )}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p style={{ color: 'var(--text-muted)', fontStyle: 'italic' }}>No questions available for this experience level yet.</p>
+                )}
+              </motion.div>
+            ) : (
+              <div className="glass-panel" style={{ padding: '4rem 2rem', textAlign: 'center', color: 'var(--text-muted)' }}>
+                <Building2 size={48} style={{ opacity: 0.2, margin: '0 auto 1rem auto' }} />
+                <p>Select a round from the timeline to view the mock questions and grading rubrics.</p>
               </div>
-              <p style={{ color: 'var(--text-secondary)', marginTop: '1rem' }}>{item.scenario}</p>
-              
-              <AnimatePresence>
-                {activeItem === item.id && (
-                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} style={{ overflow: 'hidden', marginTop: '2rem', borderTop: '1px solid var(--border-color)', paddingTop: '2rem' }}>
-                    <h4 className="gradient-text mono" style={{ marginBottom: '1rem' }}>Core Requirements:</h4>
-                    <ul style={{ paddingLeft: '1.5rem', color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                      {item.requirements.map((req, i) => <li key={i} style={{ marginBottom: '0.5rem' }}>{req}</li>)}
-                    </ul>
-                    
-                    <h4 className="gradient-text mono" style={{ marginBottom: '1rem' }}>Solution Architecture:</h4>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                      {item.solution_framework.map((step, i) => (
-                        <div key={i} style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }} dangerouslySetInnerHTML={{ __html: step.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--accent-primary);">$1</strong>') }} />
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+            )}
+          </div>
         </div>
-      );
-    }
-
-    if (activeMode === 'behavioral') {
-      return (
-        <div style={{ display: 'grid', gap: '2rem' }}>
-          {jobPrepData.behavioral.map(item => (
-            <motion.div key={item.id} className="glass-card" onClick={() => setActiveItem(activeItem === item.id ? null : item.id)} style={{ cursor: 'pointer', borderLeft: '4px solid var(--accent-secondary)' }}>
-              <span style={{ fontSize: '0.85rem', color: 'var(--accent-secondary)', textTransform: 'uppercase', tracking: 'widest' }}>{item.category}</span>
-              <h3 className="mono" style={{ color: 'var(--text-primary)', fontSize: '1.2rem', marginTop: '0.5rem', marginBottom: '1rem' }}>{item.title}</h3>
-              <p style={{ color: '#fff', fontStyle: 'italic', background: 'var(--bg-secondary)', padding: '1rem', borderRadius: '8px', borderLeft: '2px solid var(--border-color)' }}>
-                "{item.question}"
-              </p>
-              
-              <AnimatePresence>
-                {activeItem === item.id && (
-                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} style={{ overflow: 'hidden', marginTop: '2rem' }}>
-                    <h4 className="mono" style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>STAR Framework Answer:</h4>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                      <div style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px' }}>
-                        <strong style={{ color: 'var(--accent-primary)', display: 'block', marginBottom: '0.5rem' }}>Situation:</strong>
-                        <span style={{ color: 'var(--text-secondary)' }}>{item.star_framework.situation}</span>
-                      </div>
-                      <div style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px' }}>
-                        <strong style={{ color: 'var(--warning)', display: 'block', marginBottom: '0.5rem' }}>Task:</strong>
-                        <span style={{ color: 'var(--text-secondary)' }}>{item.star_framework.task}</span>
-                      </div>
-                      <div style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px' }}>
-                        <strong style={{ color: 'var(--danger)', display: 'block', marginBottom: '0.5rem' }}>Action:</strong>
-                        <span style={{ color: 'var(--text-secondary)' }}>{item.star_framework.action}</span>
-                      </div>
-                      <div style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px' }}>
-                        <strong style={{ color: 'var(--success)', display: 'block', marginBottom: '0.5rem' }}>Result:</strong>
-                        <span style={{ color: 'var(--text-secondary)' }}>{item.star_framework.result}</span>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
-        </div>
-      );
-    }
-
-    if (activeMode === 'coding') {
-      return (
-        <div style={{ display: 'grid', gap: '2rem' }}>
-          {jobPrepData.coding.map(item => (
-            <motion.div key={item.id} className="glass-card" onClick={() => setActiveItem(activeItem === item.id ? null : item.id)} style={{ cursor: 'pointer' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h3 className="mono" style={{ color: 'var(--text-primary)', fontSize: '1.1rem' }}>{item.title}</h3>
-                <span className="mono" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{item.difficulty}</span>
-              </div>
-              <p style={{ color: 'var(--text-secondary)', marginTop: '1rem', background: 'var(--bg-secondary)', padding: '1rem', borderRadius: '8px' }}>{item.question}</p>
-              
-              <AnimatePresence>
-                {activeItem === item.id && (
-                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} style={{ overflow: 'hidden', marginTop: '2rem' }}>
-                    <div style={{ background: '#0d1117', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', position: 'relative' }}>
-                      <span style={{ position: 'absolute', top: '0', right: '0', background: 'var(--border-color)', color: 'var(--text-muted)', padding: '0.2rem 0.5rem', fontSize: '0.7rem', borderBottomLeftRadius: '8px' }}>SOLUTION</span>
-                      <pre style={{ margin: 0, overflowX: 'auto' }}>
-                        <code style={{ color: '#c9d1d9', fontFamily: 'Fira Code', fontSize: '0.9rem' }}>
-                          {item.solution_code}
-                        </code>
-                      </pre>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
-        </div>
-      );
-    }
+      </motion.div>
+    );
   };
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="animate-fade-in" style={{ maxWidth: '1000px', margin: '0 auto' }}>
-      <div style={{ marginBottom: '3rem' }}>
-        <h1 className="gradient-text mono" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>// Mock_Interviews</h1>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '800px' }}>
-          Simulate real-world FAANG interviews. Practice System Design on the whiteboard, structure your Behavioral answers using STAR, and review essential Coding algorithms.
-        </p>
-      </div>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="animate-fade-in" style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      {!activeCompany && (
+        <div style={{ marginBottom: '3rem' }}>
+          <h1 className="gradient-text mono" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>// Target_Company_Profiles</h1>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '800px' }}>
+            A generic interview approach fails at the top tier. Select your target company to simulate their exact interview loop, including coding constraints, system design paradigms, and cultural behavioral frameworks.
+          </p>
+        </div>
+      )}
 
-      {/* Navigation Tabs */}
-      <div style={{ display: 'flex', gap: '1rem', marginBottom: '3rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem' }}>
-        <button 
-          onClick={() => { setActiveMode('system_design'); setActiveItem(null); }}
-          className={activeMode === 'system_design' ? 'btn-primary' : 'btn-outline'}
-          style={{ padding: '0.8rem 1.5rem' }}
-        >
-          <Server size={18} /> System Design
-        </button>
-        <button 
-          onClick={() => { setActiveMode('behavioral'); setActiveItem(null); }}
-          className={activeMode === 'behavioral' ? 'btn-primary' : 'btn-outline'}
-          style={{ padding: '0.8rem 1.5rem' }}
-        >
-          <Users size={18} /> Behavioral (STAR)
-        </button>
-        <button 
-          onClick={() => { setActiveMode('coding'); setActiveItem(null); }}
-          className={activeMode === 'coding' ? 'btn-primary' : 'btn-outline'}
-          style={{ padding: '0.8rem 1.5rem' }}
-        >
-          <Code size={18} /> Coding & SQL
-        </button>
-      </div>
-
-      {/* Main Content Area */}
-      {renderContent()}
-
+      <AnimatePresence mode="wait">
+        {!activeCompany ? (
+          <motion.div key="dashboard" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            {renderDashboard()}
+          </motion.div>
+        ) : (
+          <motion.div key="loop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            {renderCompanyLoop()}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };

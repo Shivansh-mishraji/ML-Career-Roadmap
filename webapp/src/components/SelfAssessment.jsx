@@ -5,7 +5,7 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Responsi
 import { assessmentQuestions, roadmapData } from '../data/roadmapData';
 import ProgressGraph from './ProgressGraph';
 
-const SelfAssessment = () => {
+const SelfAssessment = ({ userProfile }) => {
   const [checkedItems, setCheckedItems] = useState({});
   const [activityCount, setActivityCount] = useState(0);
 
@@ -200,54 +200,59 @@ const SelfAssessment = () => {
         <h2 className="mono" style={{ fontSize: '1.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem' }}>
           Mastery Checklists
         </h2>
-        {assessmentQuestions.map((levelBlock) => (
-          <motion.div variants={itemVariants} key={levelBlock.level} className="glass-panel" style={{ padding: '2rem', border: recLevel === levelBlock.level ? '1px solid var(--accent-primary)' : '1px solid var(--border-color)' }}>
-            <h3 className="mono" style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <span style={{ 
-                background: recLevel === levelBlock.level ? 'var(--accent-glow)' : 'var(--bg-tertiary)', 
-                color: recLevel === levelBlock.level ? 'var(--accent-primary)' : 'var(--text-primary)', 
-                border: `1px solid ${recLevel === levelBlock.level ? 'var(--accent-primary)' : 'var(--border-color)'}`,
-                width: '32px', height: '32px', 
-                display: 'flex', alignItems: 'center', justifyContent: 'center', 
-                borderRadius: 'var(--radius-sm)' 
-              }}>
-                {levelBlock.level}
-              </span>
-              Level_{levelBlock.level} Mastery Checks
-            </h3>
-            
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {levelBlock.questions.map((q, idx) => {
-                const key = `${levelBlock.level}-${idx}`;
-                const isChecked = !!checkedItems[key];
-                return (
-                  <motion.div 
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
-                    key={idx} 
-                    onClick={() => toggleItem(levelBlock.level, idx)}
-                    style={{ 
-                      display: 'flex', alignItems: 'flex-start', gap: '1rem',
-                      padding: '1rem',
-                      background: isChecked ? 'var(--success-glow)' : 'var(--bg-tertiary)',
-                      border: `1px solid ${isChecked ? 'var(--success)' : 'var(--border-color)'}`,
-                      borderRadius: 'var(--radius-sm)',
-                      cursor: 'pointer',
-                      transition: 'all var(--transition-fast)'
-                    }}
-                  >
-                    <div style={{ color: isChecked ? 'var(--success)' : 'var(--text-muted)', marginTop: '2px' }}>
-                      {isChecked ? <CheckSquare size={20} /> : <Square size={20} />}
-                    </div>
-                    <span style={{ color: isChecked ? 'var(--text-primary)' : 'var(--text-secondary)' }}>
-                      {q}
-                    </span>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-        ))}
+        {assessmentQuestions.map((levelBlock, index) => {
+          const isInternshipSkip = userProfile?.track === 'internship' && index >= 7; // Skip Level 7, 8, 9
+
+          return (
+            <motion.div variants={itemVariants} key={levelBlock.level} className={`glass-panel ${isInternshipSkip ? 'skipped' : ''}`} style={{ padding: '2rem', border: recLevel === levelBlock.level && !isInternshipSkip ? '1px solid var(--accent-primary)' : '1px solid var(--border-color)', opacity: isInternshipSkip ? 0.4 : 1 }}>
+              <h3 className="mono" style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <span style={{ 
+                  background: recLevel === levelBlock.level && !isInternshipSkip ? 'var(--accent-glow)' : 'var(--bg-tertiary)', 
+                  color: recLevel === levelBlock.level && !isInternshipSkip ? 'var(--accent-primary)' : 'var(--text-primary)', 
+                  border: `1px solid ${recLevel === levelBlock.level && !isInternshipSkip ? 'var(--accent-primary)' : 'var(--border-color)'}`,
+                  width: '32px', height: '32px', 
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', 
+                  borderRadius: 'var(--radius-sm)' 
+                }}>
+                  {levelBlock.level}
+                </span>
+                Level_{levelBlock.level} Mastery Checks
+                {isInternshipSkip && <span style={{ fontSize: '0.7rem', background: 'var(--warning)', color: '#000', padding: '0.2rem 0.6rem', borderRadius: '4px', fontWeight: 'bold', marginLeft: 'auto' }}>SKIPPED FOR INTERNS</span>}
+              </h3>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {levelBlock.questions.map((q, idx) => {
+                  const key = `${levelBlock.level}-${idx}`;
+                  const isChecked = !!checkedItems[key];
+                  return (
+                    <motion.div 
+                      whileHover={{ scale: isInternshipSkip ? 1 : 1.01 }}
+                      whileTap={{ scale: isInternshipSkip ? 1 : 0.99 }}
+                      key={idx} 
+                      onClick={() => { if(!isInternshipSkip) toggleItem(levelBlock.level, idx); }}
+                      style={{ 
+                        display: 'flex', alignItems: 'flex-start', gap: '1rem',
+                        padding: '1rem',
+                        background: isChecked ? 'var(--success-glow)' : 'var(--bg-tertiary)',
+                        border: `1px solid ${isChecked ? 'var(--success)' : 'var(--border-color)'}`,
+                        borderRadius: 'var(--radius-sm)',
+                        cursor: isInternshipSkip ? 'not-allowed' : 'pointer',
+                        transition: 'all var(--transition-fast)'
+                      }}
+                    >
+                      <div style={{ color: isChecked ? 'var(--success)' : 'var(--text-muted)', marginTop: '2px' }}>
+                        {isChecked ? <CheckSquare size={20} /> : <Square size={20} />}
+                      </div>
+                      <span style={{ color: isChecked ? 'var(--text-primary)' : 'var(--text-secondary)' }}>
+                        {q}
+                      </span>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </motion.div>
   );

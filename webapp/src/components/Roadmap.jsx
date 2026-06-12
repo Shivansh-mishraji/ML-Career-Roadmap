@@ -3,7 +3,7 @@ import { CheckCircle, Play, ChevronRight, Terminal, Lock, Unlock } from 'lucide-
 import { roadmapData, assessmentQuestions } from '../data/roadmapData';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Roadmap = () => {
+const Roadmap = ({ userProfile }) => {
   const [activeNode, setActiveNode] = useState(0);
   const [unlockedLevel, setUnlockedLevel] = useState(0);
 
@@ -68,22 +68,23 @@ const Roadmap = () => {
           }}></div>
           
           {roadmapData.map((levelData, idx) => {
+            const isInternshipSkip = userProfile?.track === 'internship' && idx >= 7; // Skip MLOps, LLMs, Advanced SysDesign for interns
             const isActive = activeNode === idx;
-            const isUnlocked = idx <= unlockedLevel;
+            const isUnlocked = idx <= unlockedLevel || isInternshipSkip;
             
             return (
               <motion.div 
-                whileHover={{ x: isUnlocked ? 5 : 0 }}
+                whileHover={{ x: isUnlocked && !isInternshipSkip ? 5 : 0 }}
                 key={levelData.level} 
-                className="pipeline-node"
-                onClick={() => { if (isUnlocked) setActiveNode(idx); }}
+                className={`pipeline-node ${isInternshipSkip ? 'skipped' : ''}`}
+                onClick={() => { if (isUnlocked && !isInternshipSkip) setActiveNode(idx); }}
                 style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
                   gap: '1.2rem', 
                   marginBottom: '3rem',
-                  cursor: isUnlocked ? 'pointer' : 'not-allowed',
-                  opacity: isUnlocked ? 1 : 0.4,
+                  cursor: isInternshipSkip ? 'not-allowed' : (isUnlocked ? 'pointer' : 'not-allowed'),
+                  opacity: isInternshipSkip ? 0.3 : (isUnlocked ? 1 : 0.4),
                   transition: 'all 0.3s'
                 }}
               >
@@ -99,12 +100,13 @@ const Roadmap = () => {
                   justifyContent: 'center',
                   color: isActive ? '#fff' : (isUnlocked ? 'var(--accent-primary)' : 'var(--text-muted)')
                 }}>
-                  {isUnlocked ? <CheckCircle size={14} /> : <Lock size={12} />}
+                  {isInternshipSkip ? <Lock size={12} /> : (isUnlocked ? <CheckCircle size={14} /> : <Lock size={12} />)}
                 </div>
                 <div>
-                  <h4 className="mono" style={{ color: isActive ? '#fff' : (isUnlocked ? 'var(--text-primary)' : 'var(--text-muted)'), margin: 0, fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <h4 className="mono" style={{ color: isActive ? '#fff' : (isUnlocked && !isInternshipSkip ? 'var(--text-primary)' : 'var(--text-muted)'), margin: 0, fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     LEVEL_{levelData.level}
-                    {!isUnlocked && <span style={{ fontSize: '0.7rem', background: 'var(--bg-tertiary)', padding: '0.1rem 0.4rem', borderRadius: '4px' }}>LOCKED</span>}
+                    {!isUnlocked && !isInternshipSkip && <span style={{ fontSize: '0.7rem', background: 'var(--bg-tertiary)', padding: '0.1rem 0.4rem', borderRadius: '4px' }}>LOCKED</span>}
+                    {isInternshipSkip && <span style={{ fontSize: '0.7rem', background: 'var(--warning)', color: '#000', padding: '0.1rem 0.4rem', borderRadius: '4px', fontWeight: 'bold' }}>SKIP FOR INTERNS</span>}
                   </h4>
                   <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{levelData.title.split(':')[1]?.trim() || levelData.title}</p>
                 </div>

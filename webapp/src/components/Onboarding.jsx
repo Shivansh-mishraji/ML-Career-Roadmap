@@ -72,7 +72,7 @@ const Onboarding = ({ onComplete }) => {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
                 {/* Internship Card */}
                 <motion.div 
-                  className={`glass-card hover-glow ${track === 'internship' ? 'active' : ''}`}
+                  className={`glass-card-premium hover-glow ${track === 'internship' ? 'active' : ''}`}
                   whileHover={{ scale: 1.02, borderColor: 'var(--accent-primary)' }}
                   onClick={() => { setTrack('internship'); setTimeout(() => setStep(3), 300); }}
                   style={{ cursor: 'pointer', padding: '3rem 2rem', borderTop: track === 'internship' ? '4px solid var(--accent-primary)' : '1px solid var(--border-color)', background: track === 'internship' ? 'var(--bg-tertiary)' : 'var(--bg-secondary)' }}
@@ -86,7 +86,7 @@ const Onboarding = ({ onComplete }) => {
 
                 {/* Full-Time Card */}
                 <motion.div 
-                  className={`glass-card hover-glow ${track === 'fulltime' ? 'active' : ''}`}
+                  className={`glass-card-premium hover-glow ${track === 'fulltime' ? 'active' : ''}`}
                   whileHover={{ scale: 1.02, borderColor: '#ea4335' }}
                   onClick={() => { setTrack('fulltime'); setTimeout(() => setStep(3), 300); }}
                   style={{ cursor: 'pointer', padding: '3rem 2rem', borderTop: track === 'fulltime' ? '4px solid #ea4335' : '1px solid var(--border-color)', background: track === 'fulltime' ? 'var(--bg-tertiary)' : 'var(--bg-secondary)' }}
@@ -113,7 +113,7 @@ const Onboarding = ({ onComplete }) => {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '2rem' }}>
                 <motion.div 
-                  className={`glass-card hover-glow ${timeline === '1month' ? 'active' : ''}`}
+                  className={`glass-card-premium hover-glow ${timeline === '1month' ? 'active' : ''}`}
                   whileHover={{ scale: 1.02 }}
                   onClick={() => setTimeline('1month')}
                   style={{ cursor: 'pointer', padding: '2rem', textAlign: 'center', borderTop: timeline === '1month' ? '4px solid #f43f5e' : '1px solid var(--border-color)', background: timeline === '1month' ? 'var(--bg-tertiary)' : 'var(--bg-secondary)' }}
@@ -124,7 +124,7 @@ const Onboarding = ({ onComplete }) => {
                 </motion.div>
 
                 <motion.div 
-                  className={`glass-card hover-glow ${timeline === '3-6mo' ? 'active' : ''}`}
+                  className={`glass-card-premium hover-glow ${timeline === '3-6mo' ? 'active' : ''}`}
                   whileHover={{ scale: 1.02 }}
                   onClick={() => setTimeline('3-6mo')}
                   style={{ cursor: 'pointer', padding: '2rem', textAlign: 'center', borderTop: timeline === '3-6mo' ? '4px solid #3b82f6' : '1px solid var(--border-color)', background: timeline === '3-6mo' ? 'var(--bg-tertiary)' : 'var(--bg-secondary)' }}
@@ -135,7 +135,7 @@ const Onboarding = ({ onComplete }) => {
                 </motion.div>
 
                 <motion.div 
-                  className={`glass-card hover-glow ${timeline === '1year+' ? 'active' : ''}`}
+                  className={`glass-card-premium hover-glow ${timeline === '1year+' ? 'active' : ''}`}
                   whileHover={{ scale: 1.02 }}
                   onClick={() => setTimeline('1year+')}
                   style={{ cursor: 'pointer', padding: '2rem', textAlign: 'center', borderTop: timeline === '1year+' ? '4px solid #10b981' : '1px solid var(--border-color)', background: timeline === '1year+' ? 'var(--bg-tertiary)' : 'var(--bg-secondary)' }}

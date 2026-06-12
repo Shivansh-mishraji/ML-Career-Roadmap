@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Building2, ChevronLeft, ChevronRight, Terminal, BrainCircuit, Users, Server, Briefcase, GraduationCap, Award, Rocket, Clock, Calendar, Compass } from 'lucide-react';
-import { companyLoops, internshipLoops, timelineStrategies } from '../data/jobPrepData';
+import { companyLoops, internshipLoops, quantLoops, startupLoops, timelineStrategies } from '../data/jobPrepData';
 
 const JobPrep = ({ userProfile }) => {
   const [activeCompany, setActiveCompany] = useState(null);
@@ -11,10 +11,16 @@ const JobPrep = ({ userProfile }) => {
 
   const selectedTrack = userProfile?.track || 'fulltime';
   const timeline = userProfile?.timeline || '3-6mo';
+  const [industryTab, setIndustryTab] = useState('faang'); // 'faang' | 'quant' | 'startup'
 
   // Track Selector removed since it is now globally handled by Onboarding
 
-  const currentLoops = selectedTrack === 'internship' ? internshipLoops : companyLoops;
+  let currentLoops = internshipLoops;
+  if (selectedTrack !== 'internship') {
+    if (industryTab === 'faang') currentLoops = companyLoops;
+    if (industryTab === 'quant') currentLoops = quantLoops;
+    if (industryTab === 'startup') currentLoops = startupLoops;
+  }
   const currentStrategy = selectedTrack ? timelineStrategies[selectedTrack][timeline] : null;
 
   const renderDashboard = () => (
@@ -35,18 +41,44 @@ const JobPrep = ({ userProfile }) => {
         <h1 className="gradient-text mono" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
           // {selectedTrack === 'internship' ? 'Intern_Company_Profiles' : 'Target_Company_Profiles'}
         </h1>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '800px' }}>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '800px', marginBottom: '2rem' }}>
           {selectedTrack === 'internship' 
             ? "Simulate the exact interview loop you'll face as a student applying for an internship."
             : "Select your target company to simulate their exact full-time interview loop, including coding constraints and system design paradigms."}
         </p>
+
+        {selectedTrack === 'fulltime' && (
+          <div style={{ display: 'inline-flex', gap: '1rem', background: 'var(--bg-secondary)', padding: '0.5rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+            <button 
+              onClick={() => setIndustryTab('faang')} 
+              className={industryTab === 'faang' ? 'btn-primary' : 'btn-ghost'}
+              style={{ padding: '0.5rem 1.5rem', borderRadius: '8px' }}
+            >
+              Big Tech (FAANG)
+            </button>
+            <button 
+              onClick={() => setIndustryTab('quant')} 
+              className={industryTab === 'quant' ? 'btn-primary' : 'btn-ghost'}
+              style={{ padding: '0.5rem 1.5rem', borderRadius: '8px' }}
+            >
+              Quant Finance
+            </button>
+            <button 
+              onClick={() => setIndustryTab('startup')} 
+              className={industryTab === 'startup' ? 'btn-primary' : 'btn-ghost'}
+              style={{ padding: '0.5rem 1.5rem', borderRadius: '8px' }}
+            >
+              AI Startups
+            </button>
+          </div>
+        )}
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
         {currentLoops.map(company => (
           <motion.div 
             key={company.id} 
-            className="glass-card hover-glow"
+            className="glass-card-premium hover-glow"
             whileHover={{ scale: 1.02, borderColor: company.color }}
             onClick={() => setActiveCompany(company)}
             style={{ cursor: 'pointer', borderTop: `4px solid ${company.color}` }}
@@ -132,7 +164,7 @@ const JobPrep = ({ userProfile }) => {
             {activeCompany.rounds.map(round => (
               <motion.div 
                 key={round.id}
-                className={`glass-card ${activeRound?.id === round.id ? 'active' : ''}`}
+                className={`glass-card-premium ${activeRound?.id === round.id ? 'active' : ''}`}
                 onClick={() => { setActiveRound(round); setActiveQuestion(null); }}
                 style={{ 
                   cursor: 'pointer', 
@@ -171,7 +203,7 @@ const JobPrep = ({ userProfile }) => {
                 {currentQuestions && currentQuestions.length > 0 ? (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                     {currentQuestions.map((q, idx) => (
-                      <div key={idx} className="glass-card" onClick={() => setActiveQuestion(activeQuestion === idx ? null : idx)} style={{ cursor: 'pointer' }}>
+                      <div key={idx} className="glass-card-premium" onClick={() => setActiveQuestion(activeQuestion === idx ? null : idx)} style={{ cursor: 'pointer', padding: '1.5rem' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                           <p style={{ color: 'var(--text-primary)', fontSize: '1.05rem', margin: 0, paddingRight: '2rem' }}>{idx + 1}. {q.q}</p>
                           <ChevronRight size={18} style={{ color: 'var(--text-muted)', transform: activeQuestion === idx ? 'rotate(90deg)' : 'none', transition: 'transform 0.3s' }} />

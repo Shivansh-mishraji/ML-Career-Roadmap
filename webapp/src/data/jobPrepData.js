@@ -338,6 +338,153 @@ export const timelineStrategies = {
   fulltime: {
     '1month': { title: "CRUNCH TIME", strategy: "Triage your weaknesses. If your coding is weak, grind LeetCode Mediums. If your system design is weak, read the 'Machine Learning System Design Interview' book cover-to-cover. Prepare 3 versatile behavioral stories that can answer ANY leadership question." },
     '3-6mo': { title: "FOCUSED SPRINT", strategy: "Adopt a structured schedule: 2 hours of algorithmic coding daily, 1 hour of ML theory (loss functions, derivations), and 1 hour of System Design case studies (RecSys, Search, Ad Click). Participate in Kaggle to sharpen modeling speed." },
-    '1year+': { title: "FOUNDATION BUILDING", strategy: "Focus on impact at your current job or studies. Volunteer for high-visibility architectural tasks. Deep dive into the source code of popular frameworks (PyTorch, Kafka). Build a deep understanding of distributed systems and MLOps deployment paradigms." }
   }
 };
+
+export const quantLoops = [
+  {
+    id: 'jane_street',
+    company: 'Jane Street / Citadel',
+    role: 'Quantitative Researcher / ML Engineer',
+    motto: 'Probability, C++ Low-Latency, and Brainteasers',
+    color: '#10b981',
+    rounds: [
+      {
+        id: 'q_r1',
+        title: 'Round 1: Probability & Mental Math',
+        type: 'Theory',
+        focus: 'Rapid-fire mental math and complex expected value probability questions.',
+        questions: {
+          fresher: [
+            {
+              q: 'You have a 100-sided die. You can roll it as many times as you want. You get paid the face value of your last roll in dollars. It costs $1 to roll the die. What is your optimal strategy?',
+              hint: 'Calculate the expected value. If you roll once, EV is $50.5. Since it costs $1, net EV is $49.5. The optimal stopping rule is to stop when your current roll is strictly greater than the expected value of continuing.',
+              code: null
+            }
+          ],
+          mid: [
+            {
+              q: 'Two players are playing a game with a fair coin. Player A wins if HTH appears. Player B wins if HHT appears. Who has the higher probability of winning?',
+              hint: 'Calculate the absorbing Markov chain transition probabilities or use Martingale theory. Player B (HHT) has a significant advantage because if HH appears, B is guaranteed to win eventually without A ever getting HTH.',
+              code: null
+            }
+          ],
+          senior: [
+            {
+              q: 'Derive the Black-Scholes PDE using Ito\'s Lemma.',
+              hint: 'Construct a risk-free portfolio consisting of one option and a short position in delta shares of the underlying stock. Apply Ito\'s Lemma to expand the option price, set the drift of the portfolio equal to the risk-free rate, and eliminate the stochastic term.',
+              code: null
+            }
+          ]
+        }
+      },
+      {
+        id: 'q_r2',
+        title: 'Round 2: Low Latency Systems (C++)',
+        type: 'System Design',
+        focus: 'Designing trading systems with microsecond latency requirements.',
+        questions: {
+          fresher: [
+            {
+              q: 'Explain the difference between a `std::vector` and `std::list` in C++. When would you use one over the other in a trading system?',
+              hint: 'Vector is contiguous in memory, leading to excellent cache locality (crucial for latency). List is a doubly-linked list with terrible cache locality. Always default to Vector in trading unless you need O(1) insertions in the middle of massive datasets.',
+              code: null
+            }
+          ],
+          mid: [
+            {
+              q: 'Design an order book data structure that supports O(1) lookups, O(1) insertions, and O(1) cancellations.',
+              hint: 'Use a combination of a Hash Map (for O(1) lookup by Order ID) and a Doubly-Linked List (to maintain the time-priority of orders at a specific price level), with an array or balanced BST to track price levels.',
+              code: null
+            }
+          ],
+          senior: [
+            {
+              q: 'How would you architect a zero-allocation, lock-free messaging queue for IPC between a market data feed handler and a trading strategy?',
+              hint: 'Discuss using a circular ring buffer in shared memory. Use atomic variables (std::atomic) with memory_order_acquire and memory_order_release to ensure lock-free thread synchronization without system calls.',
+              code: null
+            }
+          ]
+        }
+      }
+    ]
+  }
+];
+
+export const startupLoops = [
+  {
+    id: 'openai',
+    company: 'OpenAI / Anthropic',
+    role: 'Member of Technical Staff (MTS)',
+    motto: 'Build From Scratch. Heavy CUDA and LLM Architecture.',
+    color: '#8b5cf6',
+    rounds: [
+      {
+        id: 's_r1',
+        title: 'Round 1: PyTorch & Autograd Internals',
+        type: 'Coding (DSA)',
+        focus: 'Implementing deep learning primitives entirely from scratch without using high-level framework wrappers.',
+        questions: {
+          fresher: [
+            {
+              q: 'Write the forward and backward pass for a single Linear Layer (Dense Layer) in Python using only NumPy.',
+              hint: 'Forward: `Y = XW + b`. Backward: `dW = X.T @ dY`, `db = sum(dY)`, `dX = dY @ W.T`. Be careful with matrix dimensions and batch sizes.',
+              code: `import numpy as np
+def forward(X, W, b):
+    return np.dot(X, W) + b
+
+def backward(X, W, dY):
+    dW = np.dot(X.T, dY)
+    db = np.sum(dY, axis=0)
+    dX = np.dot(dY, W.T)
+    return dX, dW, db`
+            }
+          ],
+          mid: [
+            {
+              q: 'Implement Multi-Head Self-Attention from scratch.',
+              hint: 'Project inputs into Q, K, V. Compute `softmax((Q @ K.T) / sqrt(d_k)) @ V`. Remember to handle the masking logic if it is causal attention.',
+              code: null
+            }
+          ],
+          senior: [
+            {
+              q: 'Write a custom CUDA kernel in C++ for fused GeLU activation to reduce GPU memory bandwidth usage.',
+              hint: 'Standard GeLU in PyTorch does multiple read/writes to global memory. A fused kernel reads the input once, computes the math in fast thread registers, and writes once. Discuss thread block sizes and coalesced memory access.',
+              code: null
+            }
+          ]
+        }
+      },
+      {
+        id: 's_r2',
+        title: 'Round 2: Massive Scale Training',
+        type: 'System Design',
+        focus: 'Designing systems to train 100B+ parameter models across thousands of GPUs.',
+        questions: {
+          fresher: [
+            {
+              q: 'What is Gradient Accumulation and when do you use it?',
+              hint: 'When the model is too large to fit a decent batch size in GPU memory, you do multiple forward/backward passes and accumulate the gradients before calling `optimizer.step()`, simulating a larger effective batch size.',
+              code: null
+            }
+          ],
+          mid: [
+            {
+              q: 'Explain the difference between Data Parallelism, Tensor Parallelism, and Pipeline Parallelism.',
+              hint: 'Data: replicate model, split data. Tensor: split individual matrix operations across GPUs (requires heavy communication). Pipeline: put different layers on different GPUs (can cause pipeline bubbles).',
+              code: null
+            }
+          ],
+          senior: [
+            {
+              q: 'You are training a 500B parameter model on 10,000 GPUs. Nodes are failing randomly every few hours. How do you design the checkpointing system?',
+              hint: 'Standard PyTorch saving will crash the network or take hours. You need asynchronous checkpointing directly to high-bandwidth NVMe storage on the nodes, then slowly upload to object storage. Discuss ZeRO stage 3 partitioned states.',
+              code: null
+            }
+          ]
+        }
+      }
+    ]
+  }
+];

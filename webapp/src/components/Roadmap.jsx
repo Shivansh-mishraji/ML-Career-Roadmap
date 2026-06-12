@@ -36,7 +36,7 @@ const Roadmap = () => {
       <div style={{ marginBottom: '3rem' }}>
         <h1 className="gradient-text mono" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>// Skill_Tree_Pipeline</h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '800px' }}>
-          Data flow from foundations to production architecture. Modules unlock sequentially as you complete assertions in the Command Center.
+          Data flow from foundations to production architecture. Modules unlock sequentially as you complete mastery checks in the Command Center.
         </p>
       </div>
 

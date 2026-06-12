@@ -186,7 +186,7 @@ const SelfAssessment = () => {
                   </div>
                 ))
               ) : (
-                <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>No skills mastered yet. Start ticking off assertions below!</div>
+                <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>No skills mastered yet. Start ticking off mastery checks below!</div>
               )}
             </div>
           </div>
@@ -198,7 +198,7 @@ const SelfAssessment = () => {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         <h2 className="mono" style={{ fontSize: '1.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem' }}>
-          Assertion Checklists
+          Mastery Checklists
         </h2>
         {assessmentQuestions.map((levelBlock) => (
           <motion.div variants={itemVariants} key={levelBlock.level} className="glass-panel" style={{ padding: '2rem', border: recLevel === levelBlock.level ? '1px solid var(--accent-primary)' : '1px solid var(--border-color)' }}>
@@ -213,7 +213,7 @@ const SelfAssessment = () => {
               }}>
                 {levelBlock.level}
               </span>
-              Level_{levelBlock.level} Assertions
+              Level_{levelBlock.level} Mastery Checks
             </h3>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

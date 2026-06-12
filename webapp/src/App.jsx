@@ -7,6 +7,7 @@ import Flashcards from './components/Flashcards';
 import AIAssistant from './components/AIAssistant';
 import ResourceHub from './components/ResourceHub';
 import JobTracker from './components/JobTracker';
+import JobPrep from './components/JobPrep';
 import { AnimatePresence, motion } from 'framer-motion';
 import './index.css';
 
@@ -21,6 +22,7 @@ function App() {
           const activity = parseInt(localStorage.getItem('ml-activity') || '0');
           localStorage.setItem('ml-activity', activity + 1);
         }} />;
+      case 'jobprep': return <JobPrep key="jobprep" />;
       case 'ai': return <AIAssistant key="ai" />;
       case 'resources': return <ResourceHub key="resources" />;
       case 'projects': return <ProjectGallery key="projects" />;

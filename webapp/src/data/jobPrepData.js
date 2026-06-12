@@ -328,3 +328,16 @@ export const internshipLoops = [
     ]
   }
 ];
+
+export const timelineStrategies = {
+  internship: {
+    '1month': { title: "CRUNCH TIME", strategy: "Skip building heavy new projects. Memorize the Top 50 LeetCode patterns for Arrays and Strings. Practice answering 'Tell me about your project' using the STAR method out loud 10 times. Polish your resume to pass ATS parsers." },
+    '3-6mo': { title: "FOCUSED SPRINT", strategy: "Dedicate 50% of your time to Data Structures (Hash Maps, Trees). Dedicate the other 50% to building ONE high-quality, end-to-end Machine Learning project (e.g., training a custom classifier and deploying it as a basic web app) to talk about." },
+    '1year+': { title: "FOUNDATION BUILDING", strategy: "Do not grind LeetCode yet. Focus deeply on your core CS classes. Master Linear Algebra, Probability, and basic Calculus. Join a university research lab or a competitive programming club to build long-term intuition." }
+  },
+  fulltime: {
+    '1month': { title: "CRUNCH TIME", strategy: "Triage your weaknesses. If your coding is weak, grind LeetCode Mediums. If your system design is weak, read the 'Machine Learning System Design Interview' book cover-to-cover. Prepare 3 versatile behavioral stories that can answer ANY leadership question." },
+    '3-6mo': { title: "FOCUSED SPRINT", strategy: "Adopt a structured schedule: 2 hours of algorithmic coding daily, 1 hour of ML theory (loss functions, derivations), and 1 hour of System Design case studies (RecSys, Search, Ad Click). Participate in Kaggle to sharpen modeling speed." },
+    '1year+': { title: "FOUNDATION BUILDING", strategy: "Focus on impact at your current job or studies. Volunteer for high-visibility architectural tasks. Deep dive into the source code of popular frameworks (PyTorch, Kafka). Build a deep understanding of distributed systems and MLOps deployment paradigms." }
+  }
+};

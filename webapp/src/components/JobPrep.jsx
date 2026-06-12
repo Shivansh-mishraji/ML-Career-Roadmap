@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Building2, ChevronLeft, ChevronRight, Terminal, BrainCircuit, Users, Server, Briefcase, GraduationCap, Award, Rocket } from 'lucide-react';
-import { companyLoops, internshipLoops } from '../data/jobPrepData';
+import { Building2, ChevronLeft, ChevronRight, Terminal, BrainCircuit, Users, Server, Briefcase, GraduationCap, Award, Rocket, Clock, Calendar, Compass } from 'lucide-react';
+import { companyLoops, internshipLoops, timelineStrategies } from '../data/jobPrepData';
 
 const JobPrep = () => {
   const [selectedTrack, setSelectedTrack] = useState(null); // 'internship' | 'fulltime' | null
+  const [timeline, setTimeline] = useState('3-6mo'); // '1month' | '3-6mo' | '1year+'
   const [activeCompany, setActiveCompany] = useState(null);
   const [activeRound, setActiveRound] = useState(null);
   const [activeQuestion, setActiveQuestion] = useState(null);
@@ -13,9 +14,39 @@ const JobPrep = () => {
   const renderTrackSelector = () => (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
       <h1 className="gradient-text mono" style={{ fontSize: '3rem', marginBottom: '1rem' }}>// Choose_Your_Path</h1>
-      <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', marginBottom: '4rem' }}>
-        Interview loops differ drastically based on your career stage. Are you looking to land an internship, or a full-time engineering role?
+      <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', marginBottom: '3rem' }}>
+        Interview loops differ drastically based on your career stage and preparation timeline.
       </p>
+
+      {/* Timeline Selector */}
+      <div style={{ marginBottom: '4rem', padding: '2rem', background: 'var(--bg-secondary)', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+        <h3 className="mono" style={{ color: 'var(--text-primary)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+          <Clock size={20} color="var(--accent-secondary)" /> Select Your Preparation Timeline
+        </h3>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          <button 
+            onClick={() => setTimeline('1month')} 
+            className={timeline === '1month' ? 'btn-primary' : 'btn-ghost'} 
+            style={{ padding: '0.8rem 1.5rem', fontSize: '1rem', display: 'flex', gap: '0.5rem' }}
+          >
+            <Rocket size={18} /> 1 Month Crunch
+          </button>
+          <button 
+            onClick={() => setTimeline('3-6mo')} 
+            className={timeline === '3-6mo' ? 'btn-primary' : 'btn-ghost'} 
+            style={{ padding: '0.8rem 1.5rem', fontSize: '1rem', display: 'flex', gap: '0.5rem' }}
+          >
+            <Calendar size={18} /> 3-6 Months Prep
+          </button>
+          <button 
+            onClick={() => setTimeline('1year+')} 
+            className={timeline === '1year+' ? 'btn-primary' : 'btn-ghost'} 
+            style={{ padding: '0.8rem 1.5rem', fontSize: '1rem', display: 'flex', gap: '0.5rem' }}
+          >
+            <Compass size={18} /> 1+ Years (Early Stage)
+          </button>
+        </div>
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
         {/* Internship Card */}
@@ -50,6 +81,7 @@ const JobPrep = () => {
   );
 
   const currentLoops = selectedTrack === 'internship' ? internshipLoops : companyLoops;
+  const currentStrategy = selectedTrack ? timelineStrategies[selectedTrack][timeline] : null;
 
   const renderDashboard = () => (
     <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
@@ -58,8 +90,19 @@ const JobPrep = () => {
         className="btn-outline"
         style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
       >
-        <ChevronLeft size={16} /> Change Track
+        <ChevronLeft size={16} /> Change Track & Timeline
       </button>
+
+      {currentStrategy && (
+        <div style={{ marginBottom: '3rem', padding: '1.5rem', background: 'rgba(56, 189, 248, 0.1)', border: '1px solid var(--accent-primary)', borderRadius: '8px' }}>
+          <h3 className="mono" style={{ color: 'var(--accent-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+            <Terminal size={18} /> AI STRATEGY DIRECTIVE: {currentStrategy.title}
+          </h3>
+          <p style={{ color: 'var(--text-primary)', lineHeight: '1.5', margin: 0 }}>
+            {currentStrategy.strategy}
+          </p>
+        </div>
+      )}
 
       <div style={{ marginBottom: '3rem' }}>
         <h1 className="gradient-text mono" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
@@ -122,6 +165,17 @@ const JobPrep = () => {
         >
           <ChevronLeft size={16} /> Back to Companies
         </button>
+
+        {currentStrategy && (
+          <div style={{ marginBottom: '3rem', padding: '1.5rem', background: 'rgba(56, 189, 248, 0.1)', border: '1px solid var(--accent-primary)', borderRadius: '8px' }}>
+            <h3 className="mono" style={{ color: 'var(--accent-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+              <Terminal size={18} /> STRATEGY: {currentStrategy.title}
+            </h3>
+            <p style={{ color: 'var(--text-primary)', lineHeight: '1.5', margin: 0 }}>
+              {currentStrategy.strategy}
+            </p>
+          </div>
+        )}
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '2rem' }}>
           <div style={{ marginBottom: '3rem', borderLeft: `4px solid ${activeCompany.color}`, paddingLeft: '1.5rem' }}>

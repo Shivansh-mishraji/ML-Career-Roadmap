@@ -488,3 +488,101 @@ def backward(X, W, dY):
     ]
   }
 ];
+
+export const quantInternshipLoops = [
+  {
+    id: 'jane_street_intern',
+    company: 'Jane Street / Citadel',
+    role: 'Quantitative Trading / SWE Intern',
+    motto: 'Heavy Probability, Mental Math, and Algorithms',
+    color: '#10b981',
+    rounds: [
+      {
+        id: 'qi_r1',
+        title: 'Round 1: Probability & Brainteasers',
+        type: 'Theory',
+        focus: 'Mental math speed and statistical puzzle solving.',
+        questions: {
+          fresher: [
+            {
+              q: 'You have two ropes. Each rope takes exactly 60 minutes to burn, but they burn at inconsistent rates. How do you measure exactly 45 minutes?',
+              hint: 'Light both ends of Rope A, and one end of Rope B. Rope A burns out completely in 30 minutes. At that exact moment, light the other end of Rope B. Rope B will burn out exactly 15 minutes later. 30 + 15 = 45.',
+              code: null
+            },
+            {
+              q: 'Expected Value: You roll a fair 6-sided die. You can choose to keep the value, or re-roll it once. What is the expected value of your optimal strategy?',
+              hint: 'If you roll once, the EV is 3.5. Therefore, you should only re-roll if your first roll is 1, 2, or 3. The EV of rolling 4, 5, or 6 is (4+5+6)/3 = 5. The probability of keeping is 1/2. The overall EV is (1/2)*5 + (1/2)*3.5 = 4.25.',
+              code: null
+            }
+          ],
+          mid: [], senior: []
+        }
+      },
+      {
+        id: 'qi_r2',
+        title: 'Round 2: Algorithmic Optimization',
+        type: 'Coding (DSA)',
+        focus: 'Standard DSA, but heavily scrutinized for optimal time and space complexity.',
+        questions: {
+          fresher: [
+            {
+              q: '(Medium) Best Time to Buy and Sell Stock with Cooldown: Find the maximum profit you can achieve with a 1-day cooldown after selling.',
+              hint: 'Use Dynamic Programming with State Machines. You have three states: Held, Sold, and Reset. Transition between them for each day.',
+              code: null
+            }
+          ],
+          mid: [], senior: []
+        }
+      }
+    ]
+  }
+];
+
+export const startupInternshipLoops = [
+  {
+    id: 'openai_intern',
+    company: 'OpenAI / Anthropic',
+    role: 'Research / ML Engineering Intern',
+    motto: 'PyTorch Internals and Research Implementation',
+    color: '#8b5cf6',
+    rounds: [
+      {
+        id: 'si_r1',
+        title: 'Round 1: ML Fundamentals & Code',
+        type: 'Coding (DSA)',
+        focus: 'Coding deep learning primitives and array manipulations.',
+        questions: {
+          fresher: [
+            {
+              q: 'Implement 2D Max Pooling from scratch using NumPy.',
+              hint: 'Iterate over the image dimensions with the given stride and kernel size, slicing the array and taking `np.max()`. Make sure to handle edge cases where the image size isn\'t perfectly divisible by the stride.',
+              code: null
+            },
+            {
+              q: 'Explain what happens mathematically when you apply Softmax with a very high temperature parameter vs a very low temperature.',
+              hint: 'High temperature (T > 1) pushes the output distribution closer to uniform (more random, higher entropy). Low temperature (T < 1) sharpens the distribution, making it closer to one-hot encoding (greedy/deterministic).',
+              code: null
+            }
+          ],
+          mid: [], senior: []
+        }
+      },
+      {
+        id: 'si_r2',
+        title: 'Round 2: Literature & Research Deep-Dive',
+        type: 'Theory',
+        focus: 'Can you read and implement a paper? Discussing modern LLM architectures.',
+        questions: {
+          fresher: [
+            {
+              q: 'Explain the core innovation of the "Attention Is All You Need" paper over previous RNN/LSTM models.',
+              hint: 'RNNs process tokens sequentially, creating a bottleneck that prevents parallelization and causes gradient vanishing over long contexts. Transformers use Self-Attention to process all tokens simultaneously, drastically improving training efficiency and long-range dependency modeling.',
+              code: null
+            }
+          ],
+          mid: [], senior: []
+        }
+      }
+    ]
+  }
+];

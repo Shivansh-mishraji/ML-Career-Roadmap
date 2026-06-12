@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Building2, ChevronLeft, ChevronRight, Terminal, BrainCircuit, Users, Server, Briefcase, GraduationCap, Award, Rocket, Clock, Calendar, Compass } from 'lucide-react';
-import { companyLoops, internshipLoops, quantLoops, startupLoops, timelineStrategies } from '../data/jobPrepData';
+import { companyLoops, internshipLoops, quantLoops, startupLoops, quantInternshipLoops, startupInternshipLoops, timelineStrategies } from '../data/jobPrepData';
 
 const JobPrep = ({ userProfile }) => {
   const [activeCompany, setActiveCompany] = useState(null);
@@ -15,8 +15,12 @@ const JobPrep = ({ userProfile }) => {
 
   // Track Selector removed since it is now globally handled by Onboarding
 
-  let currentLoops = internshipLoops;
-  if (selectedTrack !== 'internship') {
+  let currentLoops = companyLoops;
+  if (selectedTrack === 'internship') {
+    if (industryTab === 'faang') currentLoops = internshipLoops;
+    if (industryTab === 'quant') currentLoops = quantInternshipLoops;
+    if (industryTab === 'startup') currentLoops = startupInternshipLoops;
+  } else {
     if (industryTab === 'faang') currentLoops = companyLoops;
     if (industryTab === 'quant') currentLoops = quantLoops;
     if (industryTab === 'startup') currentLoops = startupLoops;
@@ -47,31 +51,29 @@ const JobPrep = ({ userProfile }) => {
             : "Select your target company to simulate their exact full-time interview loop, including coding constraints and system design paradigms."}
         </p>
 
-        {selectedTrack === 'fulltime' && (
-          <div style={{ display: 'inline-flex', gap: '1rem', background: 'var(--bg-secondary)', padding: '0.5rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
-            <button 
-              onClick={() => setIndustryTab('faang')} 
-              className={industryTab === 'faang' ? 'btn-primary' : 'btn-ghost'}
-              style={{ padding: '0.5rem 1.5rem', borderRadius: '8px' }}
-            >
-              Big Tech (FAANG)
-            </button>
-            <button 
-              onClick={() => setIndustryTab('quant')} 
-              className={industryTab === 'quant' ? 'btn-primary' : 'btn-ghost'}
-              style={{ padding: '0.5rem 1.5rem', borderRadius: '8px' }}
-            >
-              Quant Finance
-            </button>
-            <button 
-              onClick={() => setIndustryTab('startup')} 
-              className={industryTab === 'startup' ? 'btn-primary' : 'btn-ghost'}
-              style={{ padding: '0.5rem 1.5rem', borderRadius: '8px' }}
-            >
-              AI Startups
-            </button>
-          </div>
-        )}
+        <div style={{ display: 'inline-flex', gap: '1rem', background: 'var(--bg-secondary)', padding: '0.5rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+          <button 
+            onClick={() => { setIndustryTab('faang'); setActiveCompany(null); setActiveRound(null); setActiveQuestion(null); }} 
+            className={industryTab === 'faang' ? 'btn-primary' : 'btn-ghost'}
+            style={{ padding: '0.5rem 1.5rem', borderRadius: '8px' }}
+          >
+            Big Tech (FAANG)
+          </button>
+          <button 
+            onClick={() => { setIndustryTab('quant'); setActiveCompany(null); setActiveRound(null); setActiveQuestion(null); }} 
+            className={industryTab === 'quant' ? 'btn-primary' : 'btn-ghost'}
+            style={{ padding: '0.5rem 1.5rem', borderRadius: '8px' }}
+          >
+            Quant Finance
+          </button>
+          <button 
+            onClick={() => { setIndustryTab('startup'); setActiveCompany(null); setActiveRound(null); setActiveQuestion(null); }} 
+            className={industryTab === 'startup' ? 'btn-primary' : 'btn-ghost'}
+            style={{ padding: '0.5rem 1.5rem', borderRadius: '8px' }}
+          >
+            AI Startups
+          </button>
+        </div>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>

@@ -1,33 +1,96 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Building2, ChevronLeft, ChevronRight, Terminal, BrainCircuit, Users, Server, Briefcase, GraduationCap, Award } from 'lucide-react';
-import { companyLoops } from '../data/jobPrepData';
+import { Building2, ChevronLeft, ChevronRight, Terminal, BrainCircuit, Users, Server, Briefcase, GraduationCap, Award, Rocket } from 'lucide-react';
+import { companyLoops, internshipLoops } from '../data/jobPrepData';
 
 const JobPrep = () => {
+  const [selectedTrack, setSelectedTrack] = useState(null); // 'internship' | 'fulltime' | null
   const [activeCompany, setActiveCompany] = useState(null);
   const [activeRound, setActiveRound] = useState(null);
   const [activeQuestion, setActiveQuestion] = useState(null);
   const [expLevel, setExpLevel] = useState('mid'); // fresher, mid, senior
 
-  const renderDashboard = () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-      {companyLoops.map(company => (
+  const renderTrackSelector = () => (
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+      <h1 className="gradient-text mono" style={{ fontSize: '3rem', marginBottom: '1rem' }}>// Choose_Your_Path</h1>
+      <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', marginBottom: '4rem' }}>
+        Interview loops differ drastically based on your career stage. Are you looking to land an internship, or a full-time engineering role?
+      </p>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+        {/* Internship Card */}
         <motion.div 
-          key={company.id} 
           className="glass-card hover-glow"
-          whileHover={{ scale: 1.02, borderColor: company.color }}
-          onClick={() => setActiveCompany(company)}
-          style={{ cursor: 'pointer', borderTop: `4px solid ${company.color}` }}
+          whileHover={{ scale: 1.05, borderColor: 'var(--accent-primary)' }}
+          onClick={() => { setSelectedTrack('internship'); setExpLevel('fresher'); }}
+          style={{ cursor: 'pointer', padding: '3rem 2rem', borderTop: '4px solid var(--accent-primary)' }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-            <Building2 size={28} color={company.color} />
-            <h2 className="mono" style={{ fontSize: '1.5rem', color: 'var(--text-primary)', margin: 0 }}>{company.company}</h2>
-          </div>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem', fontWeight: 600 }}>Role: {company.role}</p>
-          <p style={{ color: 'var(--text-secondary)', fontStyle: 'italic', background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px' }}>"{company.motto}"</p>
+          <GraduationCap size={48} color="var(--accent-primary)" style={{ marginBottom: '1.5rem' }} />
+          <h2 className="mono" style={{ fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Internship Track</h2>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}>
+            Focuses on Academic Potential, Project Deep-Dives, Mathematical Foundations, and core Data Structures. No massive System Design expected.
+          </p>
         </motion.div>
-      ))}
-    </div>
+
+        {/* Full-Time Card */}
+        <motion.div 
+          className="glass-card hover-glow"
+          whileHover={{ scale: 1.05, borderColor: '#ea4335' }}
+          onClick={() => setSelectedTrack('fulltime')}
+          style={{ cursor: 'pointer', padding: '3rem 2rem', borderTop: '4px solid #ea4335' }}
+        >
+          <Briefcase size={48} color="#ea4335" style={{ marginBottom: '1.5rem' }} />
+          <h2 className="mono" style={{ fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Full-Time Track</h2>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}>
+            Focuses on Production ML architectures, deep System Design (Scale, Latency), extreme optimization, and Behavioral Leadership.
+          </p>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+
+  const currentLoops = selectedTrack === 'internship' ? internshipLoops : companyLoops;
+
+  const renderDashboard = () => (
+    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+      <button 
+        onClick={() => setSelectedTrack(null)}
+        className="btn-outline"
+        style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+      >
+        <ChevronLeft size={16} /> Change Track
+      </button>
+
+      <div style={{ marginBottom: '3rem' }}>
+        <h1 className="gradient-text mono" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
+          // {selectedTrack === 'internship' ? 'Intern_Company_Profiles' : 'Target_Company_Profiles'}
+        </h1>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '800px' }}>
+          {selectedTrack === 'internship' 
+            ? "Simulate the exact interview loop you'll face as a student applying for an internship."
+            : "Select your target company to simulate their exact full-time interview loop, including coding constraints and system design paradigms."}
+        </p>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+        {currentLoops.map(company => (
+          <motion.div 
+            key={company.id} 
+            className="glass-card hover-glow"
+            whileHover={{ scale: 1.02, borderColor: company.color }}
+            onClick={() => setActiveCompany(company)}
+            style={{ cursor: 'pointer', borderTop: `4px solid ${company.color}` }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+              <Building2 size={28} color={company.color} />
+              <h2 className="mono" style={{ fontSize: '1.5rem', color: 'var(--text-primary)', margin: 0 }}>{company.company}</h2>
+            </div>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1rem', fontWeight: 600 }}>Role: {company.role}</p>
+            <p style={{ color: 'var(--text-secondary)', fontStyle: 'italic', background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px' }}>"{company.motto}"</p>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
   );
 
   const getIconForType = (type) => {
@@ -66,18 +129,20 @@ const JobPrep = () => {
             <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>Target: {activeCompany.role}</p>
           </div>
 
-          {/* Experience Toggle */}
-          <div style={{ display: 'flex', gap: '0.5rem', background: 'var(--bg-secondary)', padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
-            <button onClick={() => {setExpLevel('fresher'); setActiveQuestion(null);}} className={expLevel === 'fresher' ? 'btn-primary' : 'btn-ghost'} style={{ padding: '0.5rem 1rem', fontSize: '0.9rem', display: 'flex', gap: '0.5rem' }}>
-              <GraduationCap size={16} /> Fresher (0-2 YOE)
-            </button>
-            <button onClick={() => {setExpLevel('mid'); setActiveQuestion(null);}} className={expLevel === 'mid' ? 'btn-primary' : 'btn-ghost'} style={{ padding: '0.5rem 1rem', fontSize: '0.9rem', display: 'flex', gap: '0.5rem' }}>
-              <Briefcase size={16} /> Mid (3-5 YOE)
-            </button>
-            <button onClick={() => {setExpLevel('senior'); setActiveQuestion(null);}} className={expLevel === 'senior' ? 'btn-primary' : 'btn-ghost'} style={{ padding: '0.5rem 1rem', fontSize: '0.9rem', display: 'flex', gap: '0.5rem' }}>
-              <Award size={16} /> Senior (5+ YOE)
-            </button>
-          </div>
+          {/* Experience Toggle - Only show if Full-Time track */}
+          {selectedTrack === 'fulltime' && (
+            <div style={{ display: 'flex', gap: '0.5rem', background: 'var(--bg-secondary)', padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+              <button onClick={() => {setExpLevel('fresher'); setActiveQuestion(null);}} className={expLevel === 'fresher' ? 'btn-primary' : 'btn-ghost'} style={{ padding: '0.5rem 1rem', fontSize: '0.9rem', display: 'flex', gap: '0.5rem' }}>
+                <Rocket size={16} /> Fresher (0-2)
+              </button>
+              <button onClick={() => {setExpLevel('mid'); setActiveQuestion(null);}} className={expLevel === 'mid' ? 'btn-primary' : 'btn-ghost'} style={{ padding: '0.5rem 1rem', fontSize: '0.9rem', display: 'flex', gap: '0.5rem' }}>
+                <Briefcase size={16} /> Mid (3-5)
+              </button>
+              <button onClick={() => {setExpLevel('senior'); setActiveQuestion(null);}} className={expLevel === 'senior' ? 'btn-primary' : 'btn-ghost'} style={{ padding: '0.5rem 1rem', fontSize: '0.9rem', display: 'flex', gap: '0.5rem' }}>
+                <Award size={16} /> Senior (5+)
+              </button>
+            </div>
+          )}
         </div>
 
         <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
@@ -111,7 +176,8 @@ const JobPrep = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                   <h2 className="gradient-text mono" style={{ margin: 0 }}>{activeRound.title}</h2>
                   <span className="mono" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--bg-tertiary)', padding: '0.4rem 0.8rem', borderRadius: '4px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                    {getExpIcon(expLevel)} {expLevel.toUpperCase()} Level
+                    {selectedTrack === 'internship' ? <GraduationCap size={16} /> : getExpIcon(expLevel)} 
+                    {selectedTrack === 'internship' ? 'INTERN LEVEL' : `${expLevel.toUpperCase()} LEVEL`}
                   </span>
                 </div>
                 
@@ -121,7 +187,7 @@ const JobPrep = () => {
 
                 <h3 className="mono" style={{ color: 'var(--text-primary)', marginBottom: '1.5rem' }}>Mock Questions:</h3>
                 
-                {currentQuestions.length > 0 ? (
+                {currentQuestions && currentQuestions.length > 0 ? (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                     {currentQuestions.map((q, idx) => (
                       <div key={idx} className="glass-card" onClick={() => setActiveQuestion(activeQuestion === idx ? null : idx)} style={{ cursor: 'pointer' }}>
@@ -172,22 +238,17 @@ const JobPrep = () => {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="animate-fade-in" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-      {!activeCompany && (
-        <div style={{ marginBottom: '3rem' }}>
-          <h1 className="gradient-text mono" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>// Target_Company_Profiles</h1>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '800px' }}>
-            A generic interview approach fails at the top tier. Select your target company to simulate their exact interview loop, including coding constraints, system design paradigms, and cultural behavioral frameworks.
-          </p>
-        </div>
-      )}
-
       <AnimatePresence mode="wait">
-        {!activeCompany ? (
-          <motion.div key="dashboard" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        {!selectedTrack ? (
+          <motion.div key="selector">
+            {renderTrackSelector()}
+          </motion.div>
+        ) : !activeCompany ? (
+          <motion.div key="dashboard">
             {renderDashboard()}
           </motion.div>
         ) : (
-          <motion.div key="loop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <motion.div key="loop">
             {renderCompanyLoop()}
           </motion.div>
         )}

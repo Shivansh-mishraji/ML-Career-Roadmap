@@ -19,7 +19,6 @@ const JobPrep = ({ userProfile }) => {
 
   const renderDashboard = () => (
     <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
 
       {currentStrategy && (
         <div style={{ marginBottom: '3rem', padding: '1.5rem', background: 'rgba(56, 189, 248, 0.1)', border: '1px solid var(--accent-primary)', borderRadius: '8px' }}>

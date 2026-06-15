@@ -74,7 +74,7 @@ const ProjectGallery = () => {
         })}
       </div>
       
-      <div className="glass-panel" style={{ marginTop: '3rem', padding: '2.5rem', textAlign: 'center', borderLeft: '4px solid var(--accent-secondary)' }}>
+      <div className="glass-card-premium" style={{ marginTop: '3rem', padding: '2.5rem', textAlign: 'center', borderLeft: '4px solid var(--accent-secondary)' }}>
         <h3 className="mono gradient-text" style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>Deploy.to(GitHub)</h3>
         <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: '600px', margin: '0 auto 1.5rem auto' }}>
           Push every project you build to your own GitHub. A working deployment link is worth more than a certificate. Make sure to document your code.

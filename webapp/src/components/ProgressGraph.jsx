@@ -43,7 +43,7 @@ const ProgressGraph = ({ activeCount = 0 }) => {
   };
 
   return (
-    <div className="glass-panel" style={{ padding: '1.5rem', marginBottom: '2rem' }}>
+    <div className="glass-card-premium" style={{ padding: '1.5rem', marginBottom: '2rem' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1rem' }}>
         <div>
           <h3 className="mono" style={{ fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '0.2rem' }}>Activity Engine</h3>

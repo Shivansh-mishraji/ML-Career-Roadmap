@@ -188,7 +188,7 @@ const JobPrep = ({ userProfile }) => {
           {/* Round Details */}
           <div style={{ flex: '2', minWidth: '400px' }}>
             {activeRound ? (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="glass-panel" style={{ padding: '2rem' }}>
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="glass-card-premium" style={{ padding: '2rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                   <h2 className="gradient-text mono" style={{ margin: 0 }}>{activeRound.title}</h2>
                   <span className="mono" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--bg-tertiary)', padding: '0.4rem 0.8rem', borderRadius: '4px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
@@ -252,7 +252,7 @@ const JobPrep = ({ userProfile }) => {
                 )}
               </motion.div>
             ) : (
-              <div className="glass-panel" style={{ padding: '4rem 2rem', textAlign: 'center', color: 'var(--text-muted)' }}>
+              <div className="glass-card-premium" style={{ padding: '4rem 2rem', textAlign: 'center', color: 'var(--text-muted)' }}>
                 <Building2 size={48} style={{ opacity: 0.2, margin: '0 auto 1rem auto' }} />
                 <p>Select a round from the timeline to view the mock questions and grading rubrics.</p>
               </div>

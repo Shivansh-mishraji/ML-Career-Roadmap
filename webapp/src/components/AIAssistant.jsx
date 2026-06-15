@@ -113,7 +113,7 @@ const AIAssistant = () => {
       </div>
 
       {/* Chat History */}
-      <div className="glass-panel" style={{ flex: 1, overflowY: 'auto', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '1.5rem' }}>
+      <div className="glass-card-premium" style={{ flex: 1, overflowY: 'auto', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '1.5rem' }}>
         {messages.map((msg, idx) => (
           <div key={idx} style={{ display: 'flex', gap: '1rem', flexDirection: msg.sender === 'user' ? 'row-reverse' : 'row' }}>
             <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: msg.sender === 'user' ? 'var(--bg-tertiary)' : 'var(--accent-glow)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, border: `1px solid ${msg.sender === 'user' ? 'var(--border-color)' : 'var(--accent-primary)'}` }}>
@@ -152,7 +152,7 @@ const AIAssistant = () => {
       </div>
 
       {/* Input Box */}
-      <form onSubmit={handleSend} className="glass-panel" style={{ display: 'flex', gap: '1rem', padding: '1rem' }}>
+      <form onSubmit={handleSend} className="glass-card-premium" style={{ display: 'flex', gap: '1rem', padding: '1rem' }}>
         <input 
           type="text" 
           value={input}

@@ -80,7 +80,7 @@ const ResourceHub = ({ setActiveTab, setTutorialContext }) => {
         </p>
       </motion.div>
 
-      <motion.div variants={itemVariants} className="glass-panel" style={{ padding: '1rem', display: 'flex', gap: '1rem', marginBottom: '3rem', maxWidth: '600px' }}>
+      <motion.div variants={itemVariants} className="glass-card-premium" style={{ padding: '1rem', display: 'flex', gap: '1rem', marginBottom: '3rem', maxWidth: '600px' }}>
         <Search size={20} color="var(--text-muted)" style={{ marginLeft: '0.5rem', alignSelf: 'center' }} />
         <input 
           type="text" 

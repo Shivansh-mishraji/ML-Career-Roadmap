@@ -126,7 +126,7 @@ const Roadmap = ({ userProfile, setActiveTab, setTutorialContext }) => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="glass-panel" 
+                className="glass-card-premium" 
                 style={{ padding: '2.5rem', borderTop: `4px solid ${roadmapData[activeNode].color || 'var(--accent-primary)'}` }}
               >
                 <div style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1.5rem', marginBottom: '2rem' }}>

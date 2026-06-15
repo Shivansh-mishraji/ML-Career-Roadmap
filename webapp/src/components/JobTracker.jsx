@@ -79,7 +79,7 @@ const JobTracker = () => {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', overflowX: 'auto', paddingBottom: '1rem' }}>
         {statuses.map(status => (
-          <div key={status} className="glass-panel" style={{ padding: '1.5rem', minHeight: '60vh', display: 'flex', flexDirection: 'column' }}>
+          <div key={status} className="glass-card-premium" style={{ padding: '1.5rem', minHeight: '60vh', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: `2px solid ${getStatusColor(status)}`, paddingBottom: '0.5rem' }}>
               <h3 className="mono" style={{ fontSize: '1.1rem', color: '#fff' }}>{status}</h3>
               <span style={{ background: 'var(--bg-tertiary)', padding: '0.2rem 0.6rem', borderRadius: 'var(--radius-lg)', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
@@ -149,7 +149,7 @@ const JobTracker = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="glass-panel" style={{ padding: '2rem', width: '100%', maxWidth: '500px' }}
+              className="glass-card-premium" style={{ padding: '2rem', width: '100%', maxWidth: '500px' }}
             >
               <h2 className="mono" style={{ marginBottom: '1.5rem', color: '#fff', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <Briefcase size={20} color="var(--accent-primary)" /> New Application

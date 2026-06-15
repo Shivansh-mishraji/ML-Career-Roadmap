@@ -5,6 +5,7 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Responsi
 import { assessmentQuestions, roadmapData } from '../data/roadmapData';
 import { getNotebooksByLevel } from '../utils/tutorialUtils';
 import ProgressGraph from './ProgressGraph';
+import TiltCard from './TiltCard';
 
 const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
   const [checkedItems, setCheckedItems] = useState({});
@@ -75,7 +76,7 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="glass-panel" style={{ padding: '0.5rem 1rem', border: '1px solid var(--accent-primary)' }}>
+        <div className="glass-card-premium" style={{ padding: '0.5rem 1rem', border: '1px solid var(--accent-primary)' }}>
           <p className="mono" style={{ margin: 0, color: '#fff', fontSize: '0.85rem' }}>{`${payload[0].payload.subject}: ${payload[0].value}%`}</p>
         </div>
       );
@@ -122,7 +123,7 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
         {/* Radar Chart */}
-        <motion.div variants={itemVariants} className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column' }}>
+        <TiltCard className="glass-card-premium" intensity={8} style={{ display: 'flex', flexDirection: 'column' }}>
           <h3 className="mono" style={{ fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Crosshair size={18} color="var(--accent-primary)" /> Skill Matrix Radar
           </h3>
@@ -137,7 +138,7 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
               </RadarChart>
             </ResponsiveContainer>
           </div>
-        </motion.div>
+        </TiltCard>
         
         {/* Dynamic Recommender */}
         <motion.div variants={itemVariants} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -154,7 +155,7 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
             <Zap size={32} color="var(--accent-primary)" style={{ opacity: 0.5 }} />
           </div>
           
-          <div className="glass-panel" style={{ padding: '1.5rem', flex: 2, display: 'flex', flexDirection: 'column' }}>
+          <TiltCard className="glass-card" intensity={6} style={{ flex: 2, display: 'flex', flexDirection: 'column' }}>
             <h3 className="mono" style={{ fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <ChevronRight size={18} color="var(--warning)" /> Next Objectives
             </h3>
@@ -169,12 +170,12 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
                 <div style={{ color: 'var(--success)', fontSize: '0.9rem' }}>All current level objectives met. Proceed to next module.</div>
               )}
             </div>
-          </div>
+          </TiltCard>
         </motion.div>
 
         {/* Mastered Log & Activity */}
         <motion.div variants={itemVariants} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          <div className="glass-panel" style={{ padding: '1.5rem', flex: 1 }}>
+          <div className="glass-card" style={{ padding: '1.5rem', flex: 1 }}>
              <h3 className="mono" style={{ fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Award size={18} color="var(--success)" /> Recently Mastered
             </h3>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Building2, ChevronLeft, ChevronRight, Terminal, BrainCircuit, Users, Server, Briefcase, GraduationCap, Award, Rocket, Clock, Calendar, Compass } from 'lucide-react';
 import { companyLoops, internshipLoops, quantLoops, startupLoops, quantInternshipLoops, startupInternshipLoops, timelineStrategies } from '../data/jobPrepData';
+import codeSnippetIndex from '../data/codeSnippetIndex.json';
 
 const JobPrep = ({ userProfile }) => {
   const [activeCompany, setActiveCompany] = useState(null);
@@ -218,7 +219,7 @@ const JobPrep = ({ userProfile }) => {
                                 <h4 style={{ color: 'var(--warning)', marginBottom: '0.5rem', fontSize: '0.9rem', textTransform: 'uppercase' }}>Expected Answer Framework:</h4>
                                 <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}>{q.hint}</p>
                                 
-                                {q.code && (
+                                {q.code ? (
                                   <div style={{ marginTop: '1.5rem', background: '#0d1117', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', position: 'relative' }}>
                                     <span style={{ position: 'absolute', top: '0', right: '0', background: 'var(--border-color)', color: 'var(--text-muted)', padding: '0.2rem 0.5rem', fontSize: '0.7rem', borderBottomLeftRadius: '8px' }}>SOLUTION</span>
                                     <pre style={{ margin: 0, overflowX: 'auto' }}>
@@ -227,6 +228,17 @@ const JobPrep = ({ userProfile }) => {
                                       </code>
                                     </pre>
                                   </div>
+                                ) : (
+                                  Object.keys(codeSnippetIndex).find(key => (q.q + q.hint).toLowerCase().includes(key)) && (
+                                    <div style={{ marginTop: '1.5rem', background: '#0d1117', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', position: 'relative' }}>
+                                      <span style={{ position: 'absolute', top: '0', right: '0', background: 'rgba(56, 189, 248, 0.2)', color: 'var(--accent-primary)', padding: '0.2rem 0.5rem', fontSize: '0.7rem', borderBottomLeftRadius: '8px' }}>AUTO-INJECTED SNIPPET</span>
+                                      <pre style={{ margin: 0, overflowX: 'auto' }}>
+                                        <code style={{ color: '#c9d1d9', fontFamily: 'Fira Code', fontSize: '0.9rem' }}>
+                                          {codeSnippetIndex[Object.keys(codeSnippetIndex).find(key => (q.q + q.hint).toLowerCase().includes(key))]}
+                                        </code>
+                                      </pre>
+                                    </div>
+                                  )
                                 )}
                               </div>
                             </motion.div>

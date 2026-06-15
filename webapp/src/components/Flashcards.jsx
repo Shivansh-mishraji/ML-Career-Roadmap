@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { RefreshCcw, ThumbsUp, ThumbsDown, Code, ArrowLeft, BrainCircuit, Play } from 'lucide-react';
 import { interviewDecks } from '../data/interviewData';
+import { generateCodeDecks } from '../utils/tutorialUtils';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Flashcards = ({ onActivity }) => {
@@ -9,6 +12,8 @@ const Flashcards = ({ onActivity }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [progress, setProgress] = useState({});
+
+  const allDecks = useMemo(() => [...interviewDecks, ...generateCodeDecks()], []);
 
   // Load progress from localStorage
   useEffect(() => {
@@ -19,7 +24,7 @@ const Flashcards = ({ onActivity }) => {
   }, []);
 
   const selectDeck = (deckId) => {
-    const deck = interviewDecks.find(d => d.id === deckId);
+    const deck = allDecks.find(d => d.id === deckId);
     if (deck) {
       // Shuffle cards for study session
       const shuffled = [...deck.questions].sort(() => Math.random() - 0.5);
@@ -53,17 +58,36 @@ const Flashcards = ({ onActivity }) => {
   };
 
   const getDeckMastery = (deckId) => {
-    const deck = interviewDecks.find(d => d.id === deckId);
+    const deck = allDecks.find(d => d.id === deckId);
     if (!deck) return 0;
     const totalPossible = deck.questions.length * 2; // 2 points max per question
     const currentScore = deck.questions.reduce((acc, q) => acc + (progress[q.id] || 0), 0);
     return Math.round((currentScore / totalPossible) * 100) || 0;
   };
 
-  // Format answer text to handle bullet points and bolding
+  // Format answer text to handle bullet points, bolding, and code blocks
   const formatAnswer = (text) => {
+    if (text.includes('```python')) {
+      const parts = text.split('```python');
+      const intro = parts[0];
+      const codeAndRest = parts[1].split('```');
+      const code = codeAndRest[0].trim();
+      const outro = codeAndRest[1];
+      
+      return (
+        <>
+          <p style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }} dangerouslySetInnerHTML={{ __html: intro.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--text-primary);">$1</strong>').replace(/\\n/g, '<br/>') }} />
+          <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', border: '1px solid var(--border-color)', marginBottom: '1rem', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+            <SyntaxHighlighter language="python" style={vscDarkPlus} customStyle={{ margin: 0, padding: '1rem', fontSize: '0.9rem' }}>
+              {code}
+            </SyntaxHighlighter>
+          </div>
+          {outro && <p style={{ marginTop: '1rem', color: 'var(--text-secondary)' }} dangerouslySetInnerHTML={{ __html: outro.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--text-primary);">$1</strong>').replace(/\\n/g, '<br/>') }} />}
+        </>
+      );
+    }
+
     return text.split('\n').map((line, i) => {
-      // Very basic markdown parser for bolding
       const formattedLine = line.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--text-primary);">$1</strong>');
       return (
         <p key={i} style={{ marginBottom: '0.75rem', fontSize: '1rem', color: 'var(--text-secondary)' }} dangerouslySetInnerHTML={{ __html: formattedLine }} />
@@ -87,7 +111,7 @@ const Flashcards = ({ onActivity }) => {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
-            {interviewDecks.map(deck => {
+            {allDecks.map(deck => {
               const mastery = getDeckMastery(deck.id);
               return (
                 <div key={deck.id} className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>

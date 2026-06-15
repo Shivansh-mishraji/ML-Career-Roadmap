@@ -11,6 +11,7 @@ import JobTracker from './components/JobTracker';
 import JobPrep from './components/JobPrep';
 import Onboarding from './components/Onboarding';
 import TutorialHub from './components/TutorialHub';
+import CustomCursor from './components/CustomCursor';
 import './index.css';
 
 /* ── Animated Background Canvas ── */
@@ -188,6 +189,7 @@ function App() {
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', position: 'relative', background: 'var(--bg-base)' }}>
+      <CustomCursor />
       <BackgroundOrbs />
 
       <Sidebar activeTab={activeTab} setActiveTab={(tab) => { setActiveTab(tab); if (tab !== 'tutorials') setTutorialContext({ activeNotebookId: null }); }} />

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { CheckSquare, Square, Zap, ChevronRight, Award, Crosshair } from 'lucide-react';
+import { CheckSquare, Square, Zap, ChevronRight, Award, Crosshair, BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from 'recharts';
 import { assessmentQuestions, roadmapData } from '../data/roadmapData';
+import { getNotebooksByLevel } from '../utils/tutorialUtils';
 import ProgressGraph from './ProgressGraph';
 
-const SelfAssessment = ({ userProfile }) => {
+const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
   const [checkedItems, setCheckedItems] = useState({});
   const [activityCount, setActivityCount] = useState(0);
 
@@ -243,9 +244,27 @@ const SelfAssessment = ({ userProfile }) => {
                       <div style={{ color: isChecked ? 'var(--success)' : 'var(--text-muted)', marginTop: '2px' }}>
                         {isChecked ? <CheckSquare size={20} /> : <Square size={20} />}
                       </div>
-                      <span style={{ color: isChecked ? 'var(--text-primary)' : 'var(--text-secondary)' }}>
-                        {q}
-                      </span>
+                      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                        <span style={{ color: isChecked ? 'var(--text-primary)' : 'var(--text-secondary)' }}>
+                          {q}
+                        </span>
+                        
+                        {!isChecked && getNotebooksByLevel(levelBlock.level).length > 0 && (
+                          <div 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (setTutorialContext && setActiveTab) {
+                                setTutorialContext({ activeNotebookId: getNotebooksByLevel(levelBlock.level)[0].id });
+                                setActiveTab('tutorials');
+                              }
+                            }}
+                            className="mono"
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', color: 'var(--accent-primary)', fontSize: '0.75rem', padding: '0.25rem 0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '4px', width: 'fit-content' }}
+                          >
+                            <BookOpen size={12} /> VERIFY WITH PRACTICE
+                          </div>
+                        )}
+                      </div>
                     </motion.div>
                   );
                 })}

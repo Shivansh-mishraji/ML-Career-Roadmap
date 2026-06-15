@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, Play, ChevronRight, Terminal, Lock, Unlock } from 'lucide-react';
+import { CheckCircle, Play, ChevronRight, Terminal, Lock, Unlock, BookOpen, Clock, Code } from 'lucide-react';
 import { roadmapData, assessmentQuestions } from '../data/roadmapData';
+import { getNotebooksByLevel } from '../utils/tutorialUtils';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Roadmap = ({ userProfile }) => {
+const Roadmap = ({ userProfile, setActiveTab, setTutorialContext }) => {
   const [activeNode, setActiveNode] = useState(0);
   const [unlockedLevel, setUnlockedLevel] = useState(0);
 
@@ -166,6 +167,41 @@ const Roadmap = ({ userProfile }) => {
                     ))}
                   </ul>
                 </div>
+
+                {getNotebooksByLevel(roadmapData[activeNode].level).length > 0 && (
+                  <div style={{ marginTop: '2.5rem' }}>
+                    <h4 className="mono" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-primary)', marginBottom: '1.5rem', fontSize: '1.2rem' }}>
+                      <BookOpen size={24} color="var(--accent-primary)" /> Learn This Level
+                    </h4>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+                      {getNotebooksByLevel(roadmapData[activeNode].level).map(nb => (
+                        <motion.div 
+                          key={nb.id}
+                          whileHover={{ scale: 1.03, y: -5 }}
+                          onClick={() => {
+                            if (setTutorialContext && setActiveTab) {
+                              setTutorialContext({ activeNotebookId: nb.id });
+                              setActiveTab('tutorials');
+                            }
+                          }}
+                          className="glass-card"
+                          style={{ padding: '1.25rem', cursor: 'pointer', border: '1px solid var(--border-color)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
+                        >
+                          <h5 style={{ color: '#fff', fontSize: '1.1rem', margin: 0 }}>{nb.title.replace(/^[0-9]+-/, '')}</h5>
+                          <div style={{ display: 'flex', gap: '1rem', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}><Clock size={14} /> {nb.estimatedReadMins}m</span>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}><Code size={14} /> {nb.difficulty}</span>
+                          </div>
+                          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: 'auto' }}>
+                            {nb.tags.slice(0, 3).map(tag => (
+                              <span key={tag} className="mono" style={{ background: 'var(--bg-tertiary)', color: 'var(--accent-primary)', padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.7rem' }}>#{tag}</span>
+                            ))}
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </motion.div>
             )}
           </AnimatePresence>

@@ -1,0 +1,10 @@
+{
+  "pandas": "import pandas as pd\n# Create dataframe\ndata = {'Company':['GOOG','GOOG','MSFT','MSFT','FB','FB'],\n       'Person':['Sam','Charlie','Amy','Vanessa','Carl','Sarah'],\n       'Sales':[200,120,340,124,243,350]}",
+  "matplotlib": "fig, ax = plt.subplots(1, 1)\n      \nax.plot(x, x**2, x, np.exp(x))\nax.set_title(\"scientific notation\")\n\nax.set_yticks([0, 50, 100, 150])\n\nfrom matplotlib import ticker\nformatter = ticker.ScalarFormatter(useMathText=True)\nformatter.set_scientific(True) \nformatter.set_powerlimits((-1,1)) \nax.yaxis.set_major_formatter(formatter)",
+  "regression": "import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n%matplotlib inline",
+  "neighbors": "import pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nimport numpy as np\n%matplotlib inline",
+  "forests": "import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n%matplotlib inline",
+  "machines": "import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n%matplotlib inline",
+  "processing": "# ONLY RUN THIS CELL IF YOU NEED \n# TO DOWNLOAD NLTK AND HAVE CONDA\n# WATCH THE VIDEO FOR FULL INSTRUCTIONS ON THIS STEP\n\n# Uncomment the code below and run:\n\n\n# !conda install nltk #This installs nltk\n# import nltk # Imports the library\n# nltk.download() #Download the necessary datasets",
+  "deep learning": "import numpy as np\n# Make sure to use floats here, int64 will cause an error.\na = np.array([[5.0,5.0]])\nb = np.array([[2.0],[2.0]])"
+}

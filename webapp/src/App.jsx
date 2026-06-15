@@ -9,12 +9,14 @@ import ResourceHub from './components/ResourceHub';
 import JobTracker from './components/JobTracker';
 import JobPrep from './components/JobPrep';
 import Onboarding from './components/Onboarding';
+import TutorialHub from './components/TutorialHub';
 import { AnimatePresence, motion } from 'framer-motion';
 import './index.css';
 
 function App() {
   const [activeTab, setActiveTab] = useState('assessment');
   const [userProfile, setUserProfile] = useState(null);
+  const [tutorialContext, setTutorialContext] = useState({ activeNotebookId: null });
   
   // Load profile from local storage on mount
   useEffect(() => {
@@ -35,18 +37,19 @@ function App() {
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'assessment': return <SelfAssessment key="assessment" userProfile={userProfile} />;
-      case 'roadmap': return <Roadmap key="roadmap" userProfile={userProfile} />;
+      case 'assessment': return <SelfAssessment key="assessment" userProfile={userProfile} setActiveTab={setActiveTab} setTutorialContext={setTutorialContext} />;
+      case 'roadmap': return <Roadmap key="roadmap" userProfile={userProfile} setActiveTab={setActiveTab} setTutorialContext={setTutorialContext} />;
+      case 'tutorials': return <TutorialHub key="tutorials" initialNotebookId={tutorialContext.activeNotebookId} />;
       case 'flashcards': return <Flashcards key="flashcards" onActivity={() => {
           const activity = parseInt(localStorage.getItem('ml-activity') || '0');
           localStorage.setItem('ml-activity', activity + 1);
         }} />;
       case 'jobprep': return <JobPrep key="jobprep" userProfile={userProfile} />;
       case 'ai': return <AIAssistant key="ai" />;
-      case 'resources': return <ResourceHub key="resources" />;
+      case 'resources': return <ResourceHub key="resources" setActiveTab={setActiveTab} setTutorialContext={setTutorialContext} />;
       case 'projects': return <ProjectGallery key="projects" />;
       case 'jobs': return <JobTracker key="jobs" />;
-      default: return <SelfAssessment key="assessment" userProfile={userProfile} />;
+      default: return <SelfAssessment key="assessment" userProfile={userProfile} setActiveTab={setActiveTab} setTutorialContext={setTutorialContext} />;
     }
   };
 

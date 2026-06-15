@@ -6,6 +6,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
   const navItems = [
     { id: 'assessment', label: 'Command Center', icon: Target },
     { id: 'roadmap', label: 'Skill Tree', icon: GitCommit },
+    { id: 'tutorials', label: 'Tutorial Hub', icon: LibraryBig },
     { id: 'projects', label: 'Project Gallery', icon: Folder },
     { id: 'flashcards', label: 'Interview Engine', icon: BrainCircuit },
     { id: 'jobprep', label: 'Mock Interviews', icon: Video },

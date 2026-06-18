@@ -150,7 +150,7 @@ const FounderProfile = () => {
               { icon: GraduationCap, label: 'Education', value: 'B.Tech CSE' },
               { icon: MapPin, label: 'Location', value: 'Lucknow, India' },
               { icon: Cpu, label: 'Expertise', value: 'Machine Learning' },
-              { icon: Code2, label: 'Tech Stack', value: 'React, Node, Python' },
+              { icon: Code2, label: 'Tech Stack', value: 'Python, SQL, C' },
             ].map((detail, idx) => (
               <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <div style={{

@@ -44,71 +44,96 @@ const DevCard = ({ collapsed }) => {
     <motion.div
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      whileTap={{ scale: 0.98 }}
       style={{
         marginBottom: '0.75rem',
-        padding: collapsed ? '0.75rem 0' : '0.85rem',
-        borderRadius: '16px',
-        background: hovered ? 'rgba(77,159,255,0.08)' : 'rgba(255,255,255,0.02)',
-        border: `1px solid ${hovered ? 'rgba(77,159,255,0.3)' : 'rgba(255,255,255,0.05)'}`,
-        transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
+        padding: collapsed ? '0.75rem 0' : '1rem',
+        borderRadius: '20px',
+        background: hovered
+          ? 'linear-gradient(145deg, rgba(77,159,255,0.08), rgba(155,109,255,0.05))'
+          : 'rgba(255,255,255,0.02)',
+        border: `1px solid ${hovered ? 'rgba(77,159,255,0.3)' : 'rgba(255,255,255,0.04)'}`,
+        transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
         cursor: 'pointer',
         position: 'relative',
-        boxShadow: hovered ? 'inset 0 0 20px rgba(77,159,255,0.1), 0 8px 20px rgba(0,0,0,0.3)' : '0 4px 10px rgba(0,0,0,0.2)',
+        boxShadow: hovered 
+          ? 'inset 0 0 30px rgba(77,159,255,0.05), 0 10px 30px rgba(0,0,0,0.4)' 
+          : '0 4px 15px rgba(0,0,0,0.1)',
         overflow: 'hidden',
+        backdropFilter: 'blur(20px)',
       }}
       onClick={() => window.open('https://resume-webpage-ashy.vercel.app/', '_blank')}
     >
+      {/* Top Border Highlight */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
+        background: hovered 
+          ? 'linear-gradient(90deg, transparent, #00E5FF, #9B6DFF, transparent)' 
+          : 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)',
+        transition: 'all 0.4s',
+        opacity: hovered ? 1 : 0.5,
+      }} />
+
       {/* Dynamic Background Glow */}
       <AnimatePresence>
         {hovered && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.4 }}
             style={{
-              position: 'absolute', top: -30, right: -30,
-              width: '100px', height: '100px', borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(0,229,255,0.15), transparent 70%)',
-              filter: 'blur(15px)', pointerEvents: 'none',
+              position: 'absolute', top: -40, right: -40,
+              width: '120px', height: '120px', borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(0,229,255,0.2), transparent 70%)',
+              filter: 'blur(20px)', pointerEvents: 'none',
+              zIndex: 0,
             }}
           />
         )}
       </AnimatePresence>
 
       {collapsed ? (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div style={{
-            width: '38px', height: '38px', borderRadius: '50%',
-            background: hovered ? 'linear-gradient(135deg, #00E5FF, #9B6DFF)' : 'rgba(255,255,255,0.1)',
-            padding: '2px',
-            boxShadow: hovered ? '0 0 15px rgba(0,229,255,0.4)' : 'none',
-            transition: 'all 0.3s',
-          }}>
+        <div style={{ display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
+          <motion.div 
+            animate={{ scale: hovered ? 1.05 : 1 }}
+            style={{
+              width: '40px', height: '40px', borderRadius: '50%',
+              background: hovered ? 'linear-gradient(135deg, #00E5FF, #9B6DFF)' : 'rgba(255,255,255,0.08)',
+              padding: '2px',
+              boxShadow: hovered ? '0 0 20px rgba(0,229,255,0.5)' : 'none',
+              transition: 'all 0.3s',
+            }}
+          >
             <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}>
               <img src={shivanshPhoto} alt="Shivansh" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
             </div>
-          </div>
+          </motion.div>
         </div>
       ) : (
         <AnimatePresence>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.8rem' }}>
-              {/* Avatar with Rotating Orbital Ring */}
-              <div style={{ position: 'relative', width: '44px', height: '44px' }}>
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-                  style={{
-                    position: 'absolute', inset: -3, borderRadius: '50%',
-                    border: '1px dashed rgba(0,229,255,0.4)',
-                    display: hovered ? 'block' : 'none',
-                  }}
-                />
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ position: 'relative', zIndex: 1 }}>
+            
+            {/* Header Row */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '1rem' }}>
+              
+              {/* Avatar with Breathing Core Glow */}
+              <div style={{ position: 'relative', width: '46px', height: '46px', flexShrink: 0 }}>
+                {hovered && (
+                  <motion.div
+                    animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                    style={{
+                      position: 'absolute', inset: -4, borderRadius: '50%',
+                      background: 'radial-gradient(circle, rgba(0,229,255,0.4), transparent 70%)',
+                      filter: 'blur(4px)',
+                    }}
+                  />
+                )}
                 <div style={{
                   width: '100%', height: '100%', borderRadius: '50%',
                   background: 'linear-gradient(135deg, #00E5FF, #4D9FFF, #9B6DFF)',
                   padding: '2px', position: 'relative', zIndex: 2,
+                  boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
                 }}>
                   <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#111' }}>
                     <img src={shivanshPhoto} alt="Shivansh Mishra" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
@@ -116,66 +141,88 @@ const DevCard = ({ collapsed }) => {
                 </div>
               </div>
 
+              {/* Name & Title */}
               <div style={{ flex: 1, minWidth: 0 }}>
                 <p style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
-                  fontWeight: 800, fontSize: '0.9rem', color: '#fff',
-                  letterSpacing: '-0.01em', marginBottom: '2px',
+                  fontWeight: 900, fontSize: '0.95rem',
+                  background: hovered ? 'linear-gradient(90deg, #fff, #E0E7FF)' : '#fff',
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: hovered ? 'transparent' : '#fff',
+                  letterSpacing: '-0.01em', marginBottom: '3px',
                   whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                  transition: 'all 0.3s',
                 }}>
                   Shivansh Mishra
                 </p>
-                <p style={{
-                  fontFamily: "'Geist Mono', monospace",
-                  fontSize: '0.65rem', color: '#4D9FFF', letterSpacing: '0.03em',
-                  display: 'flex', alignItems: 'center', gap: '0.3rem'
-                }}>
-                  <Sparkles size={10} color="#00E5FF" /> ML Builder
-                </p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                  <motion.div animate={{ rotate: hovered ? 180 : 0 }} transition={{ duration: 0.5 }}>
+                    <Sparkles size={11} color="#00E5FF" />
+                  </motion.div>
+                  <p style={{
+                    fontFamily: "'Geist Mono', monospace",
+                    fontSize: '0.65rem', color: '#4D9FFF', letterSpacing: '0.04em',
+                    fontWeight: 600,
+                  }}>
+                    ML Builder
+                  </p>
+                </div>
               </div>
 
-              <motion.div animate={{ rotate: hovered ? 45 : 0, scale: hovered ? 1.1 : 1 }} transition={{ duration: 0.2 }}>
-                <ExternalLink size={14} color={hovered ? '#00E5FF' : 'rgba(255,255,255,0.2)'} />
+              {/* External Link Icon */}
+              <motion.div animate={{ x: hovered ? 2 : 0, y: hovered ? -2 : 0 }} transition={{ duration: 0.2 }}>
+                <ExternalLink size={15} color={hovered ? '#00E5FF' : 'rgba(255,255,255,0.15)'} style={{ transition: 'color 0.3s' }} />
               </motion.div>
             </div>
 
-            {/* Micro Social Bar */}
-            <div style={{ display: 'flex', gap: '0.4rem' }}>
-              {[
-                { icon: Link2, url: 'https://github.com/shivansh-mishraji', label: 'GitHub', color: '#fff' },
-                { icon: Link2, url: 'https://www.linkedin.com/in/shivansh-mishra-132b97358', label: 'LinkedIn', color: '#4D9FFF' },
-                { icon: Mail, url: 'mailto:shivanshmishraji90@gmail.com', label: 'Email', color: '#9B6DFF' },
-              ].map(({ icon: Icon, url, label, color }) => (
-                <motion.a
-                  key={label} href={url} target={label !== 'Email' ? '_blank' : undefined} rel="noreferrer"
-                  onClick={e => e.stopPropagation()}
-                  whileHover={{ y: -2, backgroundColor: `${color}20` }}
-                  title={label}
-                  style={{
-                    width: '32px', height: '32px', borderRadius: '8px',
-                    background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    textDecoration: 'none', transition: 'all 0.2s',
-                  }}
-                >
-                  <Icon size={14} color={hovered ? color : 'var(--text-muted)'} style={{ transition: 'color 0.2s' }} />
-                </motion.a>
-              ))}
+            {/* Action Bar (Socials + Portfolio CTA) */}
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: '0.3rem' }}>
+                {[
+                  { icon: Link2, url: 'https://github.com/shivansh-mishraji', label: 'GitHub', color: '#fff' },
+                  { icon: Link2, url: 'https://www.linkedin.com/in/shivansh-mishra-132b97358', label: 'LinkedIn', color: '#0077b5' },
+                  { icon: Mail, url: 'mailto:shivanshmishraji90@gmail.com', label: 'Email', color: '#EA4335' },
+                ].map(({ icon: Icon, url, label, color }) => (
+                  <motion.a
+                    key={label} href={url} target={label !== 'Email' ? '_blank' : undefined} rel="noreferrer"
+                    onClick={e => e.stopPropagation()}
+                    whileHover={{ y: -3, scale: 1.1, backgroundColor: 'rgba(255,255,255,0.08)' }}
+                    title={label}
+                    style={{
+                      width: '34px', height: '34px', borderRadius: '10px',
+                      background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      textDecoration: 'none', transition: 'all 0.2s',
+                    }}
+                  >
+                    <Icon size={15} color={hovered ? color : 'rgba(255,255,255,0.4)'} style={{ transition: 'color 0.3s', filter: hovered ? `drop-shadow(0 0 5px ${color}80)` : 'none' }} />
+                  </motion.a>
+                ))}
+              </div>
               
-              {/* Portfolio CTA */}
+              {/* Cinematic Portfolio CTA */}
               <motion.a
                 href="https://resume-webpage-ashy.vercel.app/" target="_blank" rel="noreferrer"
                 onClick={e => e.stopPropagation()}
-                whileHover={{ y: -2, filter: 'brightness(1.2)' }}
+                whileHover={{ scale: 1.03, filter: 'brightness(1.15)' }}
+                whileTap={{ scale: 0.97 }}
                 style={{
-                  flex: 1, height: '32px', borderRadius: '8px',
-                  background: 'linear-gradient(90deg, rgba(0,229,255,0.1), rgba(155,109,255,0.1))',
-                  border: '1px solid rgba(0,229,255,0.3)',
+                  flex: 1, height: '34px', borderRadius: '10px',
+                  background: 'linear-gradient(90deg, rgba(0,229,255,0.15), rgba(155,109,255,0.15))',
+                  border: '1px solid rgba(0,229,255,0.4)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
-                  textDecoration: 'none', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '0.7rem',
-                  fontWeight: 700, color: '#00E5FF', letterSpacing: '0.02em',
+                  textDecoration: 'none', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '0.75rem',
+                  fontWeight: 800, color: '#00E5FF', letterSpacing: '0.03em',
+                  boxShadow: '0 0 15px rgba(0,229,255,0.1)',
+                  position: 'relative', overflow: 'hidden',
                 }}
               >
+                {/* Button Inner Glow */}
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+                  transform: hovered ? 'translateX(100%)' : 'translateX(-100%)',
+                  transition: 'transform 0.5s ease-in-out',
+                }} />
                 Portfolio
               </motion.a>
             </div>

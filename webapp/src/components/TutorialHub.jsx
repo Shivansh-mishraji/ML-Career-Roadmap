@@ -337,6 +337,19 @@ const TutorialHub = ({ initialNotebookId }) => {
                       {cell.output}
                     </div>
                   )}
+
+                  {/* Visual Image Output (Matplotlib) */}
+                  {cell.image_output && (
+                    <div style={{
+                      background: 'rgba(255,255,255,0.02)',
+                      padding: '1.5rem',
+                      borderTop: '1px solid rgba(155,109,255,0.15)',
+                      display: 'flex', justifyContent: 'center',
+                      boxShadow: 'inset 0 10px 20px rgba(0,0,0,0.3)'
+                    }}>
+                      <img src={cell.image_output} alt="Plot Visual Output" style={{ maxWidth: '100%', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }} />
+                    </div>
+                  )}
                 </motion.div>
               );
             }

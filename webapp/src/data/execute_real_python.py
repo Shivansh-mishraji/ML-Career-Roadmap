@@ -6,23 +6,26 @@ import ast
 import traceback
 import builtins
 import time
+import base64
 
 # Patch input to prevent blocking
 builtins.input = lambda prompt='': '0'
 
-# Attempt to patch matplotlib show
+# Try to import matplotlib to capture plots
 try:
+    import matplotlib
+    matplotlib.use('Agg') # Use non-interactive backend to prevent windows popping up
     import matplotlib.pyplot as plt
-    plt.show = lambda *args, **kwargs: None
-except:
-    pass
+    has_matplotlib = True
+except ImportError:
+    has_matplotlib = False
 
 file_path = 'c:/Users/91727/Desktop/ML-Career-Roadmap/webapp/src/data/tutorialData.json'
 
 with open(file_path, 'r', encoding='utf-8') as f:
     data = json.load(f)
 
-print("Starting execution of 24 notebooks. This might take 30-60 seconds...")
+print("Starting execution to capture textual AND visual outputs...")
 start_time = time.time()
 
 for notebook in data:
@@ -44,6 +47,12 @@ for notebook in data:
                 continue
 
             output_str = ""
+            img_b64 = None
+
+            # Clear plots before running cell
+            if has_matplotlib:
+                plt.close('all')
+
             try:
                 f_io = io.StringIO()
                 with contextlib.redirect_stdout(f_io):
@@ -54,7 +63,6 @@ for notebook in data:
                             exec(compile(tree, '<string>', 'exec'), env)
                         result = eval(compile(ast.Expression(last_expr.value), '<string>', 'eval'), env)
                         if result is not None:
-                            # Use pandas display options if it's a dataframe
                             if 'pandas.core.frame.DataFrame' in str(type(result)) or 'pandas.core.series.Series' in str(type(result)):
                                 print(result)
                             else:
@@ -62,9 +70,21 @@ for notebook in data:
                     else:
                         exec(code, env)
                 output_str = f_io.getvalue().strip()
+                
+                # Check for generated plots
+                if has_matplotlib and plt.get_fignums():
+                    buf = io.BytesIO()
+                    plt.savefig(buf, format='png', bbox_inches='tight')
+                    buf.seek(0)
+                    img_b64 = base64.b64encode(buf.read()).decode('utf-8')
+                    plt.close('all')
+
             except Exception as e:
-                # If execution fails (e.g. missing dataset, missing module)
-                output_str = f"{type(e).__name__}: {str(e)}"
+                error_type = type(e).__name__
+                if error_type in ['NameError', 'ModuleNotFoundError', 'ImportError']:
+                    output_str = ""  # Hide messy unimported module errors from the tutorial UI
+                else:
+                    output_str = f"{error_type}: {str(e)}"
 
             final_code = code
             if output_str:
@@ -75,8 +95,13 @@ for notebook in data:
                 final_code = f"{code}\n\n{commented_output}"
             
             cell['content'] = final_code
+            if img_b64:
+                cell['image_output'] = f"data:image/png;base64,{img_b64}"
+            elif 'image_output' in cell:
+                # Remove if the cell no longer generates an image
+                del cell['image_output']
 
 with open(file_path, 'w', encoding='utf-8') as f:
     json.dump(data, f, indent=2)
 
-print(f"Successfully executed python logic and saved real exact outputs in {time.time() - start_time:.2f} seconds.")
+print(f"Successfully executed python logic and saved outputs in {time.time() - start_time:.2f} seconds.")

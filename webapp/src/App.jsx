@@ -11,6 +11,7 @@ import JobTracker from './components/JobTracker';
 import JobPrep from './components/JobPrep';
 import Onboarding from './components/Onboarding';
 import TutorialHub from './components/TutorialHub';
+import FounderProfile from './components/FounderProfile';
 import CustomCursor from './components/CustomCursor';
 import CinematicBackground from './components/CinematicBackground';
 import './index.css';
@@ -194,6 +195,7 @@ function App() {
       case 'resources':   return <ResourceHub key="resources" setActiveTab={setActiveTab} setTutorialContext={setTutorialContext} />;
       case 'projects':    return <ProjectGallery key="projects" />;
       case 'jobtracker':  return <JobTracker key="jobtracker" />;
+      case 'founder':     return <FounderProfile key="founder" />;
       default:            return <SelfAssessment key="assessment" userProfile={userProfile} setActiveTab={setActiveTab} setTutorialContext={setTutorialContext} />;
     }
   };

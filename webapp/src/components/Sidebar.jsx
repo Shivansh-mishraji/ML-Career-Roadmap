@@ -32,6 +32,7 @@ const navSections = [
       { id: 'jobtracker', label: 'Career Pipeline',  icon: Briefcase,      badge: null },
       { id: 'resources',  label: 'Resource Hub',     icon: LibraryBig,     badge: null },
       { id: 'ai',         label: 'AI Assistant',     icon: BotMessageSquare, badge: 'AI' },
+      { id: 'founder',    label: 'Meet the Founder', icon: Sparkles,       badge: 'PRO' },
     ]
   }
 ];
@@ -417,8 +418,6 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
 
       {/* ── Footer ── */}
       <div style={{ padding: collapsed ? '1rem 0' : '1rem', borderTop: '1px solid rgba(255,255,255,0.03)' }}>
-        <DevCard collapsed={collapsed} />
-
         <AnimatePresence>
           {!collapsed && (
             <motion.div

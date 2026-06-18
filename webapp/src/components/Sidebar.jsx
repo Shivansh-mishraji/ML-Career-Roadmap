@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import {
   Target, GitCommit, Folder, BrainCircuit,
   BotMessageSquare, LibraryBig, Briefcase,
-  Video, ChevronRight, BookOpen, Cpu,
+  Video, ChevronRight, BookOpen,
   ExternalLink, Link2, Mail, Sparkles,
-  Atom, Zap
+  Atom
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import shivanshPhoto from '../assets/shivansh.jpg';
@@ -44,39 +44,22 @@ const DevCard = ({ collapsed }) => {
     <motion.div
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
+      whileTap={{ scale: 0.98 }}
       style={{
         marginBottom: '0.75rem',
-        padding: collapsed ? '0.75rem 0' : '1rem',
+        padding: collapsed ? '0.75rem 0' : '0.85rem',
         borderRadius: '16px',
-        background: hovered
-          ? 'linear-gradient(145deg, rgba(77,159,255,0.1), rgba(155,109,255,0.07))'
-          : 'rgba(255,255,255,0.028)',
+        background: hovered ? 'rgba(77,159,255,0.08)' : 'rgba(255,255,255,0.02)',
         border: `1px solid ${hovered ? 'rgba(77,159,255,0.3)' : 'rgba(255,255,255,0.05)'}`,
-        transition: 'all 0.3s var(--ease-cinema)',
+        transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
         cursor: 'pointer',
-        overflow: 'hidden',
         position: 'relative',
-        boxShadow: hovered ? '0 0 40px rgba(77,159,255,0.08)' : 'none',
+        boxShadow: hovered ? 'inset 0 0 20px rgba(77,159,255,0.1), 0 8px 20px rgba(0,0,0,0.3)' : '0 4px 10px rgba(0,0,0,0.2)',
+        overflow: 'hidden',
       }}
       onClick={() => window.open('https://resume-webpage-ashy.vercel.app/', '_blank')}
     >
-      {/* Top shimmer on hover */}
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            exit={{ opacity: 0 }}
-            style={{
-              position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
-              background: 'linear-gradient(90deg, transparent, rgba(0,229,255,0.7), rgba(77,159,255,0.5), transparent)',
-              transformOrigin: 'left',
-            }}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Holographic corner glow */}
+      {/* Dynamic Background Glow */}
       <AnimatePresence>
         {hovered && (
           <motion.div
@@ -84,10 +67,10 @@ const DevCard = ({ collapsed }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             style={{
-              position: 'absolute', top: -20, right: -20,
-              width: '80px', height: '80px', borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(155,109,255,0.2), transparent 70%)',
-              filter: 'blur(10px)', pointerEvents: 'none',
+              position: 'absolute', top: -30, right: -30,
+              width: '100px', height: '100px', borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(0,229,255,0.15), transparent 70%)',
+              filter: 'blur(15px)', pointerEvents: 'none',
             }}
           />
         )}
@@ -97,12 +80,12 @@ const DevCard = ({ collapsed }) => {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div style={{
             width: '38px', height: '38px', borderRadius: '50%',
-            background: 'linear-gradient(135deg, #00E5FF, #4D9FFF, #9B6DFF)',
-            padding: '2px', flexShrink: 0,
-            boxShadow: hovered ? '0 0 20px rgba(0,229,255,0.4)' : '0 0 10px rgba(77,159,255,0.2)',
-            transition: 'box-shadow 0.3s',
+            background: hovered ? 'linear-gradient(135deg, #00E5FF, #9B6DFF)' : 'rgba(255,255,255,0.1)',
+            padding: '2px',
+            boxShadow: hovered ? '0 0 15px rgba(0,229,255,0.4)' : 'none',
+            transition: 'all 0.3s',
           }}>
-            <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#111' }}>
+            <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}>
               <img src={shivanshPhoto} alt="Shivansh" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
             </div>
           </div>
@@ -110,117 +93,89 @@ const DevCard = ({ collapsed }) => {
       ) : (
         <AnimatePresence>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            {/* Header row */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.8rem' }}>
-              {/* Avatar */}
-              <div style={{
-                width: '42px', height: '42px', borderRadius: '50%', flexShrink: 0,
-                background: 'linear-gradient(135deg, #00E5FF, #4D9FFF, #9B6DFF)',
-                padding: '2.5px',
-                boxShadow: hovered ? '0 0 20px rgba(0,229,255,0.5), 0 0 40px rgba(77,159,255,0.25)' : '0 0 10px rgba(77,159,255,0.25)',
-                transition: 'box-shadow 0.3s',
-              }}>
-                <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#111' }}>
-                  <img src={shivanshPhoto} alt="Shivansh Mishra" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.8rem' }}>
+              {/* Avatar with Rotating Orbital Ring */}
+              <div style={{ position: 'relative', width: '44px', height: '44px' }}>
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                  style={{
+                    position: 'absolute', inset: -3, borderRadius: '50%',
+                    border: '1px dashed rgba(0,229,255,0.4)',
+                    display: hovered ? 'block' : 'none',
+                  }}
+                />
+                <div style={{
+                  width: '100%', height: '100%', borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #00E5FF, #4D9FFF, #9B6DFF)',
+                  padding: '2px', position: 'relative', zIndex: 2,
+                }}>
+                  <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#111' }}>
+                    <img src={shivanshPhoto} alt="Shivansh Mishra" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+                  </div>
                 </div>
               </div>
 
               <div style={{ flex: 1, minWidth: 0 }}>
                 <p style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
-                  fontWeight: 800, fontSize: '0.84rem', color: '#fff',
-                  letterSpacing: '-0.015em', marginBottom: '1px',
+                  fontWeight: 800, fontSize: '0.9rem', color: '#fff',
+                  letterSpacing: '-0.01em', marginBottom: '2px',
                   whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                 }}>
                   Shivansh Mishra
                 </p>
                 <p style={{
                   fontFamily: "'Geist Mono', monospace",
-                  fontSize: '0.63rem',
-                  background: 'linear-gradient(90deg, #00E5FF, #9B6DFF)',
-                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text', letterSpacing: '0.03em',
+                  fontSize: '0.65rem', color: '#4D9FFF', letterSpacing: '0.03em',
+                  display: 'flex', alignItems: 'center', gap: '0.3rem'
                 }}>
-                  ML Builder & AI Explorer
+                  <Sparkles size={10} color="#00E5FF" /> ML Builder
                 </p>
               </div>
 
-              <motion.div animate={{ rotate: hovered ? 45 : 0 }} transition={{ duration: 0.25 }}>
-                <ExternalLink size={13} color={hovered ? '#00E5FF' : 'var(--text-muted)'} style={{ transition: 'color 0.2s' }} />
+              <motion.div animate={{ rotate: hovered ? 45 : 0, scale: hovered ? 1.1 : 1 }} transition={{ duration: 0.2 }}>
+                <ExternalLink size={14} color={hovered ? '#00E5FF' : 'rgba(255,255,255,0.2)'} />
               </motion.div>
             </div>
 
-            {/* Info chips */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', marginBottom: '0.75rem' }}>
-              {[
-                { label: 'B.Tech CSE', color: '#4D9FFF' },
-                { label: 'Cloud + ML', color: '#9B6DFF' },
-                { label: 'Lucknow 🇮🇳', color: '#00E5FF' },
-              ].map(({ label, color }) => (
-                <span key={label} style={{
-                  fontFamily: "'Geist Mono', monospace",
-                  fontSize: '0.61rem', padding: '0.18rem 0.5rem',
-                  borderRadius: '5px',
-                  background: `${color}10`,
-                  color: hovered ? color : 'var(--text-muted)',
-                  border: `1px solid ${hovered ? `${color}30` : 'rgba(255,255,255,0.07)'}`,
-                  transition: 'all 0.3s',
-                }}>
-                  {label}
-                </span>
-              ))}
-            </div>
-
-            {/* Social links */}
+            {/* Micro Social Bar */}
             <div style={{ display: 'flex', gap: '0.4rem' }}>
               {[
                 { icon: Link2, url: 'https://github.com/shivansh-mishraji', label: 'GitHub', color: '#fff' },
                 { icon: Link2, url: 'https://www.linkedin.com/in/shivansh-mishra-132b97358', label: 'LinkedIn', color: '#4D9FFF' },
-                { icon: Mail, url: 'mailto:shivanshmishraji90@gmail.com', label: 'Email', color: '#FF5FA0' },
+                { icon: Mail, url: 'mailto:shivanshmishraji90@gmail.com', label: 'Email', color: '#9B6DFF' },
               ].map(({ icon: Icon, url, label, color }) => (
                 <motion.a
-                  key={label}
-                  href={url}
-                  target={label !== 'Email' ? '_blank' : undefined}
-                  rel="noreferrer"
+                  key={label} href={url} target={label !== 'Email' ? '_blank' : undefined} rel="noreferrer"
                   onClick={e => e.stopPropagation()}
-                  whileHover={{ y: -2, backgroundColor: `${color}18` }}
-                  whileTap={{ scale: 0.93 }}
+                  whileHover={{ y: -2, backgroundColor: `${color}20` }}
                   title={label}
                   style={{
-                    width: '30px', height: '30px', borderRadius: '9px',
-                    background: 'rgba(255,255,255,0.04)',
-                    border: '1px solid rgba(255,255,255,0.07)',
+                    width: '32px', height: '32px', borderRadius: '8px',
+                    background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    transition: 'all 0.18s',
-                    textDecoration: 'none',
+                    textDecoration: 'none', transition: 'all 0.2s',
                   }}
                 >
-                  <Icon size={13} color="var(--text-muted)" />
+                  <Icon size={14} color={hovered ? color : 'var(--text-muted)'} style={{ transition: 'color 0.2s' }} />
                 </motion.a>
               ))}
-
+              
+              {/* Portfolio CTA */}
               <motion.a
-                href="https://resume-webpage-ashy.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
+                href="https://resume-webpage-ashy.vercel.app/" target="_blank" rel="noreferrer"
                 onClick={e => e.stopPropagation()}
-                whileHover={{ y: -2 }}
+                whileHover={{ y: -2, filter: 'brightness(1.2)' }}
                 style={{
-                  flex: 1, height: '30px', borderRadius: '9px',
-                  background: 'linear-gradient(135deg, rgba(0,229,255,0.15), rgba(77,159,255,0.12), rgba(155,109,255,0.12))',
-                  border: '1px solid rgba(0,229,255,0.2)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem',
-                  textDecoration: 'none',
-                  fontFamily: "'Geist Mono', monospace",
-                  fontSize: '0.6rem',
-                  background2: 'linear-gradient(90deg, #00E5FF, #4D9FFF)',
-                  color: '#00E5FF',
-                  letterSpacing: '0.04em',
-                  boxShadow: '0 0 16px rgba(0,229,255,0.1)',
+                  flex: 1, height: '32px', borderRadius: '8px',
+                  background: 'linear-gradient(90deg, rgba(0,229,255,0.1), rgba(155,109,255,0.1))',
+                  border: '1px solid rgba(0,229,255,0.3)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
+                  textDecoration: 'none', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '0.7rem',
+                  fontWeight: 700, color: '#00E5FF', letterSpacing: '0.02em',
                 }}
               >
-                <Sparkles size={10} />
                 Portfolio
               </motion.a>
             </div>
@@ -238,77 +193,64 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
 
   return (
     <motion.aside
-      initial={{ x: -24, opacity: 0 }}
-      animate={{ x: 0, opacity: 1, width: collapsed ? '72px' : '248px' }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ x: -30, opacity: 0 }}
+      animate={{ x: 0, opacity: 1, width: collapsed ? '80px' : '260px' }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       style={{
-        height: '100vh',
-        position: 'fixed',
-        left: 0, top: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        background: 'rgba(4, 4, 12, 0.95)',
+        height: '100vh', position: 'fixed', left: 0, top: 0,
+        display: 'flex', flexDirection: 'column',
+        background: 'rgba(2, 2, 8, 0.85)',
         backdropFilter: 'blur(40px) saturate(200%)',
-        WebkitBackdropFilter: 'blur(40px) saturate(200%)',
-        borderRight: '1px solid rgba(255,255,255,0.055)',
-        zIndex: 100,
-        overflow: 'hidden',
+        borderRight: '1px solid rgba(255,255,255,0.05)',
+        zIndex: 100, overflow: 'hidden',
+        boxShadow: '20px 0 60px rgba(0,0,0,0.5)',
       }}
     >
-      {/* Holographic top-edge glow */}
+      {/* Ambient Edge Glow */}
       <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
-        background: 'linear-gradient(90deg, transparent, rgba(0,229,255,0.3), rgba(77,159,255,0.4), rgba(155,109,255,0.3), transparent)',
-        boxShadow: '0 0 20px rgba(77,159,255,0.15)',
-      }} />
-
-      {/* Subtle vertical glow inside sidebar */}
-      <div style={{
-        position: 'absolute', top: 0, right: 0, width: '1px', height: '100%',
-        background: 'linear-gradient(to bottom, rgba(77,159,255,0.15), transparent 40%, rgba(155,109,255,0.1) 80%, transparent)',
+        position: 'absolute', top: 0, bottom: 0, right: 0, width: '1px',
+        background: 'linear-gradient(to bottom, transparent, rgba(0,229,255,0.2), rgba(155,109,255,0.1), transparent)',
+        boxShadow: '-5px 0 20px rgba(0,229,255,0.1)',
       }} />
 
       {/* ── Header ── */}
       <div style={{
-        padding: collapsed ? '1.4rem 0' : '1.4rem 1.25rem',
-        borderBottom: '1px solid rgba(255,255,255,0.045)',
-        position: 'relative',
+        padding: collapsed ? '1.5rem 0' : '1.5rem 1.25rem',
+        borderBottom: '1px solid rgba(255,255,255,0.03)',
+        marginBottom: '1rem',
       }}>
-        <motion.div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', justifyContent: collapsed ? 'center' : 'flex-start' }}>
-          {/* Animated logo */}
+        <motion.div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', justifyContent: collapsed ? 'center' : 'flex-start' }}>
+          {/* Glowing Atom Logo */}
           <motion.div
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
             style={{
-              width: '36px', height: '36px', borderRadius: '11px', flexShrink: 0,
-              background: 'linear-gradient(135deg, #00E5FF, #4D9FFF, #9B6DFF)',
+              width: '40px', height: '40px', borderRadius: '12px', flexShrink: 0,
+              background: 'linear-gradient(135deg, rgba(0,229,255,0.2), rgba(155,109,255,0.2))',
+              border: '1px solid rgba(0,229,255,0.4)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 4px 20px rgba(0,229,255,0.35), 0 0 40px rgba(77,159,255,0.15)',
+              boxShadow: '0 0 20px rgba(0,229,255,0.2), inset 0 0 10px rgba(155,109,255,0.3)',
             }}
           >
-            <Atom size={19} color="#fff" />
+            <Atom size={22} color="#00E5FF" style={{ filter: 'drop-shadow(0 0 5px rgba(0,229,255,0.8))' }} />
           </motion.div>
 
           <AnimatePresence>
             {!collapsed && (
               <motion.div
                 initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}
-                transition={{ duration: 0.22 }}
+                transition={{ duration: 0.2 }}
               >
                 <p style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
-                  fontWeight: 900, fontSize: '1rem', letterSpacing: '-0.025em',
-                  background: 'linear-gradient(135deg, #fff, rgba(255,255,255,0.8))',
-                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
+                  fontWeight: 900, fontSize: '1.2rem', letterSpacing: '-0.02em',
+                  color: '#fff', marginBottom: '2px',
                 }}>ML_HUB</p>
                 <p style={{
                   fontFamily: "'Geist Mono', monospace",
-                  fontSize: '0.62rem', letterSpacing: '0.06em', marginTop: '-1px',
-                  background: 'linear-gradient(90deg, #00E5FF, #9B6DFF)',
-                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}>v5.0 // CINEMATIC</p>
+                  fontSize: '0.6rem', letterSpacing: '0.15em',
+                  color: '#00E5FF', textTransform: 'uppercase',
+                }}>v5.0 Cinematic</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -316,18 +258,18 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
       </div>
 
       {/* ── Navigation ── */}
-      <nav style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', padding: collapsed ? '1rem 0' : '1rem 0.8rem' }}>
+      <nav style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', padding: collapsed ? '0' : '0 1rem' }}>
         {navSections.map((section, si) => (
-          <div key={section.label} style={{ marginBottom: '1.6rem' }}>
+          <div key={section.label} style={{ marginBottom: '1.8rem' }}>
             <AnimatePresence>
               {!collapsed && (
                 <motion.p
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   style={{
-                    fontFamily: "'Geist Mono', monospace",
-                    fontSize: '0.63rem', fontWeight: 500,
-                    letterSpacing: '0.14em', textTransform: 'uppercase',
-                    color: 'var(--text-muted)', padding: '0 0.55rem', marginBottom: '0.4rem',
+                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                    fontSize: '0.65rem', fontWeight: 800,
+                    letterSpacing: '0.15em', textTransform: 'uppercase',
+                    color: 'rgba(255,255,255,0.3)', padding: '0 0.8rem', marginBottom: '0.6rem',
                   }}
                 >
                   {section.label}
@@ -335,180 +277,152 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
               )}
             </AnimatePresence>
 
-            {section.items.map((item, idx) => {
-              const Icon = item.icon;
-              const isActive = activeTab === item.id;
-              const isHov = hoveredItem === item.id;
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+              {section.items.map((item, idx) => {
+                const Icon = item.icon;
+                const isActive = activeTab === item.id;
+                const isHov = hoveredItem === item.id;
 
-              return (
-                <motion.button
-                  key={item.id}
-                  onClick={() => setActiveTab(item.id)}
-                  onHoverStart={() => setHoveredItem(item.id)}
-                  onHoverEnd={() => setHoveredItem(null)}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: (si * 3 + idx) * 0.045 }}
-                  whileTap={{ scale: 0.97 }}
-                  style={{
-                    position: 'relative',
-                    display: 'flex', alignItems: 'center', gap: '0.65rem',
-                    justifyContent: collapsed ? 'center' : 'flex-start',
-                    width: '100%',
-                    padding: collapsed ? '0.7rem 0' : '0.62rem 0.7rem',
-                    marginBottom: '2px',
-                    background: isActive
-                      ? 'linear-gradient(135deg, rgba(0,229,255,0.07), rgba(77,159,255,0.07), rgba(155,109,255,0.05))'
-                      : isHov ? 'rgba(255,255,255,0.04)' : 'transparent',
-                    border: 'none',
-                    borderRadius: '12px',
-                    cursor: 'pointer',
-                    textAlign: 'left',
-                    transition: 'background 0.18s ease',
-                    boxShadow: isActive ? 'inset 0 0 20px rgba(77,159,255,0.04)' : 'none',
-                  }}
-                >
-                  {/* Active indicator */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="nav-indicator"
-                      style={{
-                        position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)',
-                        width: '3px', height: '60%',
-                        background: 'linear-gradient(to bottom, #00E5FF, #4D9FFF, #9B6DFF)',
-                        borderRadius: '0 3px 3px 0',
-                        boxShadow: '0 0 14px rgba(0,229,255,0.8), 0 0 28px rgba(77,159,255,0.4)',
-                      }}
-                    />
-                  )}
-
-                  {/* Icon with glow on active */}
-                  <motion.div
-                    animate={{
-                      y: isActive ? -1 : 0,
+                return (
+                  <motion.button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    onHoverStart={() => setHoveredItem(item.id)}
+                    onHoverEnd={() => setHoveredItem(null)}
+                    whileTap={{ scale: 0.96 }}
+                    style={{
+                      position: 'relative',
+                      display: 'flex', alignItems: 'center', gap: '0.8rem',
+                      justifyContent: collapsed ? 'center' : 'flex-start',
+                      width: '100%', padding: collapsed ? '0.8rem 0' : '0.8rem 1rem',
+                      background: isActive ? 'rgba(77,159,255,0.15)' : isHov ? 'rgba(255,255,255,0.03)' : 'transparent',
+                      border: `1px solid ${isActive ? 'rgba(0,229,255,0.3)' : 'transparent'}`,
+                      borderRadius: '12px', cursor: 'pointer', textAlign: 'left',
+                      transition: 'all 0.2s cubic-bezier(0.22, 1, 0.36, 1)',
+                      boxShadow: isActive ? '0 10px 20px rgba(0,0,0,0.2), inset 0 0 15px rgba(0,229,255,0.1)' : 'none',
                     }}
-                    transition={{ duration: 0.2 }}
-                    style={{ flexShrink: 0 }}
                   >
-                    <Icon
-                      size={17}
-                      style={{
-                        color: isActive ? '#00E5FF' : isHov ? 'var(--text-secondary)' : 'var(--text-muted)',
-                        filter: isActive ? 'drop-shadow(0 0 6px rgba(0,229,255,0.6))' : 'none',
-                        transition: 'color 0.18s, filter 0.18s',
-                      }}
-                    />
-                  </motion.div>
-
-                  <AnimatePresence>
-                    {!collapsed && (
-                      <motion.span
-                        initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }}
+                    {/* Glowing Active Background Injector */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="active-nav-glow"
                         style={{
-                          fontFamily: "'Plus Jakarta Sans', sans-serif",
-                          fontSize: '0.855rem',
-                          fontWeight: isActive ? 700 : 400,
-                          color: isActive ? '#fff' : isHov ? 'var(--text-primary)' : 'var(--text-secondary)',
-                          flex: 1, transition: 'color 0.18s', whiteSpace: 'nowrap',
-                          background: isActive ? 'linear-gradient(90deg, #fff, rgba(255,255,255,0.8))' : 'none',
-                          WebkitBackgroundClip: isActive ? 'text' : 'none',
-                          WebkitTextFillColor: isActive ? 'transparent' : 'inherit',
-                          backgroundClip: isActive ? 'text' : 'none',
+                          position: 'absolute', inset: 0, borderRadius: '12px',
+                          background: 'linear-gradient(90deg, rgba(0,229,255,0.1), transparent)',
+                          zIndex: 0,
                         }}
-                      >
-                        {item.label}
-                      </motion.span>
+                      />
                     )}
-                  </AnimatePresence>
 
-                  {item.badge && !collapsed && (
-                    <span style={{
-                      fontFamily: "'Geist Mono', monospace",
-                      fontSize: '0.58rem', fontWeight: 700, letterSpacing: '0.07em',
-                      padding: '0.1rem 0.45rem', borderRadius: '5px',
-                      background: item.badge === 'AI'
-                        ? 'linear-gradient(135deg, rgba(155,109,255,0.25), rgba(77,159,255,0.2))'
-                        : 'rgba(0,255,178,0.12)',
-                      color: item.badge === 'AI' ? '#9B6DFF' : '#00FFB2',
-                      border: `1px solid ${item.badge === 'AI' ? 'rgba(155,109,255,0.32)' : 'rgba(0,255,178,0.3)'}`,
-                      boxShadow: item.badge === 'AI'
-                        ? '0 0 10px rgba(155,109,255,0.2)'
-                        : '0 0 10px rgba(0,255,178,0.15)',
-                    }}>
-                      {item.badge}
-                    </span>
-                  )}
-                </motion.button>
-              );
-            })}
+                    <motion.div
+                      animate={{ scale: isActive ? 1.1 : 1 }}
+                      transition={{ duration: 0.2 }}
+                      style={{ position: 'relative', zIndex: 1, flexShrink: 0 }}
+                    >
+                      <Icon
+                        size={18}
+                        style={{
+                          color: isActive ? '#00E5FF' : isHov ? '#fff' : 'rgba(255,255,255,0.5)',
+                          filter: isActive ? 'drop-shadow(0 0 8px rgba(0,229,255,0.6))' : 'none',
+                          transition: 'all 0.2s',
+                        }}
+                      />
+                    </motion.div>
+
+                    <AnimatePresence>
+                      {!collapsed && (
+                        <motion.span
+                          initial={{ opacity: 0, x: -5 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }}
+                          style={{
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
+                            fontSize: '0.9rem', fontWeight: isActive ? 700 : 500,
+                            color: isActive ? '#fff' : isHov ? '#fff' : 'rgba(255,255,255,0.6)',
+                            flex: 1, transition: 'color 0.2s', whiteSpace: 'nowrap',
+                            position: 'relative', zIndex: 1, letterSpacing: '-0.01em',
+                          }}
+                        >
+                          {item.label}
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+
+                    {item.badge && !collapsed && (
+                      <span style={{
+                        position: 'relative', zIndex: 1,
+                        fontFamily: "'Geist Mono', monospace",
+                        fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.08em',
+                        padding: '0.2rem 0.5rem', borderRadius: '6px',
+                        background: item.badge === 'AI' ? 'rgba(155,109,255,0.15)' : 'rgba(0,255,178,0.1)',
+                        color: item.badge === 'AI' ? '#C4A1FF' : '#00FFB2',
+                        border: `1px solid ${item.badge === 'AI' ? 'rgba(155,109,255,0.4)' : 'rgba(0,255,178,0.4)'}`,
+                        boxShadow: item.badge === 'AI' ? '0 0 10px rgba(155,109,255,0.2)' : '0 0 10px rgba(0,255,178,0.2)',
+                      }}>
+                        {item.badge}
+                      </span>
+                    )}
+                  </motion.button>
+                );
+              })}
+            </div>
           </div>
         ))}
       </nav>
 
       {/* ── Footer ── */}
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.04)', padding: collapsed ? '0.75rem 0' : '0.75rem 0.8rem' }}>
+      <div style={{ padding: collapsed ? '1rem 0' : '1rem', borderTop: '1px solid rgba(255,255,255,0.03)' }}>
         <DevCard collapsed={collapsed} />
 
-        {/* Status pill */}
         <AnimatePresence>
           {!collapsed && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
+              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
               style={{
-                marginBottom: '0.6rem',
-                padding: '0.6rem 0.9rem',
-                background: 'rgba(0,255,178,0.04)',
-                border: '1px solid rgba(0,255,178,0.1)',
-                borderRadius: '11px',
-                display: 'flex', alignItems: 'center', gap: '0.55rem',
+                marginBottom: '0.8rem', padding: '0.7rem 1rem',
+                background: 'rgba(0,255,178,0.05)', border: '1px solid rgba(0,255,178,0.2)',
+                borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '0.6rem',
+                boxShadow: 'inset 0 0 15px rgba(0,255,178,0.05)',
               }}
             >
-              <motion.span
-                animate={{ opacity: [1, 0.3, 1], scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
+              <motion.div
+                animate={{ opacity: [1, 0.4, 1], scale: [1, 1.1, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
                 style={{
-                  width: 7, height: 7, borderRadius: '50%',
-                  background: '#00FFB2',
-                  boxShadow: '0 0 8px #00FFB2, 0 0 16px rgba(0,255,178,0.4)',
-                  display: 'inline-block', flexShrink: 0,
+                  width: 8, height: 8, borderRadius: '50%', background: '#00FFB2',
+                  boxShadow: '0 0 10px #00FFB2, 0 0 20px rgba(0,255,178,0.6)', flexShrink: 0,
                 }}
               />
               <span style={{
-                fontFamily: "'Geist Mono', monospace",
-                fontSize: '0.67rem',
-                background: 'linear-gradient(90deg, #00FFB2, #00E5FF)',
-                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}>SYSTEM_ONLINE</span>
+                fontFamily: "'Geist Mono', monospace", fontSize: '0.7rem', fontWeight: 700,
+                color: '#00FFB2', letterSpacing: '0.05em',
+              }}>
+                SYSTEM_ONLINE
+              </span>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Collapse toggle */}
         <motion.button
           onClick={() => setCollapsed(!collapsed)}
-          whileHover={{ backgroundColor: 'rgba(255,255,255,0.05)' }}
+          whileHover={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
           whileTap={{ scale: 0.95 }}
           style={{
             width: '100%', display: 'flex', alignItems: 'center',
-            justifyContent: collapsed ? 'center' : 'flex-end',
-            gap: '0.4rem', padding: '0.45rem',
-            background: 'transparent', border: 'none', borderRadius: '9px', cursor: 'pointer',
+            justifyContent: collapsed ? 'center' : 'center',
+            gap: '0.5rem', padding: '0.6rem',
+            background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', 
+            borderRadius: '10px', cursor: 'pointer', transition: 'all 0.2s',
           }}
         >
-          <motion.div animate={{ rotate: collapsed ? 0 : 180 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}>
-            <ChevronRight size={14} color="var(--text-muted)" />
+          <motion.div animate={{ rotate: collapsed ? 0 : 180 }} transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}>
+            <ChevronRight size={16} color="rgba(255,255,255,0.6)" />
           </motion.div>
           <AnimatePresence>
             {!collapsed && (
               <motion.span
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                style={{
-                  fontFamily: "'Geist Mono', monospace",
-                  fontSize: '0.67rem', color: 'var(--text-muted)',
-                }}
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '0.8rem', fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}
               >
-                Collapse
+                Collapse Core System
               </motion.span>
             )}
           </AnimatePresence>

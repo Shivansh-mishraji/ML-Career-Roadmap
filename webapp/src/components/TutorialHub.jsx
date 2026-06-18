@@ -33,6 +33,7 @@ const HolographicOrb = () => (
 
 const TutorialHub = ({ initialNotebookId }) => {
   const [activeNotebook, setActiveNotebook] = useState(null);
+  const [isPending, startTransition] = React.useTransition();
   const [progress, setProgress] = useState(getNotebookProgress());
   const [expandedLevels, setExpandedLevels] = useState([0, 2, 3, 4, 5, 6]);
 
@@ -53,8 +54,10 @@ const TutorialHub = ({ initialNotebookId }) => {
   }, [initialNotebookId]);
 
   const handleSelectNotebook = (nb) => {
-    setActiveNotebook(nb);
     recordNotebookAccess(nb.id);
+    startTransition(() => {
+      setActiveNotebook(nb);
+    });
   };
 
   const handleMarkComplete = () => {
@@ -317,6 +320,23 @@ const TutorialHub = ({ initialNotebookId }) => {
                       {cell.content}
                     </SyntaxHighlighter>
                   </div>
+                  
+                  {/* Pseudo Execution Output */}
+                  {cell.output && (
+                    <div style={{
+                      background: 'rgba(0,0,0,0.6)',
+                      padding: '1rem 1.5rem',
+                      borderTop: '1px dashed rgba(155,109,255,0.2)',
+                      fontFamily: "'Geist Mono', monospace",
+                      fontSize: '0.75rem',
+                      color: 'rgba(0,229,255,0.8)',
+                      whiteSpace: 'pre-wrap',
+                      lineHeight: 1.6,
+                      boxShadow: 'inset 0 10px 20px rgba(0,0,0,0.5)'
+                    }}>
+                      {cell.output}
+                    </div>
+                  )}
                 </motion.div>
               );
             }

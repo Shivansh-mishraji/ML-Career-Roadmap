@@ -1,128 +1,189 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 
-/**
- * CustomCursor — Awwwards-level magnetic cursor
- * - Dot: snaps instantly to mouse
- * - Ring: lags behind with spring physics
- * - Enlarges on interactive elements
- * - Hides when leaving window
- */
+const TRAIL_LENGTH = 14;
+
 const CustomCursor = () => {
-  const dotRef   = useRef(null);
-  const ringRef  = useRef(null);
-  const pos      = useRef({ x: 0, y: 0 });
-  const ring     = useRef({ x: 0, y: 0 });
-  const rafId    = useRef(null);
-  const visible  = useRef(false);
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
+  const trailRefs = useRef([]);
+  const positions = useRef(Array(TRAIL_LENGTH).fill({ x: 0, y: 0 }));
+  const mouse = useRef({ x: 0, y: 0 });
+  const ring = useRef({ x: 0, y: 0 });
+  const rafRef = useRef(null);
+  const [isClicking, setIsClicking] = useState(false);
+  const [cursorColor, setCursorColor] = useState('#00E5FF');
+  const [isHovering, setIsHovering] = useState(false);
+
+  const updateCursorColor = useCallback((target) => {
+    if (!target) return;
+    if (target.closest('[data-cursor="danger"]') || target.closest('.danger-zone')) {
+      setCursorColor('#FF4466');
+    } else if (target.closest('[data-cursor="success"]') || target.closest('.success-zone')) {
+      setCursorColor('#00FFB2');
+    } else if (target.closest('button') || target.closest('a') || target.closest('[role="button"]')) {
+      setCursorColor('#9B6DFF');
+      setIsHovering(true);
+      return;
+    } else {
+      setCursorColor('#00E5FF');
+    }
+    setIsHovering(false);
+  }, []);
 
   useEffect(() => {
-    const dot  = dotRef.current;
-    const rng  = ringRef.current;
-    if (!dot || !rng) return;
-
     const onMove = (e) => {
-      pos.current = { x: e.clientX, y: e.clientY };
-      if (!visible.current) {
-        ring.current = { ...pos.current };
-        visible.current = true;
-        dot.style.opacity  = '1';
-        rng.style.opacity  = '1';
-      }
-      dot.style.transform = `translate(${pos.current.x}px, ${pos.current.y}px) translate(-50%, -50%)`;
+      mouse.current = { x: e.clientX, y: e.clientY };
+      updateCursorColor(e.target);
     };
 
+    const onDown = () => setIsClicking(true);
+    const onUp = () => setIsClicking(false);
     const onLeave = () => {
-      dot.style.opacity = '0';
-      rng.style.opacity = '0';
-      visible.current = false;
+      if (dotRef.current) dotRef.current.style.opacity = '0';
+      if (ringRef.current) ringRef.current.style.opacity = '0';
     };
-
     const onEnter = () => {
-      dot.style.opacity = '1';
-      rng.style.opacity = '1';
-      visible.current = true;
+      if (dotRef.current) dotRef.current.style.opacity = '1';
+      if (ringRef.current) ringRef.current.style.opacity = '1';
     };
 
-    // Check if hovering an interactive element
-    const onOver = (e) => {
-      const el = e.target;
-      const isInteractive = el.matches('a, button, [role="button"], input, textarea, select, label, [data-magnetic]');
-      if (isInteractive) {
-        dot.style.width  = '14px';
-        dot.style.height = '14px';
-        dot.style.background = 'var(--brand-violet)';
-        dot.style.boxShadow  = '0 0 12px var(--brand-violet), 0 0 24px rgba(165,120,255,0.5)';
-        rng.style.width  = '56px';
-        rng.style.height = '56px';
-        rng.style.borderColor = 'rgba(165,120,255,0.8)';
-        rng.style.background  = 'rgba(165,120,255,0.05)';
-      } else {
-        dot.style.width  = '8px';
-        dot.style.height = '8px';
-        dot.style.background = 'var(--brand-blue)';
-        dot.style.boxShadow  = '0 0 10px var(--brand-blue), 0 0 20px rgba(91,155,255,0.5)';
-        rng.style.width  = '36px';
-        rng.style.height = '36px';
-        rng.style.borderColor = 'rgba(91,155,255,0.5)';
-        rng.style.background  = 'transparent';
-      }
-    };
-
-    // Spring physics loop for the ring
-    const lerp = (a, b, t) => a + (b - a) * t;
-    const tick = () => {
-      ring.current.x = lerp(ring.current.x, pos.current.x, 0.12);
-      ring.current.y = lerp(ring.current.y, pos.current.y, 0.12);
-      rng.style.transform = `translate(${ring.current.x}px, ${ring.current.y}px) translate(-50%, -50%)`;
-      rafId.current = requestAnimationFrame(tick);
-    };
-
-    rafId.current = requestAnimationFrame(tick);
-    window.addEventListener('mousemove', onMove,     { passive: true });
-    window.addEventListener('mouseleave', onLeave);
-    window.addEventListener('mouseenter', onEnter);
-    window.addEventListener('mouseover',  onOver,    { passive: true });
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mousedown', onDown);
+    window.addEventListener('mouseup', onUp);
+    document.documentElement.addEventListener('mouseleave', onLeave);
+    document.documentElement.addEventListener('mouseenter', onEnter);
 
     return () => {
-      cancelAnimationFrame(rafId.current);
       window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseleave', onLeave);
-      window.removeEventListener('mouseenter', onEnter);
-      window.removeEventListener('mouseover', onOver);
+      window.removeEventListener('mousedown', onDown);
+      window.removeEventListener('mouseup', onUp);
+      document.documentElement.removeEventListener('mouseleave', onLeave);
+      document.documentElement.removeEventListener('mouseenter', onEnter);
     };
+  }, [updateCursorColor]);
+
+  useEffect(() => {
+    const animate = () => {
+      const mx = mouse.current.x;
+      const my = mouse.current.y;
+
+      // Snap dot to cursor
+      if (dotRef.current) {
+        dotRef.current.style.left = mx + 'px';
+        dotRef.current.style.top = my + 'px';
+      }
+
+      // Smooth ring follows
+      ring.current.x += (mx - ring.current.x) * 0.12;
+      ring.current.y += (my - ring.current.y) * 0.12;
+
+      if (ringRef.current) {
+        ringRef.current.style.left = ring.current.x + 'px';
+        ringRef.current.style.top = ring.current.y + 'px';
+      }
+
+      // Shift positions queue
+      positions.current = [{ x: mx, y: my }, ...positions.current.slice(0, TRAIL_LENGTH - 1)];
+
+      // Update trail
+      trailRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const pos = positions.current[i] || { x: mx, y: my };
+        const progress = (TRAIL_LENGTH - i) / TRAIL_LENGTH;
+        el.style.left = pos.x + 'px';
+        el.style.top = pos.y + 'px';
+        el.style.opacity = (progress * 0.45).toString();
+        const size = progress * 5;
+        el.style.width = size + 'px';
+        el.style.height = size + 'px';
+      });
+
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
   return (
     <>
+      {/* Main dot */}
       <div
         ref={dotRef}
         style={{
-          position: 'fixed', top: 0, left: 0,
-          width: '8px', height: '8px',
-          background: 'var(--brand-blue)',
+          position: 'fixed',
+          top: 0, left: 0,
+          width: isClicking ? '14px' : isHovering ? '10px' : '6px',
+          height: isClicking ? '14px' : isHovering ? '10px' : '6px',
+          background: cursorColor,
           borderRadius: '50%',
           pointerEvents: 'none',
-          zIndex: 99999,
-          opacity: 0,
-          willChange: 'transform',
-          transition: 'width 0.18s, height 0.18s, background 0.18s, box-shadow 0.18s',
-          boxShadow: '0 0 10px var(--brand-blue), 0 0 20px rgba(91,155,255,0.5)',
+          zIndex: 999999,
+          transform: 'translate(-50%, -50%)',
+          boxShadow: `0 0 10px ${cursorColor}, 0 0 24px ${cursorColor}80, 0 0 50px ${cursorColor}40`,
+          mixBlendMode: 'screen',
+          transition: 'width 0.15s ease, height 0.15s ease, background 0.2s ease, box-shadow 0.2s ease',
+          willChange: 'transform, left, top',
         }}
       />
+
+      {/* Outer ring */}
       <div
         ref={ringRef}
         style={{
-          position: 'fixed', top: 0, left: 0,
-          width: '36px', height: '36px',
-          border: '1.5px solid rgba(91,155,255,0.5)',
+          position: 'fixed',
+          top: 0, left: 0,
+          width: isClicking ? '28px' : isHovering ? '56px' : '38px',
+          height: isClicking ? '28px' : isHovering ? '56px' : '38px',
+          border: `1.5px solid ${cursorColor}80`,
           borderRadius: '50%',
           pointerEvents: 'none',
-          zIndex: 99998,
-          opacity: 0,
-          willChange: 'transform',
-          transition: 'width 0.3s var(--ease-out), height 0.3s var(--ease-out), border-color 0.2s, background 0.2s',
+          zIndex: 999998,
+          transform: 'translate(-50%, -50%)',
+          boxShadow: `0 0 12px ${cursorColor}30, inset 0 0 8px ${cursorColor}10`,
+          background: isHovering ? `${cursorColor}06` : 'transparent',
+          transition: 'width 0.25s var(--ease-out), height 0.25s var(--ease-out), border-color 0.2s, background 0.2s',
+          willChange: 'transform, left, top',
         }}
-      />
+      >
+        {/* Inner crosshair for hover state */}
+        {isHovering && (
+          <>
+            <div style={{
+              position: 'absolute', top: '50%', left: '50%',
+              width: '10px', height: '1px',
+              background: `${cursorColor}60`,
+              transform: 'translate(-50%, -50%)',
+            }} />
+            <div style={{
+              position: 'absolute', top: '50%', left: '50%',
+              width: '1px', height: '10px',
+              background: `${cursorColor}60`,
+              transform: 'translate(-50%, -50%)',
+            }} />
+          </>
+        )}
+      </div>
+
+      {/* Particle trail */}
+      {Array.from({ length: TRAIL_LENGTH }).map((_, i) => (
+        <div
+          key={i}
+          ref={el => trailRefs.current[i] = el}
+          style={{
+            position: 'fixed',
+            top: 0, left: 0,
+            width: '5px', height: '5px',
+            background: i < 5 ? cursorColor : i < 10 ? '#9B6DFF' : '#FF5FA0',
+            borderRadius: '50%',
+            pointerEvents: 'none',
+            zIndex: 999995 - i,
+            transform: 'translate(-50%, -50%)',
+            mixBlendMode: 'screen',
+            willChange: 'transform, left, top, opacity',
+          }}
+        />
+      ))}
     </>
   );
 };

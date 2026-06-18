@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { AnimatePresence, motion, useMotionValue, useSpring } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Sidebar from './components/Sidebar';
 import SelfAssessment from './components/SelfAssessment';
 import Roadmap from './components/Roadmap';
@@ -12,60 +12,23 @@ import JobPrep from './components/JobPrep';
 import Onboarding from './components/Onboarding';
 import TutorialHub from './components/TutorialHub';
 import CustomCursor from './components/CustomCursor';
+import CinematicBackground from './components/CinematicBackground';
 import './index.css';
 
-/* ── Animated Background Canvas ── */
-const BackgroundOrbs = () => (
-  <div style={{ position: 'fixed', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-    {/* Primary orb — blue */}
-    <div style={{
-      position: 'absolute',
-      top: '-10%', left: '-5%',
-      width: '50vw', height: '50vw',
-      background: 'radial-gradient(circle, rgba(79,142,247,0.12) 0%, transparent 65%)',
-      borderRadius: '50%',
-      filter: 'blur(30px)',
-      animation: 'float 18s ease-in-out infinite alternate',
-    }} />
-    {/* Secondary orb — violet */}
-    <div style={{
-      position: 'absolute',
-      bottom: '-15%', right: '-10%',
-      width: '60vw', height: '60vw',
-      background: 'radial-gradient(circle, rgba(155,109,255,0.10) 0%, transparent 65%)',
-      borderRadius: '50%',
-      filter: 'blur(40px)',
-      animation: 'float-reverse 22s ease-in-out infinite alternate',
-    }} />
-    {/* Tertiary orb — cyan accent */}
-    <div style={{
-      position: 'absolute',
-      top: '40%', left: '35%',
-      width: '30vw', height: '30vw',
-      background: 'radial-gradient(circle, rgba(34,211,238,0.05) 0%, transparent 65%)',
-      borderRadius: '50%',
-      filter: 'blur(20px)',
-      animation: 'float 12s ease-in-out 3s infinite alternate',
-    }} />
-    {/* Grid overlay */}
-    <div style={{
-      position: 'absolute', inset: 0,
-      backgroundImage: `
-        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)
-      `,
-      backgroundSize: '60px 60px',
-      mask: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%)',
-    }} />
-  </div>
+/* ── Cinematic Vignette ── */
+const Vignette = () => (
+  <div style={{
+    position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9996,
+    background: 'radial-gradient(ellipse at center, transparent 40%, rgba(2,2,10,0.55) 100%)',
+  }} />
 );
 
-/* ── Topbar User Profile Strip ── */
+/* ── Holographic TopBar ── */
 const TopBar = ({ userProfile, onReset }) => (
   <motion.div
-    initial={{ opacity: 0, y: -12 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.3, duration: 0.4 }}
+    initial={{ opacity: 0, y: -16, filter: 'blur(8px)' }}
+    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+    transition={{ delay: 0.5, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     style={{
       position: 'fixed',
       top: '1rem',
@@ -79,50 +42,70 @@ const TopBar = ({ userProfile, onReset }) => (
     <div style={{
       display: 'flex',
       alignItems: 'center',
-      gap: '0.5rem',
-      padding: '0.4rem 1rem',
-      background: 'rgba(11, 11, 15, 0.8)',
-      backdropFilter: 'blur(20px)',
-      border: '1px solid rgba(255,255,255,0.08)',
+      gap: '0.55rem',
+      padding: '0.45rem 1rem',
+      background: 'rgba(4, 4, 14, 0.88)',
+      backdropFilter: 'blur(28px)',
+      border: '1px solid rgba(255,255,255,0.07)',
       borderRadius: '999px',
-      boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+      boxShadow: '0 4px 24px rgba(0,0,0,0.4), 0 0 60px rgba(77,159,255,0.04)',
+      position: 'relative',
+      overflow: 'hidden',
     }}>
-      {/* Avatar */}
+      {/* Top shimmer */}
       <div style={{
-        width: '26px', height: '26px', borderRadius: '50%',
-        background: 'linear-gradient(135deg, var(--brand-blue), var(--brand-violet))',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontSize: '0.7rem', fontWeight: 700, color: '#fff',
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
-      }}>
-        {userProfile.name?.[0]?.toUpperCase()}
-      </div>
+        position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
+        background: 'linear-gradient(90deg, transparent, rgba(0,229,255,0.3), rgba(77,159,255,0.3), rgba(155,109,255,0.2), transparent)',
+      }} />
 
-      <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: '0.82rem', fontWeight: 500, color: 'var(--text-primary)' }}>
+      {/* Avatar */}
+      <motion.div
+        animate={{ rotate: [0, 360] }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+        style={{
+          width: '28px', height: '28px', borderRadius: '50%',
+          background: 'linear-gradient(135deg, #00E5FF, #4D9FFF, #9B6DFF, #FF5FA0)',
+          backgroundSize: '200% 200%',
+          animation: 'cinemaColorShift 3s ease infinite',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: '0.72rem', fontWeight: 800, color: '#fff',
+          fontFamily: "'Plus Jakarta Sans', sans-serif",
+          boxShadow: '0 0 12px rgba(0,229,255,0.4), 0 0 24px rgba(77,159,255,0.2)',
+        }}
+      >
+        {userProfile.name?.[0]?.toUpperCase()}
+      </motion.div>
+
+      <span style={{
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontSize: '0.84rem', fontWeight: 600,
+        color: 'var(--text-primary)',
+      }}>
         {userProfile.name}
       </span>
 
       <span style={{
-        fontFamily: "'Geist Mono',monospace",
-        fontSize: '0.65rem',
-        padding: '0.15rem 0.5rem',
-        borderRadius: '4px',
-        background: 'rgba(79,142,247,0.12)',
-        color: 'var(--brand-blue)',
-        border: '1px solid rgba(79,142,247,0.25)',
+        fontFamily: "'Geist Mono', monospace",
+        fontSize: '0.64rem',
+        padding: '0.16rem 0.52rem',
+        borderRadius: '5px',
+        background: 'rgba(0,229,255,0.1)',
+        color: '#00E5FF',
+        border: '1px solid rgba(0,229,255,0.22)',
         letterSpacing: '0.04em',
+        boxShadow: '0 0 10px rgba(0,229,255,0.12)',
       }}>
         {userProfile.track?.toUpperCase()}
       </span>
 
       <span style={{
-        fontFamily: "'Geist Mono',monospace",
-        fontSize: '0.65rem',
-        padding: '0.15rem 0.5rem',
-        borderRadius: '4px',
-        background: 'rgba(155,109,255,0.12)',
-        color: 'var(--brand-violet)',
-        border: '1px solid rgba(155,109,255,0.25)',
+        fontFamily: "'Geist Mono', monospace",
+        fontSize: '0.64rem',
+        padding: '0.16rem 0.52rem',
+        borderRadius: '5px',
+        background: 'rgba(155,109,255,0.1)',
+        color: '#9B6DFF',
+        border: '1px solid rgba(155,109,255,0.22)',
         letterSpacing: '0.04em',
       }}>
         {userProfile.timeline}
@@ -135,9 +118,9 @@ const TopBar = ({ userProfile, onReset }) => (
           border: 'none',
           color: 'var(--text-muted)',
           cursor: 'pointer',
-          fontSize: '0.7rem',
-          fontFamily: "'Geist Mono',monospace",
-          padding: '0.1rem 0.3rem',
+          fontSize: '0.72rem',
+          fontFamily: "'Geist Mono', monospace",
+          padding: '0.1rem 0.35rem',
           borderRadius: '4px',
           transition: 'color 0.15s',
         }}
@@ -150,11 +133,41 @@ const TopBar = ({ userProfile, onReset }) => (
   </motion.div>
 );
 
+/* ── 3D Page Transition Variants ── */
+const cinemaVariants = {
+  initial: {
+    opacity: 0,
+    y: 18,
+    filter: 'blur(5px)',
+    scale: 0.99,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    scale: 1,
+    transition: {
+      duration: 0.38,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -12,
+    filter: 'blur(3px)',
+    scale: 1.01,
+    transition: {
+      duration: 0.22,
+      ease: [0.4, 0, 1, 1],
+    },
+  },
+};
+
 /* ── Main App ── */
 function App() {
   const [activeTab, setActiveTab] = useState('assessment');
   const [userProfile, setUserProfile] = useState(null);
-  const [sidebarWidth, setSidebarWidth] = useState(240);
+  const [sidebarWidth] = useState(248);
   const [tutorialContext, setTutorialContext] = useState({ activeNotebookId: null });
 
   useEffect(() => {
@@ -190,18 +203,35 @@ function App() {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', position: 'relative', background: 'var(--bg-base)' }}>
       <CustomCursor />
-      <BackgroundOrbs />
 
-      <Sidebar activeTab={activeTab} setActiveTab={(tab) => { setActiveTab(tab); if (tab !== 'tutorials') setTutorialContext({ activeNotebookId: null }); }} />
+      {/* 3D Cinematic Background */}
+      <CinematicBackground />
 
-      <TopBar
-        userProfile={userProfile}
-        onReset={() => { localStorage.removeItem('ml-user-profile'); setUserProfile(null); }}
+      {/* Vignette overlay */}
+      <Vignette />
+
+      {/* Sidebar */}
+      <Sidebar
+        activeTab={activeTab}
+        setActiveTab={(tab) => {
+          setActiveTab(tab);
+          if (tab !== 'tutorials') setTutorialContext({ activeNotebookId: null });
+        }}
       />
 
+      {/* User profile topbar */}
+      <TopBar
+        userProfile={userProfile}
+        onReset={() => {
+          localStorage.removeItem('ml-user-profile');
+          setUserProfile(null);
+        }}
+      />
+
+      {/* Main content with cinematic page transitions */}
       <motion.main
         animate={{ marginLeft: sidebarWidth + 'px' }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         style={{
           flex: 1,
           padding: '4.5rem 3rem 3rem',
@@ -214,10 +244,10 @@ function App() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, y: 12, filter: 'blur(4px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: -8, filter: 'blur(2px)' }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            variants={cinemaVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
           >
             {renderContent()}
           </motion.div>

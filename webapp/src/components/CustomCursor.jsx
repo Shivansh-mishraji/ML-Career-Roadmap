@@ -38,9 +38,11 @@ const CustomCursor = () => {
 
     const onDown = () => setIsClicking(true);
     const onUp = () => setIsClicking(false);
-    const onLeave = () => {
-      if (dotRef.current) dotRef.current.style.opacity = '0';
-      if (ringRef.current) ringRef.current.style.opacity = '0';
+    const onLeave = (e) => {
+      if (e.clientY <= 0 || e.clientX <= 0 || (e.clientX >= window.innerWidth || e.clientY >= window.innerHeight)) {
+        if (dotRef.current) dotRef.current.style.opacity = '0';
+        if (ringRef.current) ringRef.current.style.opacity = '0';
+      }
     };
     const onEnter = () => {
       if (dotRef.current) dotRef.current.style.opacity = '1';
@@ -50,15 +52,15 @@ const CustomCursor = () => {
     window.addEventListener('mousemove', onMove);
     window.addEventListener('mousedown', onDown);
     window.addEventListener('mouseup', onUp);
-    document.documentElement.addEventListener('mouseleave', onLeave);
-    document.documentElement.addEventListener('mouseenter', onEnter);
+    document.addEventListener('mouseleave', onLeave);
+    document.addEventListener('mouseenter', onEnter);
 
     return () => {
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mousedown', onDown);
       window.removeEventListener('mouseup', onUp);
-      document.documentElement.removeEventListener('mouseleave', onLeave);
-      document.documentElement.removeEventListener('mouseenter', onEnter);
+      document.removeEventListener('mouseleave', onLeave);
+      document.removeEventListener('mouseenter', onEnter);
     };
   }, [updateCursorColor]);
 

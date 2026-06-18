@@ -198,7 +198,58 @@ function App() {
     }
   };
 
-  if (!userProfile) return <Onboarding onComplete={handleOnboardingComplete} />;
+  const renderAppContent = () => {
+    if (!userProfile) {
+      return <Onboarding onComplete={handleOnboardingComplete} />;
+    }
+    return (
+      <>
+        {/* Sidebar */}
+        <Sidebar
+          activeTab={activeTab}
+          setActiveTab={(tab) => {
+            setActiveTab(tab);
+            if (tab !== 'tutorials') setTutorialContext({ activeNotebookId: null });
+          }}
+        />
+
+        {/* User profile topbar */}
+        <TopBar
+          userProfile={userProfile}
+          onReset={() => {
+            localStorage.removeItem('ml-user-profile');
+            setUserProfile(null);
+          }}
+        />
+
+        {/* Main content with cinematic page transitions */}
+        <motion.main
+          animate={{ marginLeft: sidebarWidth + 'px' }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            flex: 1,
+            padding: '4.5rem 3rem 3rem',
+            minHeight: '100vh',
+            zIndex: 10,
+            position: 'relative',
+            maxWidth: `calc(100vw - ${sidebarWidth}px)`,
+          }}
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              variants={cinemaVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              {renderContent()}
+            </motion.div>
+          </AnimatePresence>
+        </motion.main>
+      </>
+    );
+  };
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', position: 'relative', background: 'var(--bg-base)' }}>
@@ -210,49 +261,7 @@ function App() {
       {/* Vignette overlay */}
       <Vignette />
 
-      {/* Sidebar */}
-      <Sidebar
-        activeTab={activeTab}
-        setActiveTab={(tab) => {
-          setActiveTab(tab);
-          if (tab !== 'tutorials') setTutorialContext({ activeNotebookId: null });
-        }}
-      />
-
-      {/* User profile topbar */}
-      <TopBar
-        userProfile={userProfile}
-        onReset={() => {
-          localStorage.removeItem('ml-user-profile');
-          setUserProfile(null);
-        }}
-      />
-
-      {/* Main content with cinematic page transitions */}
-      <motion.main
-        animate={{ marginLeft: sidebarWidth + 'px' }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        style={{
-          flex: 1,
-          padding: '4.5rem 3rem 3rem',
-          minHeight: '100vh',
-          zIndex: 10,
-          position: 'relative',
-          maxWidth: `calc(100vw - ${sidebarWidth}px)`,
-        }}
-      >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            variants={cinemaVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
-            {renderContent()}
-          </motion.div>
-        </AnimatePresence>
-      </motion.main>
+      {renderAppContent()}
     </div>
   );
 }

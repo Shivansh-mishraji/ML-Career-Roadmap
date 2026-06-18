@@ -460,7 +460,7 @@ const Onboarding = ({ onComplete }) => {
 
   return (
     <div style={{
-      position: 'fixed', inset: 0, zIndex: 200, overflow: 'hidden',
+      position: 'fixed', inset: 0, zIndex: 200, overflowY: 'auto', overflowX: 'hidden',
       background: '#02020A',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
     }}>

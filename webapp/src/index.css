@@ -1099,6 +1099,19 @@ hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, 
     display: none !important;
   }
 
+  /* FOUNDER CARD MOBILE STACKING */
+  .founder-card {
+    flex-direction: column !important;
+    padding: 2rem !important;
+    gap: 2rem;
+  }
+  .founder-left-col {
+    margin-right: 0 !important;
+  }
+  .founder-grid {
+    grid-template-columns: 1fr !important;
+  }
+
   /* TUTORIAL HUB MOBILE STACKING */
   .tutorial-container {
     flex-direction: column;

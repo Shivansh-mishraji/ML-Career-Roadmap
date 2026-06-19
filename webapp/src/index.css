@@ -1106,7 +1106,7 @@ hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, 
 }
 
 /* -- MOBILE RESPONSIVE LAYOUT & PERFORMANCE FIXES ---------------------------- */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   /* HIDE COMPLEX GPU LAYERS ON MOBILE */
   .hide-on-mobile {
     display: none !important;
@@ -1183,6 +1183,12 @@ hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, 
   /* Hide custom cursor elements entirely */
   .cursor-dot, .cursor-ring {
     display: none !important;
+  }
+  
+  /* OVERRIDE FADEINUP ON MOBILE to prevent GPU texture limits being exceeded */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: none; }
+    to { opacity: 1; transform: none; }
   }
 }
 

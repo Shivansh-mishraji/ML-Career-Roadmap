@@ -201,7 +201,7 @@ function App() {
 
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth < 768;
+      const mobile = window.innerWidth <= 1024;
       setIsMobile(mobile);
       if (!mobile) setSidebarOpen(false);
     };
@@ -282,29 +282,41 @@ function App() {
             maxWidth: isMobile ? '100vw' : 'calc(100vw - 260px)',
           }}
         >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              variants={{
-                initial: { opacity: 0, y: isMobile ? 0 : 18, scale: isMobile ? 1 : 0.99 },
-                animate: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] } },
-                exit: { opacity: 0, y: isMobile ? 0 : -12, scale: isMobile ? 1 : 1.01, transition: { duration: 0.22, ease: [0.4, 0, 1, 1] } }
-              }}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
+          {isMobile ? (
+            <div key={activeTab} className="mobile-tab-fade" style={{ animation: 'fadeIn 0.3s ease-in' }}>
               <Suspense fallback={
                 <div style={{ display: 'flex', height: '50vh', alignItems: 'center', justifyContent: 'center' }}>
-                  <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
-                    <Loader2 size={32} color="var(--accent-primary)" />
-                  </motion.div>
+                  <Loader2 size={32} color="var(--accent-primary)" style={{ animation: 'spin 1s linear infinite' }} />
                 </div>
               }>
                 {renderContent()}
               </Suspense>
-            </motion.div>
-          </AnimatePresence>
+            </div>
+          ) : (
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                variants={{
+                  initial: { opacity: 0, y: 18, scale: 0.99 },
+                  animate: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] } },
+                  exit: { opacity: 0, y: -12, scale: 1.01, transition: { duration: 0.22, ease: [0.4, 0, 1, 1] } }
+                }}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                <Suspense fallback={
+                  <div style={{ display: 'flex', height: '50vh', alignItems: 'center', justifyContent: 'center' }}>
+                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
+                      <Loader2 size={32} color="var(--accent-primary)" />
+                    </motion.div>
+                  </div>
+                }>
+                  {renderContent()}
+                </Suspense>
+              </motion.div>
+            </AnimatePresence>
+          )}
         </motion.main>
       </>
     );

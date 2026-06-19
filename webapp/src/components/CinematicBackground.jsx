@@ -203,6 +203,8 @@ const CinematicBackground = () => {
   const canvasRef = useRef(null);
   const hasWebGL = useMemo(() => {
     try {
+      const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+      if (isMobile) return false;
       const canvas = document.createElement('canvas');
       return !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
     } catch {
@@ -235,9 +237,9 @@ const CinematicBackground = () => {
           <fog attach="fog" args={['#02020A', 12, 30]} />
           <SceneLights />
           <CameraController />
-          <NeuralParticles count={700} />
-          <VioletParticles count={350} />
-          <CyanRing count={200} />
+          <NeuralParticles count={150} />
+          <VioletParticles count={80} />
+          <CyanRing count={50} />
         </Canvas>
 
         {/* CSS gradient overlay for depth */}

@@ -21,7 +21,7 @@ const FounderProfile = lazy(() => import('./components/FounderProfile'));
 
 /* ── Cinematic Vignette ── */
 const Vignette = () => (
-  <div style={{
+  <div className="hide-on-mobile" style={{
     position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9996,
     background: 'radial-gradient(ellipse at center, transparent 40%, rgba(2,2,10,0.55) 100%)',
   }} />
@@ -309,8 +309,10 @@ function App() {
     <div style={{ display: 'flex', minHeight: '100vh', position: 'relative', background: 'var(--bg-base)' }}>
       <CustomCursor />
 
-      {/* 3D Cinematic Background */}
-      <CinematicBackground />
+      {/* 3D Cinematic Background (Hidden on mobile to prevent Android Chrome WebGL corruption) */}
+      <div className="hide-on-mobile">
+        <CinematicBackground />
+      </div>
 
       {/* Vignette overlay */}
       <Vignette />

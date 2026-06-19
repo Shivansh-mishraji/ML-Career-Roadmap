@@ -77,12 +77,7 @@ const TutorialHub = ({ initialNotebookId }) => {
 
   /* ── 1. Library Sidebar ── */
   const renderSidebar = () => (
-    <div style={{
-      width: '340px', height: '100%', overflowY: 'auto',
-      padding: '1.5rem 1.5rem 1.5rem 0',
-      borderRight: '1px solid rgba(255,255,255,0.05)',
-      display: 'flex', flexDirection: 'column', gap: '1rem',
-    }}>
+    <div className="tutorial-sidebar">
       <div style={{ marginBottom: '1rem' }}>
         <h2 style={{
           fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: '1.4rem',
@@ -391,12 +386,7 @@ const TutorialHub = ({ initialNotebookId }) => {
   };
 
   return (
-    <div style={{
-      display: 'flex', height: 'calc(100vh - 8rem)',
-      background: 'rgba(4,4,12,0.6)', backdropFilter: 'blur(30px)',
-      border: '1px solid rgba(255,255,255,0.05)', borderRadius: '24px',
-      overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)',
-    }}>
+    <div className="tutorial-container">
       {renderSidebar()}
       {renderContent()}
     </div>

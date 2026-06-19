@@ -10,6 +10,7 @@ graph LR
     C --> D[Deploy]
 ```
 
+![ML Roadmap Banner](./assets/banner.png)
 
 🚀 # 🚀 ML/AI Career Roadmap
 🔍 ### *From Beginner to ₹15-25L Job, At Your Own Pace*
@@ -116,6 +117,10 @@ Don't just collect links and stare at folders. Here is exactly **how and when** 
 ✨ ## 🎯 **Specialization Paths**
 
 Machine Learning is broad. Once you reach **Level 3**, you should pick a specialization:
+
+<div align="center">
+<img src="./assets/specializations.png" alt="Specializations 3D Diagram" width="800" />
+<br />
 
 <div align="center">
 

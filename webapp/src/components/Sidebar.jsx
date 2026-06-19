@@ -235,15 +235,39 @@ const DevCard = ({ collapsed }) => {
 };
 
 /* ─── Main Sidebar ─── */
-const Sidebar = ({ activeTab, setActiveTab }) => {
+const Sidebar = ({ activeTab, setActiveTab, isMobile, isOpen, onClose }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
 
+  const sidebarWidth = isMobile ? '260px' : (collapsed ? '80px' : '260px');
+  const isHidden = isMobile && !isOpen;
+
   return (
-    <motion.aside
-      initial={{ x: -30, opacity: 0 }}
-      animate={{ x: 0, opacity: 1, width: collapsed ? '80px' : '260px' }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+    <>
+      {/* Mobile Backdrop */}
+      <AnimatePresence>
+        {isMobile && isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            style={{
+              position: 'fixed', inset: 0, zIndex: 90,
+              background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)'
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      <motion.aside
+        initial={{ x: -300, opacity: 0 }}
+        animate={{ 
+          x: isHidden ? -300 : 0, 
+          opacity: isHidden ? 0 : 1, 
+          width: sidebarWidth 
+        }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       style={{
         height: '100vh', position: 'fixed', left: 0, top: 0,
         display: 'flex', flexDirection: 'column',
@@ -417,9 +441,9 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
       </nav>
 
       {/* ── Footer ── */}
-      <div style={{ padding: collapsed ? '1rem 0' : '1rem', borderTop: '1px solid rgba(255,255,255,0.03)' }}>
+      <div style={{ padding: (collapsed && !isMobile) ? '1rem 0' : '1rem', borderTop: '1px solid rgba(255,255,255,0.03)' }}>
         <AnimatePresence>
-          {!collapsed && (
+          {(!collapsed || isMobile) && (
             <motion.div
               initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
               style={{
@@ -447,34 +471,37 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
           )}
         </AnimatePresence>
 
-        <motion.button
-          onClick={() => setCollapsed(!collapsed)}
-          whileHover={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
-          whileTap={{ scale: 0.95 }}
-          style={{
-            width: '100%', display: 'flex', alignItems: 'center',
-            justifyContent: collapsed ? 'center' : 'center',
-            gap: '0.5rem', padding: '0.6rem',
-            background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', 
-            borderRadius: '10px', cursor: 'pointer', transition: 'all 0.2s',
-          }}
-        >
-          <motion.div animate={{ rotate: collapsed ? 0 : 180 }} transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}>
-            <ChevronRight size={16} color="rgba(255,255,255,0.6)" />
-          </motion.div>
-          <AnimatePresence>
-            {!collapsed && (
-              <motion.span
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '0.8rem', fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}
-              >
-                Collapse Core System
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </motion.button>
+        {!isMobile && (
+          <motion.button
+            onClick={() => setCollapsed(!collapsed)}
+            whileHover={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
+            whileTap={{ scale: 0.95 }}
+            style={{
+              width: '100%', display: 'flex', alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem', padding: '0.6rem',
+              background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', 
+              borderRadius: '10px', cursor: 'pointer', transition: 'all 0.2s',
+            }}
+          >
+            <motion.div animate={{ rotate: collapsed ? 0 : 180 }} transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}>
+              <ChevronRight size={16} color="rgba(255,255,255,0.6)" />
+            </motion.div>
+            <AnimatePresence>
+              {!collapsed && (
+                <motion.span
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '0.8rem', fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}
+                >
+                  Collapse Core System
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </motion.button>
+        )}
       </div>
     </motion.aside>
+    </>
   );
 };
 

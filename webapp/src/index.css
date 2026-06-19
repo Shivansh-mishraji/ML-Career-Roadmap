@@ -1040,8 +1040,28 @@ hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, 
   to { stroke-dashoffset: 0; }
 }
 
+/* -- RESPONSIVE GRIDS --------------------------------------------------------- */
+.responsive-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.responsive-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
 /* -- MOBILE RESPONSIVE LAYOUT & PERFORMANCE FIXES ---------------------------- */
 @media (max-width: 768px) {
+  /* NUKE ALL BACKDROP FILTERS GLOBALLY TO PREVENT ANDROID GLITCHES */
+  * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
   /* Disable heavy SVG noise and animations on mobile for performance */
   body::before {
     display: none !important;

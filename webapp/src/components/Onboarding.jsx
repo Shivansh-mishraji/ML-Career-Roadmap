@@ -757,7 +757,7 @@ const Onboarding = ({ onComplete }) => {
                 </motion.p>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.75rem', marginBottom: '2rem' }}>
+              <div className="responsive-grid-2">
                 <TrackCard
                   selected={track === 'internship'}
                   onClick={() => { setTrack('internship'); setTimeout(() => setStep(3), 400); }}
@@ -820,7 +820,7 @@ const Onboarding = ({ onComplete }) => {
                 </motion.p>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.25rem', marginBottom: '2.5rem' }}>
+              <div className="responsive-grid-3">
                 <TimelineCard
                   selected={timeline === '1month'}
                   onClick={() => setTimeline('1month')}

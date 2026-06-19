@@ -105,7 +105,7 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
   };
 
   return (
-    <div className="fade-in-up">
+    <div>
       <div style={{ marginBottom: '3rem' }}>
         <h1 className="gradient-text mono" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>// Command_Center</h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '800px' }}>
@@ -229,8 +229,7 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
                         background: isChecked ? 'var(--success-glow)' : 'var(--bg-tertiary)',
                         border: `1px solid ${isChecked ? 'var(--success)' : 'var(--border-color)'}`,
                         borderRadius: 'var(--radius-sm)',
-                        cursor: isInternshipSkip ? 'not-allowed' : 'pointer',
-                        transition: 'all var(--transition-fast)'
+                        cursor: isInternshipSkip ? 'not-allowed' : 'pointer'
                       }}
                     >
                       <div style={{ color: isChecked ? 'var(--success)' : 'var(--text-muted)', marginTop: '2px' }}>

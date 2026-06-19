@@ -254,7 +254,7 @@ const Sidebar = ({ activeTab, setActiveTab, isMobile, isOpen, onClose }) => {
             onClick={onClose}
             style={{
               position: 'fixed', inset: 0, zIndex: 90,
-              background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)'
+              background: 'rgba(0,0,0,0.85)'
             }}
           />
         )}

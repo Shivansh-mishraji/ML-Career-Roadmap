@@ -207,7 +207,7 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
 
           return (
             <motion.div variants={itemVariants} key={levelBlock.level} className={`glass-panel ${isInternshipSkip ? 'skipped' : ''}`} style={{ padding: '2rem', border: recLevel === levelBlock.level && !isInternshipSkip ? '1px solid var(--accent-primary)' : '1px solid var(--border-color)', opacity: isInternshipSkip ? 0.4 : 1 }}>
-              <h3 className="mono" style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <h3 className="mono" style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', wordBreak: 'break-word', fontSize: '1.2rem' }}>
                 <span style={{ 
                   background: recLevel === levelBlock.level && !isInternshipSkip ? 'var(--accent-glow)' : 'var(--bg-tertiary)', 
                   color: recLevel === levelBlock.level && !isInternshipSkip ? 'var(--accent-primary)' : 'var(--text-primary)', 

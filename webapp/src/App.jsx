@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu } from 'lucide-react';
+import { Menu, Loader2 } from 'lucide-react';
 import Sidebar from './components/Sidebar';
-import SelfAssessment from './components/SelfAssessment';
-import Roadmap from './components/Roadmap';
-import ProjectGallery from './components/ProjectGallery';
-import Flashcards from './components/Flashcards';
-import AIAssistant from './components/AIAssistant';
-import ResourceHub from './components/ResourceHub';
-import JobTracker from './components/JobTracker';
-import JobPrep from './components/JobPrep';
-import Onboarding from './components/Onboarding';
-import TutorialHub from './components/TutorialHub';
-import FounderProfile from './components/FounderProfile';
 import CustomCursor from './components/CustomCursor';
 import CinematicBackground from './components/CinematicBackground';
+import Onboarding from './components/Onboarding';
 import './index.css';
+
+// Lazy load heavy components to drastically reduce initial loading time
+const SelfAssessment = lazy(() => import('./components/SelfAssessment'));
+const Roadmap = lazy(() => import('./components/Roadmap'));
+const ProjectGallery = lazy(() => import('./components/ProjectGallery'));
+const Flashcards = lazy(() => import('./components/Flashcards'));
+const AIAssistant = lazy(() => import('./components/AIAssistant'));
+const ResourceHub = lazy(() => import('./components/ResourceHub'));
+const JobTracker = lazy(() => import('./components/JobTracker'));
+const JobPrep = lazy(() => import('./components/JobPrep'));
+const TutorialHub = lazy(() => import('./components/TutorialHub'));
+const FounderProfile = lazy(() => import('./components/FounderProfile'));
 
 /* ── Cinematic Vignette ── */
 const Vignette = () => (
@@ -108,32 +110,36 @@ const TopBar = ({ userProfile, onReset, isMobile, onToggleSidebar }) => (
         {userProfile.name}
       </span>
 
-      <span style={{
-        fontFamily: "'Geist Mono', monospace",
-        fontSize: '0.64rem',
-        padding: '0.16rem 0.52rem',
-        borderRadius: '5px',
-        background: 'rgba(0,229,255,0.1)',
-        color: '#00E5FF',
-        border: '1px solid rgba(0,229,255,0.22)',
-        letterSpacing: '0.04em',
-        boxShadow: '0 0 10px rgba(0,229,255,0.12)',
-      }}>
-        {userProfile.track?.toUpperCase()}
-      </span>
+      {!isMobile && (
+        <>
+          <span style={{
+            fontFamily: "'Geist Mono', monospace",
+            fontSize: '0.64rem',
+            padding: '0.16rem 0.52rem',
+            borderRadius: '5px',
+            background: 'rgba(0,229,255,0.1)',
+            color: '#00E5FF',
+            border: '1px solid rgba(0,229,255,0.22)',
+            letterSpacing: '0.04em',
+            boxShadow: '0 0 10px rgba(0,229,255,0.12)',
+          }}>
+            {userProfile.track?.toUpperCase()}
+          </span>
 
-      <span style={{
-        fontFamily: "'Geist Mono', monospace",
-        fontSize: '0.64rem',
-        padding: '0.16rem 0.52rem',
-        borderRadius: '5px',
-        background: 'rgba(155,109,255,0.1)',
-        color: '#9B6DFF',
-        border: '1px solid rgba(155,109,255,0.22)',
-        letterSpacing: '0.04em',
-      }}>
-        {userProfile.timeline}
-      </span>
+          <span style={{
+            fontFamily: "'Geist Mono', monospace",
+            fontSize: '0.64rem',
+            padding: '0.16rem 0.52rem',
+            borderRadius: '5px',
+            background: 'rgba(155,109,255,0.1)',
+            color: '#9B6DFF',
+            border: '1px solid rgba(155,109,255,0.22)',
+            letterSpacing: '0.04em',
+          }}>
+            {userProfile.timeline}
+          </span>
+        </>
+      )}
 
       <button
         onClick={onReset}
@@ -162,13 +168,11 @@ const cinemaVariants = {
   initial: {
     opacity: 0,
     y: 18,
-    filter: 'blur(5px)',
     scale: 0.99,
   },
   animate: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
     scale: 1,
     transition: {
       duration: 0.38,
@@ -178,7 +182,6 @@ const cinemaVariants = {
   exit: {
     opacity: 0,
     y: -12,
-    filter: 'blur(3px)',
     scale: 1.01,
     transition: {
       duration: 0.22,
@@ -286,7 +289,15 @@ function App() {
               animate="animate"
               exit="exit"
             >
-              {renderContent()}
+              <Suspense fallback={
+                <div style={{ display: 'flex', height: '50vh', alignItems: 'center', justifyContent: 'center' }}>
+                  <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
+                    <Loader2 size={32} color="var(--accent-primary)" />
+                  </motion.div>
+                </div>
+              }>
+                {renderContent()}
+              </Suspense>
             </motion.div>
           </AnimatePresence>
         </motion.main>

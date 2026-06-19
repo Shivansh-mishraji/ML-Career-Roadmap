@@ -28,6 +28,7 @@ const FounderProfile = () => {
       }} />
 
       <motion.div
+        className="responsive-card founder-card"
         style={{
           width: '100%',
           maxWidth: '900px',
@@ -37,8 +38,6 @@ const FounderProfile = () => {
           borderRadius: '30px',
           padding: '4rem',
           display: 'flex',
-          flexDirection: 'row',
-          gap: '4rem',
           boxShadow: '0 20px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.02)',
           position: 'relative',
           zIndex: 1,
@@ -52,7 +51,7 @@ const FounderProfile = () => {
         }} />
 
         {/* Left Column: Image & Core Info */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '300px', flexShrink: 0 }}>
+        <div className="founder-left-col" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
           <motion.div
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 200, damping: 20 }}
@@ -145,7 +144,7 @@ const FounderProfile = () => {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3rem' }}>
+          <div className="founder-grid" style={{ display: 'grid', gap: '1.5rem', marginBottom: '3rem' }}>
             {[
               { icon: GraduationCap, label: 'Education', value: 'B.Tech CSE' },
               { icon: MapPin, label: 'Location', value: 'Lucknow, India' },

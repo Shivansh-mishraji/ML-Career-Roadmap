@@ -695,6 +695,20 @@ input[type="text"]::placeholder, textarea::placeholder { color: var(--text-muted
 .perspective-2000  { perspective: 2000px; }
 .preserve-3d       { transform-style: preserve-3d; }
 
+/* ── MASTERY CHECKLIST ITEMS ─────────────────────────────────── */
+.question-item {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s, border-color 0.2s;
+  will-change: auto; /* explicitly prevent GPU layer creation */
+}
+@media (hover: hover) and (pointer: fine) {
+  .question-item:hover {
+    transform: scale(1.01);
+  }
+}
+.question-item:active {
+  transform: scale(0.99);
+}
+
 /* ── KEYFRAME ANIMATIONS ─────────────────────────────────────── */
 
 @keyframes noiseAnim {

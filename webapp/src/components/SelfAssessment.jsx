@@ -227,11 +227,10 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
                   const key = `${levelBlock.level}-${idx}`;
                   const isChecked = !!checkedItems[key];
                   return (
-                    <motion.div 
-                      whileHover={{ scale: isInternshipSkip ? 1 : 1.01 }}
-                      whileTap={{ scale: isInternshipSkip ? 1 : 0.99 }}
+                    <div 
                       key={idx} 
                       onClick={() => { if(!isInternshipSkip) toggleItem(levelBlock.level, idx); }}
+                      className="question-item"
                       style={{ 
                         display: 'flex', alignItems: 'flex-start', gap: '1rem',
                         padding: '1rem',
@@ -266,7 +265,7 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
                           </div>
                         )}
                       </div>
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>

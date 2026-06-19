@@ -8,7 +8,7 @@
                SVG path draw · Magnetic interactions
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 
 /* ── CINEMATIC DESIGN TOKENS ─────────────────────────────── */
 :root {
@@ -1098,10 +1098,14 @@ hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, 
     border-bottom: 1px solid rgba(255,255,255,0.05);
   }
 
-  /* NUKE ALL BACKDROP FILTERS GLOBALLY TO PREVENT ANDROID GLITCHES */
+  /* NUKE ALL BACKDROP FILTERS AND GLOBAL GLITCHY LAYERS ON MOBILE */
   * {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+  }
+  
+  body::before, body::after {
+    display: none !important;
   }
   /* Disable heavy SVG noise and animations on mobile for performance */
   body::before {

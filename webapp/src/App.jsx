@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, Loader2 } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import CustomCursor from './components/CustomCursor';
-import CinematicBackground from './components/CinematicBackground';
+// CinematicBackground is lazy loaded below
 import Onboarding from './components/Onboarding';
 import './index.css';
 
@@ -18,6 +18,7 @@ const JobTracker = lazy(() => import('./components/JobTracker'));
 const JobPrep = lazy(() => import('./components/JobPrep'));
 const TutorialHub = lazy(() => import('./components/TutorialHub'));
 const FounderProfile = lazy(() => import('./components/FounderProfile'));
+const CinematicBackground = lazy(() => import('./components/CinematicBackground'));
 
 /* ── Cinematic Vignette ── */
 const Vignette = () => (
@@ -311,7 +312,9 @@ function App() {
 
       {/* 3D Cinematic Background (Hidden on mobile to prevent Android Chrome WebGL corruption) */}
       <div className="hide-on-mobile">
-        <CinematicBackground />
+        <Suspense fallback={null}>
+          <CinematicBackground />
+        </Suspense>
       </div>
 
       {/* Vignette overlay */}

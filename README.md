@@ -21,11 +21,15 @@ graph LR
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
 ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
+### 🌟 [**Launch Interactive Command Center**](https://r-roadmap.vercel.app) 🌟
+
 **Your Complete, Topic-Based Guide to Landing a High-Paying ML/AI Engineering Job**
 
+[Interactive App](https://r-roadmap.vercel.app) •
 [Self Assessment](#-self-assessment-where-should-you-start) •
 [Topic Roadmap](./TOPIC_ROADMAP.md) •
 [Projects](#-core-resources--projects) •
+[FAQ](#-questions)
 [FAQ](#-questions)
 </div>
 
@@ -36,6 +40,24 @@ graph LR
 Most roadmaps tell you to "learn ML in 30 days." **This is flawed.** Every student has a different learning speed, a different daily schedule, and different prior knowledge. 
 
 This repository is strictly **Topic-Based**. You only move to the next level when you have mastered the current one. Use the self-assessment below to find exactly where you need to start, cutting out the fluff and saving you hundreds of hours.
+
+---
+
+✨ ## 💻 **Interactive Command Center (New!)**
+
+We've built a fully-fledged, 3D interactive web application to help you track your progress dynamically! Stop relying on static Markdown files and start tracking your ML journey in style.
+
+<div align="center">
+
+[![Launch App](https://img.shields.io/badge/Launch%20Interactive%20App-00E5FF?style=for-the-badge&logo=vercel&logoColor=black)](https://r-roadmap.vercel.app)
+
+</div>
+
+**Features of the Web App:**
+- **Skill Matrix Radar:** Visually track your strengths across Python, Stats, Deep Learning, and MLOps.
+- **Dynamic Recommender:** Suggests the exact module you need to study next based on your checklist.
+- **Mastery Checklists:** Interactive checkboxes that save your progress locally.
+- **Cinematic Experience:** Built with a beautiful, responsive, futuristic UI.
 
 ---
 
@@ -181,16 +203,15 @@ No. Neural networks are essentially massive assemblies of classical linear model
 
 ✨ ## 🎉 **Let's Get Started!**
 
-**Stop stressing over timelines. Take the self-assessment, find your Level, and start building.**
+**Stop stressing over timelines. Launch the web app, take the self-assessment, find your Level, and start building.**
 
-[Go to the Topic Roadmap](./TOPIC_ROADMAP.md)
+### 👉 [Launch the Web App Now](https://r-roadmap.vercel.app) 👈
+<br/>
+<small>Or browse the static <a href="./TOPIC_ROADMAP.md">Topic Roadmap</a></small>
 
 *If this roadmap helped you, please **⭐️ Star** this repository!*
 
 </div>
-
-<!-- Formatting improvements -->
-
 
 ---
 *🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!* 

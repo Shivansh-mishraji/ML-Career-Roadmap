@@ -3,6 +3,12 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 const TRAIL_LENGTH = 14;
 
 const CustomCursor = () => {
+  const isTouchDevice = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
+  
+  if (isTouchDevice) {
+    return null;
+  }
+
   const dotRef = useRef(null);
   const ringRef = useRef(null);
   const trailRefs = useRef([]);

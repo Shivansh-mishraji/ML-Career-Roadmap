@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Menu } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import SelfAssessment from './components/SelfAssessment';
 import Roadmap from './components/Roadmap';
@@ -25,7 +26,7 @@ const Vignette = () => (
 );
 
 /* ── Holographic TopBar ── */
-const TopBar = ({ userProfile, onReset }) => (
+const TopBar = ({ userProfile, onReset, isMobile, onToggleSidebar }) => (
   <motion.div
     initial={{ opacity: 0, y: -16, filter: 'blur(8px)' }}
     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -37,9 +38,31 @@ const TopBar = ({ userProfile, onReset }) => (
       display: 'flex',
       alignItems: 'center',
       gap: '0.75rem',
-      zIndex: 50,
+      gap: '0.75rem',
+      zIndex: 101, // Higher than sidebar overlay if needed
     }}
   >
+    {isMobile && (
+      <button
+        onClick={onToggleSidebar}
+        style={{
+          background: 'rgba(4, 4, 14, 0.88)',
+          backdropFilter: 'blur(28px)',
+          border: '1px solid rgba(255,255,255,0.07)',
+          borderRadius: '12px',
+          padding: '0.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'var(--text-primary)',
+          cursor: 'pointer',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
+        }}
+      >
+        <Menu size={20} color="#fff" />
+      </button>
+    )}
+
     <div style={{
       display: 'flex',
       alignItems: 'center',
@@ -168,8 +191,20 @@ const cinemaVariants = {
 function App() {
   const [activeTab, setActiveTab] = useState('assessment');
   const [userProfile, setUserProfile] = useState(null);
-  const [sidebarWidth] = useState(248);
   const [tutorialContext, setTutorialContext] = useState({ activeNotebookId: null });
+  const [isMobile, setIsMobile] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (!mobile) setSidebarOpen(false);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const savedProfile = localStorage.getItem('ml-user-profile');
@@ -212,7 +247,11 @@ function App() {
           setActiveTab={(tab) => {
             setActiveTab(tab);
             if (tab !== 'tutorials') setTutorialContext({ activeNotebookId: null });
+            if (isMobile) setSidebarOpen(false);
           }}
+          isMobile={isMobile}
+          isOpen={sidebarOpen}
+          onClose={() => setSidebarOpen(false)}
         />
 
         {/* User profile topbar */}
@@ -222,19 +261,21 @@ function App() {
             localStorage.removeItem('ml-user-profile');
             setUserProfile(null);
           }}
+          isMobile={isMobile}
+          onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
         />
 
         {/* Main content with cinematic page transitions */}
         <motion.main
-          animate={{ marginLeft: sidebarWidth + 'px' }}
+          animate={{ marginLeft: isMobile ? 0 : '260px' }} // Sidebar width is ~260px on desktop
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           style={{
             flex: 1,
-            padding: '4.5rem 3rem 3rem',
+            padding: isMobile ? '5rem 1rem 1.5rem' : '4.5rem 3rem 3rem',
             minHeight: '100vh',
             zIndex: 10,
             position: 'relative',
-            maxWidth: `calc(100vw - ${sidebarWidth}px)`,
+            maxWidth: isMobile ? '100vw' : 'calc(100vw - 260px)',
           }}
         >
           <AnimatePresence mode="wait">

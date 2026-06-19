@@ -142,9 +142,8 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9998;
-  opacity: 0.55;
+  opacity: 0.25;
   mix-blend-mode: screen;
-  animation: noiseAnim 0.15s steps(2) infinite;
 }
 
 /* Scanline effect */
@@ -161,7 +160,6 @@ body::after {
   );
   pointer-events: none;
   z-index: 9997;
-  animation: scanlines 8s linear infinite;
 }
 
 /* ── CUSTOM CURSOR ───────────────────────────────────────────── */
@@ -305,8 +303,8 @@ button { cursor: none; }
 /* L1 — Cinematic panel */
 .glass-panel {
   background: var(--bg-surface);
-  backdrop-filter: blur(32px) saturate(220%);
-  -webkit-backdrop-filter: blur(32px) saturate(220%);
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
   border: 1px solid var(--border-subtle);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-card), var(--shadow-holo);
@@ -316,8 +314,8 @@ button { cursor: none; }
 /* L2 — Standard card with holographic shimmer */
 .glass-card {
   background: var(--bg-elevated);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border-subtle);
   border-radius: var(--r-lg);
   padding: 1.5rem;
@@ -361,8 +359,8 @@ button { cursor: none; }
 /* L3 — Premium holographic card */
 .glass-card-premium {
   background: linear-gradient(145deg, rgba(18,18,32,0.98), rgba(8,8,18,0.75));
-  backdrop-filter: blur(40px) saturate(240%);
-  -webkit-backdrop-filter: blur(40px) saturate(240%);
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
   border: 1px solid var(--border-subtle);
   border-radius: var(--r-xl);
   padding: 2rem;
@@ -409,7 +407,7 @@ button { cursor: none; }
   position: relative;
   border-radius: var(--r-xl);
   overflow: hidden;
-  backdrop-filter: blur(32px);
+  backdrop-filter: blur(8px);
   transition: all var(--t-cinema);
 }
 
@@ -679,7 +677,7 @@ input[type="text"]::placeholder, textarea::placeholder { color: var(--text-muted
   justify-content: center; align-items: center;
   padding: 2.5rem; border-radius: var(--r-xl);
   border: 1px solid var(--border-subtle);
-  backdrop-filter: blur(24px);
+  backdrop-filter: blur(8px);
   box-shadow: var(--shadow-md);
 }
 
@@ -1040,4 +1038,54 @@ hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, 
 
 @keyframes svgDraw {
   to { stroke-dashoffset: 0; }
+}
+
+/* -- MOBILE RESPONSIVE LAYOUT & PERFORMANCE FIXES ---------------------------- */
+@media (max-width: 768px) {
+  /* Disable heavy SVG noise and animations on mobile for performance */
+  body::before {
+    display: none !important;
+  }
+  body::after {
+    display: none !important;
+  }
+  
+  /* Reduce heavy blur filters */
+  .glass-panel, .glass-card, .glass-card-premium {
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
+  
+  /* Adjust typography */
+  h1 { font-size: 2rem !important; }
+  h2 { font-size: 1.5rem !important; }
+  h3 { font-size: 1.25rem !important; }
+  
+  /* Make flip cards auto height or smaller */
+  .flip-card {
+    height: 320px;
+  }
+  .flip-card-front, .flip-card-back {
+    padding: 1.5rem;
+  }
+  
+  /* General padding adjustments */
+  main {
+    padding: 5rem 1rem 1.5rem 1rem !important;
+  }
+  
+  /* Hide custom cursor elements entirely */
+  .cursor-dot, .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* -- NATIVE CURSOR FALLBACK FOR TOUCH DEVICES ---------------------------- */
+@media (pointer: coarse) {
+  *, *::before, *::after, body, a, button, input {
+    cursor: auto !important;
+  }
+  .cursor-dot, .cursor-ring {
+    display: none !important;
+  }
 }

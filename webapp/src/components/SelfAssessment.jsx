@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CheckSquare, Square, Zap, ChevronRight, Award, Crosshair, BookOpen } from 'lucide-react';
-import { motion } from 'framer-motion';
+// Framer motion stripped from this component to prevent mobile GPU crashes
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from 'recharts';
 import { assessmentQuestions, roadmapData } from '../data/roadmapData';
 import { getNotebooksByLevel } from '../utils/tutorialUtils';
@@ -84,15 +84,7 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
     return null;
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
-  };
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 24 } }
-  };
 
   // Dynamic Content Generation
   const getNextObjectives = () => {
@@ -113,13 +105,13 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
   };
 
   return (
-    <motion.div initial="hidden" animate="visible" variants={containerVariants}>
-      <motion.div variants={itemVariants} style={{ marginBottom: '3rem' }}>
+    <div className="fade-in-up">
+      <div style={{ marginBottom: '3rem' }}>
         <h1 className="gradient-text mono" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>// Command_Center</h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '800px' }}>
           Your personalized ML operations dashboard. Track progress, find bottlenecks, and get your next learning directives.
         </p>
-      </motion.div>
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
         {/* Radar Chart */}
@@ -141,7 +133,7 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
         </TiltCard>
         
         {/* Dynamic Recommender */}
-        <motion.div variants={itemVariants} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <div className="glass-card" style={{ borderLeft: '4px solid var(--accent-primary)', display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'space-between', flex: 1 }}>
             <div>
               <h3 className="mono" style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.9rem' }}>RECOMMENDED_ENTRY_POINT</h3>
@@ -171,10 +163,10 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
               )}
             </div>
           </TiltCard>
-        </motion.div>
+        </div>
 
         {/* Mastered Log & Activity */}
-        <motion.div variants={itemVariants} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <div className="glass-card" style={{ padding: '1.5rem', flex: 1 }}>
              <h3 className="mono" style={{ fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Award size={18} color="var(--success)" /> Recently Mastered
@@ -195,7 +187,7 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
           <div style={{ flex: 1 }}>
             <ProgressGraph activeCount={activityCount} />
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
@@ -206,7 +198,7 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
           const isInternshipSkip = userProfile?.track === 'internship' && index >= 7; // Skip Level 7, 8, 9
 
           return (
-            <motion.div variants={itemVariants} key={levelBlock.level} className={`glass-panel ${isInternshipSkip ? 'skipped' : ''}`} style={{ padding: '2rem', border: recLevel === levelBlock.level && !isInternshipSkip ? '1px solid var(--accent-primary)' : '1px solid var(--border-color)', opacity: isInternshipSkip ? 0.4 : 1 }}>
+            <div key={levelBlock.level} className={`glass-panel ${isInternshipSkip ? 'skipped' : ''}`} style={{ padding: '2rem', border: recLevel === levelBlock.level && !isInternshipSkip ? '1px solid var(--accent-primary)' : '1px solid var(--border-color)', opacity: isInternshipSkip ? 0.4 : 1 }}>
               <h3 className="mono" style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', wordBreak: 'break-word', fontSize: '1.2rem' }}>
                 <span style={{ 
                   background: recLevel === levelBlock.level && !isInternshipSkip ? 'var(--accent-glow)' : 'var(--bg-tertiary)', 
@@ -269,11 +261,11 @@ const SelfAssessment = ({ userProfile, setActiveTab, setTutorialContext }) => {
                   );
                 })}
               </div>
-            </motion.div>
+            </div>
           );
         })}
       </div>
-    </motion.div>
+    </div>
   );
 };
 

@@ -1,217 +1,132 @@
 <div align="center">
 
-> [!TIP]
-> **Document Workflow**
+![ML Roadmap Banner](https://capsule-render.vercel.app/api?type=waving&height=280&text=ML%20%2F%20AI%20Career%20Roadmap&fontSize=52&fontAlign=50&fontAlignY=45&color=0:0d1117,50:1a0533,100:2d0a4e&fontColor=c084fc&desc=From%20Beginner%20to%20%E2%82%B915-25L%20Job%20%7C%20Topic-Based%20%7C%20Self-Paced&descFontColor=a78bfa&descAlignY=65&animation=fadeIn)
 
-```mermaid
-graph LR
-    A[Review Concepts] --> B[Implement]
-    B --> C[Test]
-    C --> D[Deploy]
+
+
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Space+Grotesk&weight=700&size=28&pause=1000&color=7C3AED&center=true&vCenter=true&width=650&lines=ML+%2F+AI+Career+Roadmap;From+Beginner+to+%E2%82%B915-25L+Job;Topic-Based+%7C+Self-Paced;10%2B+Curated+Resources" alt="Typing SVG" /></a>
+
+<p>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" />
+  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" />
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" />
+  <img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white" />
+</p>
+
+<p>
+  <img src="https://img.shields.io/badge/Status-Active-10b981?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/License-MIT-06b6d4?style=for-the-badge" />
+</p>
+
+[![Launch Interactive App](https://img.shields.io/badge/🚀_Launch_Interactive_App-00E5FF?style=for-the-badge&logo=vercel&logoColor=black)](https://ml-career-roadmap.vercel.app/)
+
+**Your complete, topic-based guide to landing a high-paying ML/AI engineering role.**
+
+</div>
+
+---
+
+## 🎯 Why This Roadmap Is Different
+
+Most roadmaps tell you: *"Learn ML in 30 days."* That's broken advice.
+
+This roadmap is strictly **Topic-Based, not Time-Based**. You progress when you've genuinely mastered each topic — not when a timer says so. It removes fluff, avoids tutorial hell, and focuses on what actually gets you hired.
+
+---
+
+## 🌐 Interactive Command Center
+
+A live, deployed web app to track your ML learning journey dynamically.
+
+| Feature | Description |
+|---|---|
+| 📊 **Skill Matrix Radar** | Visual radar chart of your strengths across Python, Stats, DL, MLOps |
+| 🧭 **Dynamic Recommender** | Suggests exactly what to study next based on your progress |
+| ✅ **Mastery Checklists** | Interactive checkboxes — progress saved locally in your browser |
+| 🎨 **Cinematic UI** | Beautiful, futuristic interface built with modern web tech |
+
+👉 **[Launch the App →](https://ml-career-roadmap.vercel.app/)**
+
+---
+
+## 🗺️ Roadmap Structure
+
+```
+Level 0 — Self Assessment (find where you start)
+Level 1 — Python Foundations + Math & Stats
+Level 2 — Data Manipulation (Pandas, NumPy, SQL)
+Level 3 — Machine Learning (Scikit-learn, EDA, Feature Engineering)
+Level 4 — Deep Learning (TensorFlow / PyTorch, NLP, CV)
+Level 5 — MLOps & Production (Docker, FastAPI, CI/CD, Model Serving)
+Level 6 — Specializations (LLMs, Reinforcement Learning, MLOps on Cloud)
 ```
 
-![ML Roadmap Banner](./assets/banner.png)
+---
 
-🚀 # 🚀 ML/AI Career Roadmap
-🔍 ### *From Beginner to ₹15-25L Job, At Your Own Pace*
+## 📂 Repository Contents
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
-![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
-
-### 🌟 [**Launch Interactive Command Center**](https://r-roadmap.vercel.app) 🌟
-
-**Your Complete, Topic-Based Guide to Landing a High-Paying ML/AI Engineering Job**
-
-[Interactive App](https://r-roadmap.vercel.app) •
-[Self Assessment](#-self-assessment-where-should-you-start) •
-[Topic Roadmap](./TOPIC_ROADMAP.md) •
-[Projects](#-core-resources--projects) •
-[FAQ](#-questions)
-[FAQ](#-questions)
-</div>
+| File / Folder | Description |
+|---|---|
+| `README.md` | This file — overview and quick start |
+| `TOPIC_ROADMAP.md` | Full detailed topic-by-topic breakdown |
+| `INDEX.md` | Master index of all resources |
+| `webapp/` | Interactive web app source code |
+| `dsa-guide/` | Data Structures & Algorithms for ML interviews |
+| `interview-prep/` | ML interview Q&A, system design, coding rounds |
+| `internship-prep/` | Resume tips, cold outreach, portfolio building |
+| `ml-engineer-reference-project/` | Reference ML project with best practices |
+| `mlops-reference-project/` | End-to-end MLOps pipeline example |
+| `project-templates/` | Starter templates for ML projects |
+| `learning-resources/` | Curated books, courses, papers |
 
 ---
 
-✨ ## 🛑 Stop Learning by Timelines
+## 🧭 Self Assessment — Where Do You Start?
 
-Most roadmaps tell you to "learn ML in 30 days." **This is flawed.** Every student has a different learning speed, a different daily schedule, and different prior knowledge. 
+Answer honestly to find your entry point:
 
-This repository is strictly **Topic-Based**. You only move to the next level when you have mastered the current one. Use the self-assessment below to find exactly where you need to start, cutting out the fluff and saving you hundreds of hours.
-
----
-
-✨ ## 💻 **Interactive Command Center (New!)**
-
-We've built a fully-fledged, 3D interactive web application to help you track your progress dynamically! Stop relying on static Markdown files and start tracking your ML journey in style.
-
-<div align="center">
-
-[![Launch App](https://img.shields.io/badge/Launch%20Interactive%20App-00E5FF?style=for-the-badge&logo=vercel&logoColor=black)](https://r-roadmap.vercel.app)
-
-</div>
-
-**Features of the Web App:**
-- **Skill Matrix Radar:** Visually track your strengths across Python, Stats, Deep Learning, and MLOps.
-- **Dynamic Recommender:** Suggests the exact module you need to study next based on your checklist.
-- **Mastery Checklists:** Interactive checkboxes that save your progress locally.
-- **Cinematic Experience:** Built with a beautiful, responsive, futuristic UI.
+| If you... | Start at |
+|---|---|
+| Don't know Python basics | Level 1 — Python Foundations |
+| Know Python but not NumPy/Pandas | Level 2 — Data Manipulation |
+| Know Pandas but not Scikit-learn | Level 3 — Machine Learning |
+| Know ML but not neural networks | Level 4 — Deep Learning |
+| Know DL but not how to deploy | Level 5 — MLOps |
 
 ---
 
-✨ ## 🧭 **Self-Assessment: Where should you start?**
+## 🚀 Getting Started
 
-*Don't waste time studying what you already know.* Check the boxes below honestly. **Stop at the first Level where you cannot confidently check ALL the boxes.** That is your exact starting point.
+```bash
+# Clone the repository
+git clone https://github.com/Shivansh-mishraji/ML-Career-Roadmap.git
+cd ML-Career-Roadmap
 
-🔍 ### 🟢 **Level 0: The Foundations**
-- [ ] I can write a Python `class` and understand the `__init__` method.
-- [ ] I can iterate over a dictionary using a `for` loop.
-- [ ] I know how to mathematically calculate a matrix dot-product.
-> **Did you leave any blank?** 👉 Start at **[Level 0](./TOPIC_ROADMAP.md#level-0)**.
+# Start with the self-assessment in TOPIC_ROADMAP.md
+# Then open the interactive app:
+cd webapp
+npm install
+npm run dev
+```
 
-🔍 ### 🟡 **Level 1: Data Manipulation**
-- [ ] I can load a CSV file using Pandas and fill missing values using `.fillna()`.
-- [ ] I can perform a SQL-like `GROUP BY` operation in Pandas.
-- [ ] I can plot a Correlation Heatmap using Seaborn.
-> **Did you leave any blank?** 👉 Start at **[Level 1](./TOPIC_ROADMAP.md#level-1)**.
-
-🔍 ### 🟠 **Level 2: Classical Machine Learning**
-- [ ] I understand the exact difference between Precision, Recall, and ROC-AUC.
-- [ ] I can write a Scikit-Learn `Pipeline` to scale data before training.
-- [ ] I know how to use K-Fold Cross Validation to prevent overfitting.
-> **Did you leave any blank?** 👉 Start at **[Level 2](./TOPIC_ROADMAP.md#level-2)**.
-
-🔍 ### 🔴 **Level 3: Deep Learning & AI**
-- [ ] I can write a custom `Dataset` and `DataLoader` class in PyTorch/TensorFlow.
-- [ ] I understand how Backpropagation updates weights using the Chain Rule.
-- [ ] I know what the "Self-Attention" mechanism is in a Transformer.
-> **Did you leave any blank?** 👉 Start at **[Level 3](./TOPIC_ROADMAP.md#level-3)**.
-
-🔍 ### ⚫ **Level 4: MLOps & Production**
-- [ ] I can track my hyperparameter experiments using MLflow.
-- [ ] I can write a `Dockerfile` to containerize a Python ML application.
-- [ ] I can expose a trained model as a REST API using FastAPI.
-> **Did you leave any blank?** 👉 Start at **[Level 4](./TOPIC_ROADMAP.md#level-4)**.
-
-🎉 **Checked every single box?** You are fully prepared for Senior ML Engineering interviews! Jump straight to our **[Interview Prep Guide](./interview-prep/ML_CONCEPTS_INTERVIEW_GUIDE.md)**.
+Or just visit the **[Live App →](https://ml-career-roadmap.vercel.app/)** — no setup needed.
 
 ---
 
-✨ ## 💡 **How to Use This Repository Efficiently**
+## 🎯 Goal
 
-To get the most out of this roadmap and avoid wasting time, follow this strict workflow:
-
-1.  **Stop Tutorial Hell:** Do not just watch the linked courses. For every 1 hour of video you watch, spend 2 hours coding.
-2.  **Use the Reference Architectures:** When building your "Proof of Mastery" projects, don't guess how to structure your folders. Open the **[ML Engineer Reference Project](./ml-engineer-reference-project/)** and copy its folder structure (`src/`, `notebooks/`, `data/`). Model your code after it.
-3.  **Read the ML Lifecycle Guide:** Before you start Level 2, read the **[ML Engineering Lifecycle](./learning-resources/ML_ENGINEERING_LIFECYCLE.md)**. It will give you a bird's-eye view of why you are learning certain tools.
-4.  **Parallel Interview Prep:** Do not wait until you finish Level 4 to start interview prep. Once you hit Level 3, start spending 30 minutes a day on the **[LeetCode for ML](./dsa-guide/LEETCODE_ML_PROBLEMS.md)** list.
-5.  **Build a Public Portfolio:** Push every project you build to your own GitHub. A working link is worth more than a certificate.
+Help aspiring ML/AI engineers in India go from zero to a **₹15–25L/year role** by following a proven, practical, project-driven learning path — without wasting time on outdated or irrelevant content.
 
 ---
 
-✨ ## 📚 **Resource Utilization Guide**
+## 👤 Author
 
-Don't just collect links and stare at folders. Here is exactly **how and when** to use the materials in this repository:
-
-🔍 ### 1. The Core Learning Path
-*   🌟 **[Topic Master Roadmap](./TOPIC_ROADMAP.md)**
-    *   **When to use:** Daily. This is your primary compass.
-    *   **How to use:** Read the current topic, watch the recommended YouTube/Coursera videos, and check off the boxes. Do not move forward until you pass the "Proof of Mastery".
-
-🔍 ### 2. Project Blueprints (Crucial for Resumes)
-*   🏗️ **[ML Engineer Reference Project](./ml-engineer-reference-project/README.md)** *(Use in Level 2 & 4)*
-    *   **How to use:** Stop writing giant, messy Jupyter Notebooks. Use this folder as a blueprint to learn how to write modular `.py` scripts, structured `src/` folders, and Scikit-Learn Pipelines.
-*   ⚙️ **[MLOps Reference Architecture](./mlops-reference-project/README.md)** *(Use in Level 4)*
-    *   **How to use:** Once you know how to train a model, study this folder to learn Docker, MLflow tracking, and CI/CD. Use it as a direct template for your own final year or portfolio projects.
-*   🚀 **[Real-Time Projects](./internship-prep/REAL_TIME_PROJECTS.md)**
-    *   **How to use:** Pick an idea from this list when you need to build your portfolio.
-
-🔍 ### 3. Interview & Job Preparation
-*   🔄 **[ML Engineering Lifecycle](./learning-resources/ML_ENGINEERING_LIFECYCLE.md)**
-    *   **When to use:** Read this before any System Design interview. It teaches you how to talk like a Senior Engineer about the end-to-end ML process.
-*   🎤 **[Interview Guide](./interview-prep/ML_CONCEPTS_INTERVIEW_GUIDE.md)** & 💻 **[LeetCode Problems](./dsa-guide/LEETCODE_ML_PROBLEMS.md)**
-    *   **When to use:** Do not wait until the end. Start doing 1-2 interview/DSA questions daily as soon as you reach Level 3.
-
----
-
-✨ ## 🎯 **Specialization Paths**
-
-Machine Learning is broad. Once you reach **Level 3**, you should pick a specialization:
-
-<div align="center">
-<img src="./assets/specializations.png" alt="Specializations 3D Diagram" width="800" />
-<br />
-
-<div align="center">
-
-| 💾 **Path A: Data Science** | 🧠 **Path B: Deep Learning** | ⚙️ **Path C: ML Engineering** |
-|-----------------------------|------------------------------|-------------------------------|
-| **For:** Data Scientist, Analytics Engineer | **For:** AI Engineer, CV/NLP Engineer | **For:** ML Engineer, MLOps, Platform |
-| **Focus:** Stats, Time Series, A/B Testing | **Focus:** CNNs, NLP, Transformers | **Focus:** System Design, MLOps, Scalability |
-| **Projects:** Predictive analytics, forecasting | **Projects:** Vision, NLP, Multimodal | **Projects:** ML pipelines, deployment |
-| **Who?** Love math and statistics! | **Who?** Love building AI models! | **Who?** Love building scalable systems! |
-
-</div>
-
----
-
-✨ ## 🚨 **Common Mistakes to Avoid**
-
-| Mistake | Consequence | The Fix |
-|---------|-------------|---------|
-| **Tutorial Hell** | Endless watching, zero coding. | Code along, modify, build from scratch. |
-| **No GitHub** | Recruiters can't see your skills. | Push your projects to GitHub with good READMEs. |
-| **Jupyter Only** | Failing technical interviews. | Stop putting all code in Notebooks. Write `.py` scripts. |
-| **Skipping Level 0** | Copy-pasting without understanding.| Learn the fundamental Math and Python OOP first. |
-
----
-
-✨ ## 🏆 **Success Stories**
-
-> **Student A:** Started at Level 0 → Reached Level 3 → **₹16L offer at Flipkart** 🛒
-
-> **Student B:** Knew Pandas (Level 1) → Jumped to Level 4 → **₹12L offer at Gupshup** 💬
-
-> **Student C:** Career switcher → Reached Level 4 MLOps → **₹18L offer at AI startup** 🚀
-
-**Your story could be next!** 🌟
-
----
-
-✨ ## 📞 **Questions?**
-
-<details>
-<summary><b>How long will it take me to complete all levels?</b></summary>
-It depends entirely on your starting level and daily hours. Someone starting at Level 0 might take 4-6 months. Someone starting at Level 2 might reach Level 4 in 4 weeks.
-</details>
-
-<details>
-<summary><b>Can I skip Level 2 and go straight to Deep Learning?</b></summary>
-No. Neural networks are essentially massive assemblies of classical linear models. You must understand basic evaluation metrics, train/test splits, and overfitting from Level 2 first.
-</details>
-
-<details>
-<summary><b>What's the expected salary?</b></summary>
-₹15-25L expected range for candidates who master Level 4 (MLOps & Production).
-</details>
+**Shivansh Mishra** — ML Builder & AI Product Explorer  
+📍 Lucknow, India · [GitHub](https://github.com/Shivansh-mishraji) · [Portfolio](https://shivansh-mishraji.github.io/Portfolio-Website/) · [Kaggle](https://www.kaggle.com/shivansh7275)
 
 ---
 
 <div align="center">
-
-✨ ## 🎉 **Let's Get Started!**
-
-**Stop stressing over timelines. Launch the web app, take the self-assessment, find your Level, and start building.**
-
-### 👉 [Launch the Web App Now](https://r-roadmap.vercel.app) 👈
-<br/>
-<small>Or browse the static <a href="./TOPIC_ROADMAP.md">Topic Roadmap</a></small>
-
-*If this roadmap helped you, please **⭐️ Star** this repository!*
-
+  <i>📈 Topic-Based · Self-Paced · Project-Driven · Built for Indian ML aspirants</i>
 </div>
-
----
-*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!* 

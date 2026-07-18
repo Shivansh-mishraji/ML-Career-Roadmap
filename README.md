@@ -122,7 +122,7 @@ Help aspiring ML/AI engineers in India go from zero to a **₹15–25L/year role
 
 ## 👤 Author
 
-**Shivansh Mishra** — ML Builder & AI Product Explorer  
+**Shivansh Mishra** — ML Builder & AI Product Explorer
 📍 Lucknow, India · [GitHub](https://github.com/Shivansh-mishraji) · [Portfolio](https://shivansh-mishraji.github.io/Portfolio-Website/) · [Kaggle](https://www.kaggle.com/shivansh7275)
 
 ---

@@ -134,3 +134,5 @@ If you are building a portfolio project, try to hit as many of these checkmarks 
 ---
 *🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!* 
 > **Note:** This section is actively maintained and updated.
+
+> **Note:** This section is actively maintained and updated.

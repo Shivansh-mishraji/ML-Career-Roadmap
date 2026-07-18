@@ -10,7 +10,6 @@ graph LR
     C --> D[Deploy]
 ```
 
-
 **Target:** ML Engineer, Data Scientist, AI Engineer roles
 **Duration:** Study time: 5-10 hours (Week 4)
 **Format:** 10 core concepts + code examples + real interview questions
@@ -850,7 +849,6 @@ F1 Score: Harmonic mean of both (use when both matter equally)
 **Next:** Continue with Kaggle guide, DSA, and roadmaps!
 
 <!-- Formatting improvements -->
-
 
 ---
 *🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!*

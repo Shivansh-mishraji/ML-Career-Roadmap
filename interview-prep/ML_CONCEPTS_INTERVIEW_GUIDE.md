@@ -11,8 +11,8 @@ graph LR
 ```
 
 
-**Target:** ML Engineer, Data Scientist, AI Engineer roles  
-**Duration:** Study time: 5-10 hours (Week 4)  
+**Target:** ML Engineer, Data Scientist, AI Engineer roles
+**Duration:** Study time: 5-10 hours (Week 4)
 **Format:** 10 core concepts + code examples + real interview questions
 
 ---
@@ -29,12 +29,12 @@ graph LR
 **Interview Answer (2-3 mins):**
 ```
 "The bias-variance tradeoff describes the tension between model simplicity and complexity.
-A simple model (like linear regression) has high bias but low variance—it's consistent but 
+A simple model (like linear regression) has high bias but low variance—it's consistent but
 misses patterns. A complex model (like a deep neural network) has low bias but high variance—
 it fits training data perfectly but may fail on new data.
 
-The goal is to find the sweet spot where total error (bias² + variance + irreducible error) 
-is minimized. We achieve this through techniques like regularization, cross-validation, and 
+The goal is to find the sweet spot where total error (bias² + variance + irreducible error)
+is minimized. We achieve this through techniques like regularization, cross-validation, and
 ensemble methods."
 ```
 
@@ -60,11 +60,11 @@ for ax, degree in zip(axes, [1, 3, 9]):
         ('poly', PolynomialFeatures(degree)),
         ('lr', LinearRegression())
     ])
-    
+
     train_sizes, train_scores, val_scores = learning_curve(
         model, X, y, cv=5, train_sizes=np.linspace(0.1, 1.0, 10)
     )
-    
+
     ax.plot(train_sizes, train_scores.mean(axis=1), label='Training')
     ax.plot(train_sizes, val_scores.mean(axis=1), label='Validation')
     ax.set_title(f'Degree {degree}')
@@ -87,12 +87,12 @@ plt.show()
 
 **Interview Answer:**
 ```
-"Underfitting occurs when the model is too simple to capture the underlying patterns. 
-Example: Using linear regression on non-linear data. You see high error on both training 
+"Underfitting occurs when the model is too simple to capture the underlying patterns.
+Example: Using linear regression on non-linear data. You see high error on both training
 and test sets.
 
-Overfitting occurs when the model memorizes training data including noise. Example: 
-Training a deep neural network with no regularization. Training error is near 0 but 
+Overfitting occurs when the model memorizes training data including noise. Example:
+Training a deep neural network with no regularization. Training error is near 0 but
 test error is high.
 
 Solutions:
@@ -122,7 +122,7 @@ for ax, degree, title in zip(axes, [1, 3, 9], ['Underfitting', 'Good Fit', 'Over
     ])
     model.fit(X, y)
     y_pred = model.predict(X_test_sorted)
-    
+
     ax.scatter(X, y, alpha=0.5, label='Training data')
     ax.plot(X_test_sorted, y_true, 'g-', label='True function', linewidth=2)
     ax.plot(X_test_sorted, y_pred, 'r-', label='Model prediction', linewidth=2)
@@ -145,7 +145,7 @@ plt.show()
 
 **Interview Answer:**
 ```
-"Cross-validation is a technique to evaluate model performance on unseen data without 
+"Cross-validation is a technique to evaluate model performance on unseen data without
 wasting data on a separate test set.
 
 K-Fold Cross-Validation:
@@ -853,4 +853,4 @@ F1 Score: Harmonic mean of both (use when both matter equally)
 
 
 ---
-*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!* 
+*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!*

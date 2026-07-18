@@ -40,7 +40,7 @@ def train():
     # 2. Start an MLflow Run
     with mlflow.start_run(run_name="RandomForest_Run"):
         logger.info(f"Training with n_estimators={n_estimators}, max_depth={max_depth}")
-        
+
         # Log Hyperparameters
         mlflow.log_param("n_estimators", n_estimators)
         mlflow.log_param("max_depth", max_depth)
@@ -55,7 +55,7 @@ def train():
         precision = precision_score(y_test, predictions)
 
         logger.info(f"Accuracy: {accuracy:.4f}")
-        
+
         # Log Metrics
         mlflow.log_metric("accuracy", accuracy)
         mlflow.log_metric("precision", precision)
@@ -74,4 +74,4 @@ if __name__ == "__main__":
         train()
     except Exception as e:
         logger.error(f"Failed to connect to MLflow or train: {e}. Is MLflow running?")
- 
+

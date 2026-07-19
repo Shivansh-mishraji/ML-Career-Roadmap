@@ -33,7 +33,7 @@ for notebook in data:
     for cell in notebook['cells']:
         if cell.get('type') == 'code':
             code = cell.get('content', '')
-            
+
             # Clean up previously added comments from heuristic script
             lines = code.split('\n')
             clean_lines = []
@@ -41,7 +41,7 @@ for notebook in data:
                 if line.startswith('# Execute ') or line.startswith('# Import ') or line.startswith('# Generate ') or line.startswith('# Inspect ') or line.startswith('# Calculate ') or line.startswith('# Initialize ') or line.startswith('# Define ') or line.startswith('# Output: ') or line.startswith('#         ') or line.startswith('# Console Output:') or line.startswith('# Numeric Value'):
                     continue
                 clean_lines.append(line)
-            
+
             code = '\n'.join(clean_lines).strip()
             if not code:
                 continue
@@ -70,7 +70,7 @@ for notebook in data:
                     else:
                         exec(code, env)
                 output_str = f_io.getvalue().strip()
-                
+
                 # Check for generated plots
                 if has_matplotlib and plt.get_fignums():
                     buf = io.BytesIO()
@@ -90,10 +90,10 @@ for notebook in data:
             if output_str:
                 if len(output_str) > 2000:
                     output_str = output_str[:2000] + "\n... [Output Truncated]"
-                
+
                 commented_output = "\n".join([f"# Output: {line}" if i==0 else f"#         {line}" for i, line in enumerate(output_str.split('\n'))])
                 final_code = f"{code}\n\n{commented_output}"
-            
+
             cell['content'] = final_code
             if img_b64:
                 cell['image_output'] = f"data:image/png;base64,{img_b64}"

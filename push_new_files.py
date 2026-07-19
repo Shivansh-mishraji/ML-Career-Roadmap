@@ -1,3 +1,8 @@
+"""
+Push New Files module.
+Part of the ML-Career-Roadmap package.
+"""
+
 import os
 import subprocess
 

@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 # ==================================================
 # Function Definition
 # ==================================================
-def generate_drift_report():
+def generate_drift_report(): -> None:
     """
     Simulates checking for Data Drift in production using Evidently AI.
     """

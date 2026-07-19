@@ -74,17 +74,17 @@ def predict_churn(customer: CustomerData):
     """
     if pipeline is None:
         raise HTTPException(status_code=503, detail="Model is currently unavailable.")
-    
+
     # Convert the incoming JSON payload into a pandas DataFrame (1 row)
     # The ColumnTransformer in our pipeline expects a DataFrame
     input_data = pd.DataFrame([customer.dict()])
-    
+
     try:
-        # We pass the raw data directly into the pipeline! 
+        # We pass the raw data directly into the pipeline!
         # The pipeline handles missing values, scaling, one-hot encoding, etc. automatically.
         prediction = pipeline.predict(input_data)[0]
         probability = pipeline.predict_proba(input_data)[0][1]
-        
+
         return {
             "churn_prediction": int(prediction),
             "churn_probability": float(probability),
@@ -108,4 +108,4 @@ if __name__ == "__main__":
     uvicorn.run("src.inference:app", host="0.0.0.0", port=8000, reload=True)
 
 # Formatting and minor improvements
- 
+

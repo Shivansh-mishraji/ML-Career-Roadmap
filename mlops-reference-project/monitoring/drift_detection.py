@@ -24,11 +24,11 @@ def generate_drift_report(): -> None:
     Simulates checking for Data Drift in production using Evidently AI.
     """
     logger.info("Loading reference and current data...")
-    
+
     # 1. Load Reference Data (e.g., from training)
     data = load_breast_cancer(as_frame=True)
     reference_df = data.frame
-    
+
     # 2. Simulate "Current" Production Data (with artificial drift)
     # We multiply some features by a random factor to simulate distribution drift over time
     current_df = reference_df.copy()
@@ -38,17 +38,17 @@ def generate_drift_report(): -> None:
     # 3. Create Evidently Report
     logger.info("Generating Data Drift Report...")
     drift_report = Report(metrics=[DataDriftPreset()])
-    
+
     # Run the report
     drift_report.run(reference_data=reference_df, current_data=current_df)
-    
+
     # 4. Save the HTML report
     output_path = "drift_report.html"
     drift_report.save_html(output_path)
-    
+
     logger.info(f"Drift Report successfully generated and saved to '{output_path}'.")
     logger.info("In a real MLOps pipeline, if drift is detected, we trigger an alert or retrain pipeline!")
 
 if __name__ == "__main__":
     generate_drift_report()
- 
+

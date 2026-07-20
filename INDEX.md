@@ -10,9 +10,9 @@ graph LR
     C --> D[Deploy]
 ```
 
-**Last Updated:** May 30, 2026  
-**Files Created:** 9 comprehensive guides  
-**Total Content:** 5000+ lines of practical advice  
+**Last Updated:** May 30, 2026
+**Files Created:** 9 comprehensive guides
+**Total Content:** 5000+ lines of practical advice
 **Status:** ✅ Ready to use (locally committed, ready to push to GitHub)
 
 ---
@@ -24,7 +24,7 @@ ML-Career-Roadmap/
 │
 ├── 📄 README.md                          ← START HERE (Main entry point)
 │   ├─ Quick navigation
-│   ├─ Timeline overview  
+│   ├─ Timeline overview
 │   ├─ Which specialization path
 │   ├─ Tools needed
 │   ├─ Success checklist
@@ -43,7 +43,7 @@ ML-Career-Roadmap/
 │       │  ├─ Week 2: ML Basics (35h)
 │       │  ├─ Week 3: Advanced ML (40h)
 │       │  └─ Week 4: Capstone (35h)
-│       ├─ 2-Month: Specialization  
+│       ├─ 2-Month: Specialization
 │       │  ├─ Track A: Data Science (statistical, causal)
 │       │  ├─ Track B: Deep Learning (CNNs, NLP, transformers)
 │       │  └─ Track C: ML Engineering (systems, MLOps, scaling)
@@ -145,7 +145,7 @@ ML-Career-Roadmap/
   - Getting started
 
 **Next Steps After Reading:**
-→ Choose your specialization (Path A/B/C)  
+→ Choose your specialization (Path A/B/C)
 → Read [1-2-3_MONTH_ROADMAPS.md](roadmaps/1-2-3_MONTH_ROADMAPS.md)
 
 ---
@@ -166,7 +166,7 @@ ML-Career-Roadmap/
 - Track A/B/C details
 
 **Next Steps After Reading:**
-→ Read [DAY_BY_DAY_SCHEDULE.md](learning-resources/DAY_BY_DAY_SCHEDULE.md) for Month 1  
+→ Read [DAY_BY_DAY_SCHEDULE.md](learning-resources/DAY_BY_DAY_SCHEDULE.md) for Month 1
 → Use [PROJECT_TEMPLATE.md](project-templates/PROJECT_TEMPLATE.md) for structure
 
 ---
@@ -188,7 +188,7 @@ ML-Career-Roadmap/
 - GitHub commit message
 
 **Next Steps After Reading:**
-→ Start Day 1 materials  
+→ Start Day 1 materials
 → Follow the schedule religiously
 
 ---
@@ -214,7 +214,7 @@ ML-Career-Roadmap/
 - Future improvements
 
 **Next Steps:**
-→ Use this for every project  
+→ Use this for every project
 → Make sure README is comprehensive
 
 ---
@@ -237,7 +237,7 @@ ML-Career-Roadmap/
 - Titanic (if not doing as main project)
 
 **Next Steps:**
-→ Apply approach to Week 3 competition  
+→ Apply approach to Week 3 competition
 → Document your strategy in GitHub
 
 ---
@@ -264,8 +264,8 @@ ML-Career-Roadmap/
 10. Feature Selection
 
 **Next Steps:**
-→ Study 1 concept per day (Week 4)  
-→ Practice explaining each without notes  
+→ Study 1 concept per day (Week 4)
+→ Practice explaining each without notes
 → Use code examples in interviews
 
 ---
@@ -284,13 +284,13 @@ ML-Career-Roadmap/
 - Arrays (10) - Most common
 - Linked Lists (5)
 - Trees (10) - Important
-- Graphs (10) - Important  
+- Graphs (10) - Important
 - DP (10) - Essential
 - Math (5)
 - Design (5)
 
 **Next Steps:**
-→ Start with Week 1 problems (Arrays)  
+→ Start with Week 1 problems (Arrays)
 → Allocate 5-10 per week
 → Track solutions on GitHub
 
@@ -313,8 +313,8 @@ ML-Career-Roadmap/
 - Data Engineer: 80-90% DSA focus (70+ problems)
 
 **Next Steps:**
-→ Identify your target role  
-→ Pick your study plan  
+→ Identify your target role
+→ Pick your study plan
 → Solve problems systematically
 
 ---
@@ -336,8 +336,8 @@ ML-Career-Roadmap/
 - Help others learn
 
 **Next Steps:**
-→ Create GitHub repo  
-→ Push local code  
+→ Create GitHub repo
+→ Push local code
 → Share on social media
 
 ---
@@ -432,31 +432,31 @@ Week 5+: Add DSA if time allows
 
 ✨ ## 📞 **File Questions Reference**
 
-**Q: I'm new to ML, where do I start?**  
+**Q: I'm new to ML, where do I start?**
 A: README.md → 1-2-3 Roadmaps → Day-by-Day Schedule
 
-**Q: How do I structure my projects?**  
+**Q: How do I structure my projects?**
 A: PROJECT_TEMPLATE.md (copy this structure for every project)
 
-**Q: What should I learn this week?**  
+**Q: What should I learn this week?**
 A: DAY_BY_DAY_SCHEDULE.md (find your day)
 
-**Q: How do I win at Kaggle?**  
+**Q: How do I win at Kaggle?**
 A: KAGGLE_COMPETITION_GUIDE.md (Week 3 resource)
 
-**Q: What will interviewers ask about ML?**  
+**Q: What will interviewers ask about ML?**
 A: ML_CONCEPTS_INTERVIEW_GUIDE.md (10 concepts + Q&A)
 
-**Q: Which LeetCode problems should I solve?**  
+**Q: Which LeetCode problems should I solve?**
 A: LEETCODE_ML_PROBLEMS.md (50 problems + study plan)
 
-**Q: Which DSA do I really need?**  
+**Q: Which DSA do I really need?**
 A: DSA_PREPARATION_FOR_ML.md (by role + importance)
 
-**Q: How do I push to GitHub?**  
+**Q: How do I push to GitHub?**
 A: PUSH_TO_GITHUB.md (step-by-step)
 
-**Q: What specialization should I choose?**  
+**Q: What specialization should I choose?**
 A: README.md (Path A/B/C) or 1-2-3 Roadmaps (Month 2)
 
 ---
@@ -482,9 +482,9 @@ Everything is laid out:
 
 ---
 
-*Created: May 30, 2026*  
-*Last Updated: Today*  
-*Version: 1.0 - Complete*  
+*Created: May 30, 2026*
+*Last Updated: Today*
+*Version: 1.0 - Complete*
 *Status: Ready to Use*
 
 **Let's build your ML career! 💪**
@@ -492,4 +492,4 @@ Everything is laid out:
 <!-- Formatting improvements -->
 
 ---
-*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!* 
+*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!*

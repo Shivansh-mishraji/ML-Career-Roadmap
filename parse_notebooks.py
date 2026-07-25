@@ -39,7 +39,7 @@ def parse_notebooks():
 
         # Find all .ipynb files in the module
         notebook_files = glob.glob(os.path.join(module_path, "*.ipynb"))
-        
+
         # Sort them so they appear in a logical order
         notebook_files.sort()
 
@@ -59,7 +59,7 @@ def parse_notebooks():
                 continue
 
             parsed_cells = []
-            
+
             for cell in nb_data.get("cells", []):
                 cell_type = cell.get("cell_type")
                 source = cell.get("source", [])
@@ -91,7 +91,7 @@ def parse_notebooks():
 
     with open(TARGET_FILE, 'w', encoding='utf-8') as f:
         json.dump(tutorials, f, indent=2, ensure_ascii=False)
-        
+
     print(f"Successfully generated tutorial data at {TARGET_FILE} with {len(tutorials)} notebooks.")
 
 if __name__ == "__main__":

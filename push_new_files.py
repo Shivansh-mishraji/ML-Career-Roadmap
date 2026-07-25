@@ -50,7 +50,7 @@ def main():
         subprocess.run(['git', 'commit', '-m', commit_msg])
 
         # Push
-        push_res = subprocess.run(['git', 'push', 'origin', 'main'], capture_output=True, text=True)
+        push_result = subprocess.run(['git', 'push', 'origin', 'main'], capture_output=True, text=True)
         if push_res.returncode == 0:
             print(f"Successfully pushed {file_path}")
         else:

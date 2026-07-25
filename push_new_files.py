@@ -1,3 +1,7 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
 """
 Push New Files module.
 Part of the ML-Career-Roadmap package.

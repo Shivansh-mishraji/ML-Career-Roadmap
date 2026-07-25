@@ -92,7 +92,7 @@ if uploaded_file and api_key:
         # LLMs have context limits. We split the document into smaller chunks.
         # overlap=200 ensures we don't cut off a sentence right in the middle of a thought.
         text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000, 
+            chunk_size=1000,
             chunk_overlap=200
         )
         chunks = text_splitter.split_documents(documents)
@@ -116,7 +116,7 @@ if uploaded_file and api_key:
         )
 
     st.success("Document processed and stored in Vector Database!")
-    
+
     # ---------------------------------------------------------
     # 3. Interactive Chat Interface
     # ---------------------------------------------------------
@@ -127,7 +127,7 @@ if uploaded_file and api_key:
         with st.spinner("Thinking..."):
             # Run the query through our RAG chain
             response = qa_chain.run(user_question)
-            
+
             st.markdown("#### Answer:")
             st.info(response)
 
@@ -161,4 +161,4 @@ This shows you understand the *engineering trade-offs*, not just the API calls.
 
 
 ---
-*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!* 
+*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!*

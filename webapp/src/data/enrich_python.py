@@ -14,7 +14,7 @@ for notebook in data:
     for cell in notebook['cells']:
         if cell.get('type') == 'code':
             code = cell.get('content', '')
-            
+
             # 1. Clean up old heuristic comments and fake outputs we added
             lines = code.split('\n')
             clean_lines = []
@@ -22,13 +22,13 @@ for notebook in data:
                 if line.startswith('# Execute ') or line.startswith('# Import ') or line.startswith('# Generate ') or line.startswith('# Inspect ') or line.startswith('# Calculate ') or line.startswith('# Initialize ') or line.startswith('# Define ') or line.startswith('# Output: ') or line.startswith('#         '):
                     continue
                 clean_lines.append(line)
-            
+
             code = '\n'.join(clean_lines).strip()
             if not code:
                 continue
 
             output_str = ""
-            
+
             # 2. Try executing it in python dynamically to capture real output
             try:
                 f_io = io.StringIO()
@@ -75,13 +75,13 @@ for notebook in data:
                 # Truncate if insanely long
                 if len(output_str) > 1500:
                     output_str = output_str[:1500] + "\n... [Output Truncated]"
-                
+
                 commented_output = "\n".join([f"# Output: {line}" if i==0 else f"#         {line}" for i, line in enumerate(output_str.split('\n'))])
-                
+
                 final_code = f"{code}\n\n{commented_output}"
-            
+
             cell['content'] = final_code
-            
+
             # Remove the separate UI output attribute since it's now embedded in comments
             if 'output' in cell:
                 del cell['output']

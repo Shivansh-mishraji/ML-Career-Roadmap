@@ -12,8 +12,8 @@ graph TD
 ```
 
 
-**Goal:** 50+ problems across all difficulty levels  
-**Timeline:** Solve 5-10 per week  
+**Goal:** 50+ problems across all difficulty levels
+**Timeline:** Solve 5-10 per week
 **Focus:** Practical problems relevant to ML engineering
 
 ---
@@ -27,12 +27,12 @@ graph TD
    - LeetCode #1
    - Concepts: Hash map, two pointers
    - ML Application: Finding relationships, pairs in data
-   
+
 2. **Best Time to Buy and Sell Stock**
    - LeetCode #121
    - Concepts: Single pass, tracking max/min
    - ML Application: Time series data processing
-   
+
 3. **Contains Duplicate**
    - LeetCode #217
    - Concepts: Hash set, uniqueness
@@ -284,7 +284,7 @@ graph TD
 - [ ] Trapping Rain Water
 - [ ] Sliding Window Maximum
 
-**Time:** 5-7 hours  
+**Time:** 5-7 hours
 **Focus:** Understand concepts, not memorize solutions
 
 ---
@@ -467,15 +467,15 @@ Example (Two Sum):
 def test_two_sum():
     # Normal case
     assert twoSum([2, 7, 11, 15], 9) == [0, 1]
-    
+
     # Duplicates
     assert twoSum([3, 3], 6) == [0, 1]
-    
+
     # Large numbers
     assert twoSum([1000000, 1000000], 2000000) == [0, 1]
-    
+
     # No solution edge case (might not apply)
-    
+
 print("All tests passed!")
 ```
 
@@ -524,4 +524,4 @@ print("All tests passed!")
 
 
 ---
-*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!* 
+*🎯 **Pro Tip**: Consistency is key in Machine Learning. Keep building and exploring!*

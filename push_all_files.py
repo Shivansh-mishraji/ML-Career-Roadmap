@@ -49,7 +49,7 @@ def main():
             
         commit_msg = f"Improvement and formatting in {os.path.basename(f)}"
         subprocess.run(['git', 'commit', '-m', commit_msg])
-        push_res = subprocess.run(['git', 'push', 'origin', 'main'], capture_output=True, text=True)
+        push_result = subprocess.run(['git', 'push', 'origin', 'main'], capture_output=True, text=True)
         
         if push_res.returncode == 0:
             print(f"Successfully pushed {f}")
